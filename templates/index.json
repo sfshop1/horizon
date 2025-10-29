@@ -154,6 +154,7 @@
         },
         "slide_qC8f8a": {
           "type": "_slide",
+          "disabled": true,
           "settings": {
             "media_type_1": "image",
             "content_direction": "column",
@@ -293,6 +294,7 @@
         },
         "slide_hGqiNB": {
           "type": "_slide",
+          "disabled": true,
           "settings": {
             "media_type_1": "image",
             "content_direction": "column",
@@ -432,6 +434,7 @@
         },
         "slide_CHdr4q": {
           "type": "_slide",
+          "disabled": true,
           "settings": {
             "media_type_1": "image",
             "content_direction": "column",

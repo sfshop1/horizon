@@ -11,6 +11,66 @@
   "type": "header",
   "name": "t:names.header",
   "sections": {
+    "header_announcements_tKcBLW": {
+      "type": "header-announcements",
+      "blocks": {
+        "announcement_Fw77tC": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "WELCOME to Slabaugh Farms",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        },
+        "announcement_JiMrDy": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Local Pickup Now Available!",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "weight": "",
+            "letter_spacing": "loose",
+            "case": "none"
+          },
+          "blocks": {}
+        },
+        "announcement_mQhjPx": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "Delivery available on orders over $100",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "announcement_Fw77tC",
+        "announcement_JiMrDy",
+        "announcement_mQhjPx"
+      ],
+      "name": "t:names.announcement_bar",
+      "settings": {
+        "speed": 5,
+        "section_width": "page-width",
+        "color_scheme": "scheme-5",
+        "divider_width": 0,
+        "padding-block-start": 12,
+        "padding-block-end": 12
+      }
+    },
     "design_pack_announcement_slider_WqhaKp": {
       "type": "design_pack_-_announcement_-_slider",
       "blocks": {
@@ -56,6 +116,7 @@
         "announcement_dVDq9p",
         "announcement_paHjMf"
       ],
+      "disabled": true,
       "name": "Announcement - slider 🎒",
       "settings": {
         "per_row": "1",
@@ -153,6 +214,7 @@
     }
   },
   "order": [
+    "header_announcements_tKcBLW",
     "design_pack_announcement_slider_WqhaKp",
     "header_section"
   ]
