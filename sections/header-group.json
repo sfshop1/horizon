@@ -41,9 +41,10 @@
         "announcement_paHjMf": {
           "type": "announcement",
           "settings": {
-            "title": "<p>Fall collection out now</p>",
+            "title": "<p><strong>WELCOME</strong> to Slabaugh Farms</p>",
+            "image": "shopify://shop_images/sf_for_slider.png",
             "image_crop": "circle",
-            "image_size": 40,
+            "image_size": 42,
             "link_label": "",
             "link": "",
             "external_link": false
