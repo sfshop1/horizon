@@ -1,0 +1,1196 @@
+{%- comment -%}
+{
+  "pack_name": "Gallery - text overlay",
+  "pack_author": "Design Packs",
+  "license": "© Design Packs. All rights reserved. This code is protected by copyright law and may not be reproduced, distributed, or used without explicit permission from the author. Shopify complies with the Digital Millennium Copyright Act (DMCA) and responds to claims of copyright infringement using DMCA procedures, which could result in the termination of your Shopify account.",
+}
+{%- endcomment -%}
+
+{% comment %} Security Code - hides section when app uninstalled {% endcomment %}
+{%- unless content_for_header contains 'design_packs_file.js' -%}
+  {%- if request.design_mode -%}
+    <div class="dsgn-pck__no-app-warning">
+      <div class="dsgn-pck__no-app-warning-background">
+      </div>
+      <div class="dsgn-pck__no-app-warning-text dsgn-pck__rte">
+        <p><strong>WARNING!</strong> This premium section will not display properly without an active subscription for <a href="https://apps.shopify.com/design-packs" target="_blank" rel="noopener nofollow">Design Packs</a>. If you need any support please email <a href="mailto:info@design-packs.com" target="_blank" rel="noopener">info@design-packs.com</a> with your questions.</p>
+      </div>
+    </div>
+  {%- endif -%}
+  {%- break -%}
+{%- endunless -%}
+
+{%- comment -%} Assign: Preview section js fix {%- endcomment -%}
+{%- assign section_id = section.id | replace: '+', '' | replace: '=', '' -%}
+
+{%- comment -%} Color: check if color is set to transparent {%- endcomment -%}
+{%- assign button_alpha = section.settings.button_background_color | color_extract: 'alpha' -%}
+
+{%- comment -%} Images: all placeholders {%- endcomment -%}
+{%- assign background_placeholder_video_id = '5f2ab401807b458383fb168fbc4e5b03' -%}
+
+{% comment %} Images: responsive image widths {% endcomment %}
+{%- assign widths = '180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 1950, 2100, 2260, 2450, 2700, 3000, 3350, 3750, 4100' -%}
+
+{%- comment -%} Images: check image crop aspect ratio {%- endcomment -%}
+{%- assign image_crop_width = section.settings.image_crop | split: ':' | first | times: 1000 -%}
+{%- assign image_crop_height = section.settings.image_crop | split: ':' | last | times: 1000 -%}
+
+{%- comment -%} Images: check if lightbox is enabled {%- endcomment -%}
+{%- assign lightbox_enabled_on_block = false -%}
+{%- for block in section.blocks -%}
+  {%- if block.settings.enable_lightbox -%}
+    {%- assign lightbox_enabled_on_block = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%} Layout: has user entered measurement value into max-width field? {%- endcomment -%}
+{%- if section.settings.max_width contains 'px' or section.settings.max_width contains '%' -%}
+  {%- assign max_width = section.settings.max_width -%}
+{%- else -%}
+  {%- assign max_width = section.settings.max_width | append: 'px' -%}
+{%- endif -%}
+
+{%- comment -%} Text: custom font_picker values {%- endcomment -%}
+{%- capture font_settings_list -%}
+{{ section.settings.main_font | font_face: font_display: 'swap' }}~
+{{ section.settings.main_font | font_modify: 'weight', 'bolder' | font_face: font_display: 'swap' }}~
+{{ section.settings.main_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}~
+{{ section.settings.main_font | font_modify: 'style', 'italic' | font_modify: 'weight', 'bolder' | font_face: font_display: 'swap' }}~
+{{ section.settings.heading_font | font_face: font_display: 'swap' }}~
+{{ section.settings.heading_font | font_modify: 'weight', 'bolder' | font_face: font_display: 'swap' }}~
+{{ section.settings.heading_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}~
+{{ section.settings.heading_font | font_modify: 'style', 'italic' | font_modify: 'weight', 'bolder' | font_face: font_display: 'swap' }}
+{%- endcapture -%}
+{%- assign font_array = font_settings_list | split: '~' -%}
+
+{%- capture minify -%}
+{%- comment -%} CSS {%- endcomment -%}
+<style>
+{%- if lightbox_enabled_on_block == true -%}
+.bp-img-wrap,.bp-wrap{top:0;left:0;width:100%;height:100%;contain:strict}.bp-controls,.bp-zoomed.bp-small .bp-controls button{pointer-events:none}.bp-cap,.bp-count{color:rgba(255,255,255,.9)}.bp-cap,.bp-controls{transition:opacity .3s}@keyframes bp-fadein{from{opacity:.01}to{opacity:1}}@keyframes bp-bar{from{transform:translateX(-100%)}to{transform:translateX(0)}}@keyframes bp-o{from{transform:rotate(0)}to{transform:rotate(360deg)}}.bp-wrap{position:fixed;z-index:999;touch-action:none;-webkit-tap-highlight-color:transparent}.bp-img,.bp-img-wrap,.bp-inner,.bp-vid audio{position:absolute}.bp-wrap>div:first-child{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);animation:.48s cubic-bezier(.215,.61,.355,1) bp-fadein; display: block}.bp-vid audio{left:14px;width:calc(100% - 28px);bottom:14px;height:50px}.bp-inner{top:0;left:0;width:100%;height:100%;display:flex}.bp-html{display:contents}.bp-html>:first-child{margin:auto}.bp-img-wrap.bp-drag .bp-img{cursor:grabbing}.bp-img,.bp-noclose:not(.bp-zoomed) .bp-img-wrap{cursor:zoom-in}.bp-close{contain:layout size}.bp-img{top:50%;left:50%;user-select:none;background-size:100% 100%}.bp-controls,.bp-img div,.bp-img img{top:0;width:100%;position:absolute;height:100%}.bp-img div,.bp-img img{left:0}.bp-img .bp-o,.bp-noclose .bp-x{display:none}.bp-zoomed .bp-img{cursor:grab}.bp-zoomed .bp-cap{opacity:0;animation:none!important}.bp-zoomed.bp-small .bp-controls{opacity:0}.bp-controls{left:0;text-align:left;animation:.3s bp-fadein}.bp-controls button{pointer-events:auto;cursor:pointer;position:absolute;border:0;background:rgba(0,0,0,.15);opacity:.9;transition:.1s;contain:content}.bp-controls button:hover{background-color:rgba(0,0,0,.2);opacity:1}.bp-controls svg{fill:#fff}.bp-count{position:absolute;line-height:1;margin:16px;height:50px;width:100px}.bp-next,.bp-prev{top:50%;right:0;margin-top:-32px;height:64px;width:58px;border-radius:3px 0 0 3px}.bp-next:hover:before,.bp-prev:hover:before{transform:translateX(-2px)}.bp-next:before,.bp-prev:before{content:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z'/%3E%3C/svg%3E");position:absolute;left:7px;top:9px;width:46px;transition:.2s}.bp-prev{right:auto;left:0;transform:scalex(-1)}.bp-x{top:0;right:0;height:55px;width:58px;border-radius:0 0 0 3px}.bp-x:before{content:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%23fff'%3E%3Cpath d='M24 10l-2-2-6 6-6-6-2 2 6 6-6 6 2 2 6-6 6 6 2-2-6-6z'/%3E%3C/svg%3E");position:absolute;width:37px;top:8px;right:10px}.bp-if,.bp-vid{position:relative;margin:auto;background:0 0/100% 100% #000}.bp-bar,.bp-cap,.bp-inline{position:absolute}.bp-if div,.bp-if iframe,.bp-if video,.bp-vid div,.bp-vid iframe,.bp-vid video{top:0;left:0;width:100%;height:100%;position:absolute;border:0}.bp-load{display:flex;background-size:100% 100%;overflow:hidden;z-index:1}.bp-bar{top:0;left:0;height:3px;width:100%;transform:translateX(-100%);background:rgba(255,255,255,.9);border-radius:0 3px 3px 0;animation:4s both bp-bar}.bp-o,.bp-o:after{border-radius:50%;width:90px;height:90px}.bp-o{margin:auto;border:10px solid rgba(255,255,255,.2);border-left-color:rgba(255,255,255,.9);animation:1s linear infinite bp-o}.bp-cap{bottom:2%;background:rgba(9,9,9,.8);border-radius:4px;max-width:95%;line-height:1.3;padding:.6em 1.2em;left:50%;transform:translateX(-50%);width:fit-content;width:-moz-fit-content;display:table;animation:.2s bp-fadein}.bp-cap a{color:inherit}.bp-lock{overflow-y:hidden}.bp-lock body{overflow:scroll}.bp-noclose:not(.bp-zoomed){touch-action:pan-y}@media (prefers-reduced-motion){.bp-wrap *{animation-duration:0s!important}}@media (max-width:500px){.bp-x{height:47px;width:47px}.bp-x:before{width:34px;top:6px;right:6px}.bp-next,.bp-prev{margin-top:-27px;height:54px;width:45px}.bp-next:before,.bp-prev:before{top:7px;left:2px;width:43px}.bp-o,.bp-o:after{border-width:6px;width:60px;height:60px}.bp-count{margin:12px 10px}} .bp-img img:not([src]) {visibility: unset;}
+{%- endif -%}
+
+{%- if section.settings.override_theme_font != blank -%}
+  {%- for font in font_array -%}
+    {%- unless font contains 'error' -%}{{ font }}{%- endunless -%}
+  {%- endfor -%}
+  .DP--{{ section_id }} {
+    --main-font: {{ section.settings.main_font.family }}, {{ section.settings.main_font.fallback_families }};
+    --main-font-weight: {{ section.settings.main_font.weight }};
+    --main-font-style: {{ section.settings.main_font.style }};
+    --heading-font: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    --heading-font-weight: {{ section.settings.heading_font.weight }};
+    --heading-font-style: {{ section.settings.heading_font.style }};
+  }
+{%- endif -%}
+
+.DP--{{ section_id }} {
+  background: {{ section.settings.background_color }};
+  margin-top: {{ section.settings.outer_margin }}px;
+  margin-bottom: {{ section.settings.outer_margin }}px;
+}
+
+.DP--{{ section_id }} .dsgn-pck__sizer {
+  padding-top: {{ section.settings.inner_padding }}px;
+  padding-bottom: {{ section.settings.inner_padding }}px;
+  width: {{ section.settings.base_width }}%;
+  max-width: {{ max_width }};
+}
+
+.DP--{{ section_id }} .dsgn-pck__grid {
+  gap: {{ section.settings.gutter }}px;
+}
+
+.DP--{{ section_id }} .dsgn-pck__grid-item {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
+.DP--{{ section_id }} .dsgn-pck__grid-alignment-top {
+  align-items: flex-start;
+}
+
+.DP--{{ section_id }} .dsgn-pck__grid-alignment-center {
+  align-items: center;
+}
+
+.DP--{{ section_id }} .dsgn-pck__grid-alignment-bottom {
+  align-items: flex-end;
+}
+
+.DP--{{ section_id }} .dsgn-pck__image__wrapper {
+  min-width: 100%;
+  {%- if section.settings.image_crop != 'none' -%}
+    height: 100%;
+  {%- endif -%}
+  position: relative;
+  overflow: hidden;
+}
+
+.DP--{{ section_id }} .dsgn-pck__svg-sizer {
+  display: block;
+  width: 100%;
+}
+
+.DP--{{ section_id }} .dsgn-pck__image__wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.DP--{{ section_id }} .dsgn-pack__secondary-image--true .dsgn-pck__image__first,
+.DP--{{ section_id }} .dsgn-pack__secondary-image--true .dsgn-pck__image__second {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.DP--{{ section_id }} .dsgn-pack__secondary-image--true .dsgn-pck__image__second {
+  opacity: 0;
+}
+
+.DP--{{ section_id }} .dsgn-pck__grid-item.dsgn-pack__secondary-image--true:hover .dsgn-pck__image__wrapper .dsgn-pck__image__first {
+  opacity: 0;
+}
+
+.DP--{{ section_id }} .dsgn-pck__grid-item.dsgn-pack__secondary-image--true:hover .dsgn-pck__image__wrapper .dsgn-pck__image__second {
+  opacity: 1;
+}
+
+.DP--{{ section_id }} .dsgn-pck__image__wrapper video {
+  object-fit: cover;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+}
+
+.DP--{{ section_id }} .dsgn-pck__video video:not(:root):fullscreen {
+  object-fit: contain;
+}
+
+.DP--{{ section_id }} .dsgn-pck__content {
+  pointer-events: none;
+  height: 100%;
+  grid-template-columns: 1fr;
+  grid-area: 1 / 1 / 2 / 2;
+  transition: 0.3s;
+  padding: 1em;
+  opacity: 0;
+  color: {{ section.settings.text_color }};
+  {%- if section.settings.override_theme_font != blank -%}
+  font-family: var(--main-font);
+  font-weight: var(--main-font-weight);
+  font-style: var(--main-font-style);
+  {%- endif -%}
+}
+
+.DP--{{ section_id }} .dsgn-pck__grid-item__inner-content {
+  pointer-events: all;
+}
+
+{%- if section.settings.enable_hover == true -%}
+  .DP--{{ section_id }} .dsgn-pck__grid-item:hover .dsgn-pck__content {
+    opacity: 1;
+  }
+{%- else -%}
+  .DP--{{ section_id }} .dsgn-pck__content {
+    opacity: 1;
+  }
+{%- endif -%}
+
+.DP--{{ section_id }} .dsgn-pck__small-heading {
+  margin-bottom: 0.3em;
+  line-height: var(--dp-g-small-heading-line-height, var(--dp-small-heading-line-height, calc(3px + 2ex + 3px)));
+  font-size: calc(var(--dp-g-small-heading-size, var(--dp-small-heading-size, 24px)) * {{ section.settings.text_size | times: 0.01 }});
+  {%- if section.settings.override_theme_font != blank -%}
+  font-family: var(--heading-font);
+  font-weight: var(--heading-font-weight);
+  font-style: var(--heading-font-style);
+  {%- endif -%}
+}
+
+.DP--{{ section_id }} .dsgn-pck__small-heading + .dsgn-pck__text {
+  margin-top: calc(10px * {{ section.settings.text_size | times: 0.01 }});
+}
+
+.DP--{{ section_id }} .dsgn-pck__text {
+  line-height: var(--dp-g-body-line-height, var(--dp-body-line-height, calc(3px + 2.5ex + 3px)));
+  font-size: calc(var(--dp-g-body-size, var(--dp-body-size, 18px)) * {{ section.settings.text_size | times: 0.01 }});
+  {%- if section.settings.override_theme_font != blank -%}
+  font-family: var(--main-font);
+  font-weight: var(--main-font-weight);
+  font-style: var(--main-font-style);
+  {%- endif -%}
+}
+
+.DP--{{ section_id }} .dsgn-pck__full-link {
+  color: {{ section.settings.text_color }};
+  text-decoration: none;
+}
+
+.DP--{{ section_id }} .dsgn-pck__button {
+  margin-top: 1.2em;
+  display: inline-block;
+  width: auto;
+  text-decoration: none;
+  padding: var(--dp-button-padding, 0.5em 1.2em);
+  border: thin solid;
+  transition: all 0.3s ease-in-out;
+  border-radius: {{ section.settings.button_radius }}px;
+  border-color: {%- if button_alpha != 0 -%}{{ section.settings.button_background_color }}{%- else -%}{{ section.settings.button_label_color }}{%- endif -%};
+  font-size: calc(var(--dp-g-body-size, var(--dp-body-size, 18px)) * {{ section.settings.text_size | times: 0.01 }});
+  color: {{ section.settings.button_label_color }};
+  background-color: {{ section.settings.button_background_color }};
+  {%- if section.settings.override_theme_font != blank -%}
+  font-family: var(--main-font);
+  font-weight: var(--main-font-weight);
+  font-style: var(--main-font-style);
+  {%- endif -%}
+}
+
+.DP--{{ section_id }} .dsgn-pck__button:hover {
+  opacity: 1;
+  {%- if button_alpha != 0 -%}
+  background-color: {{ section.settings.button_background_color | color_darken: 10 }};
+  border-color: transparent;
+  {%- else -%}
+  background-color: {{ section.settings.button_label_color | color_modify: 'alpha', 0.1 }}
+  {%- endif -%};
+}
+
+/* Animation */
+{%- if section.settings.animation != 'none' -%}
+  #DP--{{ section_id }}.dsgn-pck__animation-applied [style*="--dsgn-pck-animate"] {
+    animation-name: dsgn-pck__animation--{{ section.settings.animation }};
+  }
+{%- else -%}
+  .DP--{{ section_id }} [style*="--dsgn-pck-animate"] {
+    opacity: 1;
+  }
+{% endif %}
+
+{%- if section.settings.custom_css != blank -%}
+  {%- assign custom_section_declarations = section.settings.custom_css | split: '}' -%}
+  {%- for declaration in custom_section_declarations -%}
+    {%- if declaration contains '{' -%}
+      #DP--{{ section_id }} {{ declaration }} }
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  .DP--{{ section_id }} .dsgn-pck__grid {
+    grid-template-columns: repeat({{ section.settings.mobile_per_row }}, auto);
+  }
+
+  .DP--{{ section_id }} .dsgn-pck__mobile-grid-alignment-top {
+    align-items: flex-start;
+  }
+
+  .DP--{{ section_id }} .dsgn-pck__mobile-grid-alignment-center {
+    align-items: center;
+  }
+
+  .DP--{{ section_id }} .dsgn-pck__mobile-grid-alignment-bottom {
+    align-items: flex-end;
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+  .DP--{{ section_id }} {
+    margin-top: {{ section.settings.outer_margin | divided_by: 2 }}px;
+    margin-bottom: {{ section.settings.outer_margin | divided_by: 2 }}px;
+  }
+
+  .DP--{{ section_id }} .dsgn-pck__sizer {
+    min-width: 70%;
+    padding-top: {{ section.settings.inner_padding | divided_by: 2 }}px;
+    padding-bottom: {{ section.settings.inner_padding | divided_by: 2 }}px;
+  }
+
+  {%- if section.settings.mobile_custom_css != blank -%}
+    {%- assign mobile_custom_declarations = section.settings.mobile_custom_css | split: '}' -%}
+    {%- for declaration in mobile_custom_declarations -%}
+      {%- if declaration contains '{' -%}
+        #DP--{{ section_id }} {{ declaration }} }
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+}
+</style>
+
+{%- comment -%} HTML {%- endcomment -%}
+<section id="DP--{{ section_id }}" class="DP--{{ section_id }} dsgn-pck__gallery-grid dsgn-pck__section {{ section.settings.custom_classes }}">
+  {%- if section.settings.anchor_id != blank -%}
+    <div id="{{ section.settings.anchor_id | remove: '#' | handleize }}" class="dsgn-pck__anchor-id" style="height: 0; overflow: hidden;"></div>
+  {%- endif -%}
+  <div class="dsgn-pck__sizer">
+    <div class="dsgn-pck__grid dsgn-pck__grid--{{ section.settings.per_row }}-per-row">
+      {%- for block in section.blocks -%}
+        {%- comment -%} Text: check text position {%- endcomment -%}
+        {%- assign horizontal_text_position = block.settings.text_position | split: ' ' | first -%}
+        {%- assign vertical_text_position = block.settings.text_position | split: ' ' | last -%}
+        {%- capture grid_alignment -%}
+          {%- if section.settings.grid_alignment == 'bottom_top' -%}
+            {%- case section.settings.per_row -%}
+              {%- when 3 -%}
+                {%- cycle 'bottom', 'bottom', 'bottom', 'top', 'top', 'top' -%}
+              {%- when 4 -%}
+                {%- cycle 'bottom', 'bottom', 'bottom', 'bottom', 'top', 'top', 'top', 'top' -%}
+              {%- when 5 -%}
+                {%- cycle 'bottom', 'bottom', 'bottom', 'bottom', 'bottom', 'top', 'top', 'top', 'top', 'top' -%}
+              {%- when 6 -%}
+                {%- cycle 'bottom', 'bottom', 'bottom', 'bottom', 'bottom', 'bottom', 'top', 'top', 'top', 'top', 'top', 'top' -%}
+              {%- else -%}
+                {%- cycle 'bottom', 'bottom', 'top', 'top' -%}
+            {%- endcase -%}
+          {%- else -%}
+            {{ section.settings.grid_alignment }}
+          {%- endif -%}
+        {%- endcapture -%}
+        {%- capture mobile_grid_alignment -%}
+          {%- if section.settings.grid_alignment == 'bottom_top' -%}
+            {%- case section.settings.mobile_per_row -%}
+              {%- when 2 -%}
+                {%- cycle 'bottom', 'bottom', 'top', 'top' -%}
+              {%- when 3 -%}
+                {%- cycle 'bottom', 'bottom', 'bottom', 'top', 'top', 'top' -%}
+              {%- when 4 -%}
+                {%- cycle 'bottom', 'bottom', 'bottom', 'bottom', 'top', 'top', 'top', 'top' -%}
+              {%- else -%}
+                {{ section.settings.grid_alignment }}
+            {%- endcase -%}
+          {%- else -%}
+            {{ section.settings.grid_alignment }}
+          {%- endif -%}
+        {%- endcapture -%}
+
+        <style>
+          .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__content::before {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            content: '';
+            display: block;
+            background: {{ block.settings.text_background_color }};
+            z-index: 0;
+          }
+        </style>
+        <div class="dsgn-pck__grid-item dsgn-pck__block-id-{{ block.id }} dsgn-pck__grid-alignment-{{ grid_alignment }} dsgn-pck__mobile-grid-alignment-{{ mobile_grid_alignment }} {% if block.settings.hover_image != blank %}dsgn-pack__secondary-image--true{% endif %}" {{ block.shopify_attributes }} style="--dsgn-pck-animate: {{ forloop.index0 }}" >
+
+        {%- comment -%} Images: all placeholders {%- endcomment -%}
+        {% capture placeholder_url %}{% cycle "E0AHdsENmDg_1080x1620", "asuyh-_ZX54_1080x720", "rCbdp8VCYhQ_1080x720", "fUnfEz3VLv4_1080x720", "0o_GEzyargo_1080x1620", "fxrwJGMCz_g_1080x720", "E0AHdsENmDg_1080x1620" %}{% endcapture %}
+        {%- assign placeholder_width = placeholder_url | split: '_' | last | split: 'x' | first -%}
+        {%- assign placeholder_height = placeholder_url | split: '_' | last | split: 'x' | last -%}
+
+        {%- case block.type -%}
+          {%- when 'image' -%}
+            {%- comment -%} Images: crop based on initial image width and height{%- endcomment -%}
+            {%- if section.settings.image_crop == 'none' -%}
+              {%- assign image_crop_width = block.settings.image.width | default: placeholder_width -%}
+              {%- assign image_crop_height = block.settings.image.height | default: placeholder_height -%}
+            {%- endif -%}
+            <div class="dsgn-pck__image__wrapper">
+              <svg class="dsgn-pck__svg-sizer" viewBox="0 0 {{ image_crop_width }} {{ image_crop_height }}"></svg>
+              {%- if block.settings.image != blank -%}
+                {%- capture sizes -%}
+                  (max-width: 480px) 100vw, {{ section.settings.base_width | divided_by: section.settings.per_row | append: 'vw' | default: '33vw' }}
+                {%- endcapture -%}
+                <div class="dsgn-pck__image__first">
+                  {{ block.settings.image | image_url: width: 2800 | image_tag: widths: widths, sizes: sizes }}
+                </div>
+                {%- if block.settings.hover_image != blank -%}
+                  <div class="dsgn-pck__image__second">
+                    {{ block.settings.hover_image | image_url: width: 2800 | image_tag: widths: widths, sizes: sizes }}
+                  </div>
+                {%- endif -%}
+              {%- else -%}
+                <div class="dsgn-pck__image__first">
+                  <img src="https://cdn.shopify.com/s/files/1/0577/7673/4361/files/{{ placeholder_url }}.jpg"
+                    alt=""
+                    loading="lazy"
+                    width="{{ placeholder_width }}"
+                    height="{{ placeholder_height }}">
+                </div>
+                {%- if block.settings.hover_image != blank -%}
+                  <div class="dsgn-pck__image__second">
+                    {{ block.settings.hover_image | image_url: width: 2800 | image_tag: widths: widths, sizes: sizes }}
+                  </div>
+                {%- endif -%}
+              {%- endif -%}
+              {%- if block.settings.enable_lightbox -%}
+                <a href="#"
+                  class="dsgn-pck__lightbox-true dsgn-pck__absolute-link"
+                  data-dsgn-pck-lightbox="true"
+                  data-img="{%- if block.settings.image != blank -%}{{ block.settings.image | image_url: width: 5000 }}{%- else -%}https://cdn.shopify.com/s/files/1/0577/7673/4361/files/{{ placeholder_url }}.jpg{%- endif -%}"
+                  data-alt="{{ block.settings.image.alt }}"
+                  data-height="{{ block.settings.image.height | default: placeholder_height }}"
+                  data-width="{{ block.settings.image.width | default: placeholder_width }}"
+                ></a>
+              {%- elsif block.settings.link != blank -%}
+                <a class="dsgn-pck__absolute-link" href="{{ block.settings.link }}" {% if block.settings.external_link %}target="_blank" rel="noopener"{% endif %}>{{ block.settings.link.title }}</a>
+              {% endif %}
+              <div class="dsgn-pck__content dsgn-pck__flex dsgn-pck__justify-{{ horizontal_text_position }} dsgn-pck__align-{{ vertical_text_position }}">
+                <div class="dsgn-pck__grid-item__inner-content dsgn-pck__relative">
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="dsgn-pck__small-heading">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.text != blank -%}
+                    <div class="dsgn-pck__text dsgn-pck__rte">{{ block.settings.text }}</div>
+                  {%- endif -%}
+                  {%- if block.settings.button_label != blank and block.settings.enable_lightbox -%}
+                    <a href="#"
+                      class="dsgn-pck__button"
+                      data-dsgn-pck-lightbox="true"
+                      data-img="{%- if block.settings.image != blank -%}{{ block.settings.image | image_url: width: 5000 }}{%- else -%}https://cdn.shopify.com/s/files/1/0577/7673/4361/files/{{ placeholder_url }}.jpg{%- endif -%}"
+                      data-alt="{{ block.settings.image.alt }}"
+                      data-height="{{ block.settings.image.height | default: placeholder_height }}"
+                      data-width="{{ block.settings.image.width | default: placeholder_width }}"
+                    >{{ block.settings.button_label }}</a>
+                  {%- elsif block.settings.button_label != blank -%}
+                    <a class="dsgn-pck__button" {%- if block.settings.link != blank -%}href="{{ block.settings.link }}"{%- endif -%} {% if block.settings.external_link %}target="_blank" rel="noopener"{% endif %}>{{ block.settings.button_label }}</a>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+
+          {%- when 'html5_video' -%}
+            {%- assign width = 1000 -%}
+            {%- assign height = 1000.0 | divided_by: block.settings.video.aspect_ratio -%}
+            {%- comment -%} Images: crop based on initial image width and height{%- endcomment -%}
+            {%- if section.settings.image_crop == 'none' -%}
+              {%- if block.settings.image != blank -%}
+                {%- assign image_crop_width = block.settings.image.width | default: placeholder_width -%}
+                {%- assign image_crop_height = block.settings.image.height | default: placeholder_height -%}
+              {%- else -%}
+                {%- assign image_crop_width = width | default: placeholder_width -%}
+                {%- assign image_crop_height = height | default: placeholder_height -%}
+              {%- endif -%}
+            {%- endif -%}
+            {%- capture sources -%}
+            [
+              {%- for source in block.settings.video.sources -%}
+                {
+                  "src": "{{ source.url | escape }}", "type": "video/{{ source.format | escape }}"
+                }{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}
+            ]
+            {%- endcapture -%}
+              <div class="dsgn-pck__image__wrapper">
+                <svg class="dsgn-pck__svg-sizer" viewBox="0 0 {{ image_crop_width }} {{ image_crop_height }}"></svg>
+                {%- if block.settings.image != blank -%}
+                  {%- capture sizes -%}
+                    (max-width: 480px) 100vw, {{ section.settings.base_width | divided_by: section.settings.per_row | append: 'vw' | default: '33vw'}}
+                  {%- endcapture -%}
+                  {{ block.settings.image | image_url: width: 2800 | image_tag:  widths: widths, sizes: sizes }}
+                {%- else -%}
+                  {%- assign video = block.settings.video -%}
+                  {%- if video != blank -%}
+                    <video width="{{ video.aspect_ratio | times: 100 }}" height="100"
+                      playsinline
+                      {% if block.settings.autoplay %}autoplay muted{% endif %}
+                      {% if block.settings.loop %}loop{% endif %}
+                      loading="lazy" poster="{{ video.preview_image | image_url: width: 2800 }}">
+                      {%- for source in video.sources -%}
+                        {%- if source.format == 'mp4' or source.format == 'mov' -%}<source src="{{ source.url }}">{%- endif -%}
+                      {%- endfor -%}
+                    </video>
+                  {%- else -%}
+                    <video width="2000" height="1000"
+                      playsinline
+                      {% if block.settings.autoplay %}autoplay muted{% endif %}
+                      {% if block.settings.loop %}loop{% endif %}
+                      {% if block.settings.show_controls == true and block.settings.video_style == 'control_bar' %}controls controlsList="nodownload"{% endif %}
+                      loading="lazy" poster="https://cdn.shopify.com/s/files/1/0577/7673/4361/files/{{ placeholder_url }}.jpg">
+                        <source src="https://cdn.shopify.com/videos/c/o/v/{{ background_placeholder_video_id }}.mp4" data-dsgn-pck-default-src>
+                    </video>
+                  {%- endif -%}
+
+                {%- endif -%}
+                {%- if block.settings.enable_lightbox -%}
+                  <a href="#"
+                    class="dsgn-pck__lightbox-true dsgn-pck__absolute-link"
+                    data-dsgn-pck-lightbox="true"
+                    data-width="{{ width }}"
+                    data-height="{{ height }}"
+                    data-sources='{{ sources }}'
+                  ></a>
+                {%- elsif block.settings.link != blank -%}
+                  <a class="dsgn-pck__absolute-link" href="{{ block.settings.link }}" {% if block.settings.external_link %}target="_blank" rel="noopener"{% endif %}>{{ block.settings.link.title }}</a>
+                {% endif %}
+                <div class="dsgn-pck__content dsgn-pck__flex dsgn-pck__justify-{{ horizontal_text_position }} dsgn-pck__align-{{ vertical_text_position }}">
+                  <div class="dsgn-pck__grid-item__inner-content dsgn-pck__relative">
+                    {%- if block.settings.title != blank -%}
+                      <h3 class="dsgn-pck__small-heading">{{ block.settings.title }}</h3>
+                    {%- endif -%}
+                    {%- if block.settings.text != blank -%}
+                      <div class="dsgn-pck__text dsgn-pck__rte">{{ block.settings.text }}</div>
+                    {%- endif -%}
+                    {%- if block.settings.button_label != blank and block.settings.enable_lightbox -%}
+                      <a href="#"
+                        class="dsgn-pck__button"
+                        data-dsgn-pck-lightbox="true"
+                        data-width="{{ width }}"
+                        data-height="{{ height }}"
+                        data-sources='{{ sources }}'
+                      >{{ block.settings.button_label }}</a>
+                    {%- elsif block.settings.button_label != blank -%}
+                      <a class="dsgn-pck__button" {%- if block.settings.link != blank -%}href="{{ block.settings.link }}"{%- endif -%} {% if block.settings.external_link %}target="_blank" rel="noopener"{% endif %}>{{ block.settings.button_label }}</a>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+
+        {%- endcase -%}
+
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endcapture -%}
+{{ minify | strip_newlines }}
+
+{% schema %}
+{
+  "name": "Gallery - text overlay",
+  "class": "DP__gallery-text-overlay",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_hover",
+      "label": "Show information on hover",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "per_row",
+      "label": "Images per row",
+      "default": 3,
+      "min": 1,
+      "max": 6
+    },
+    {
+      "type": "select",
+      "id": "image_crop",
+      "label": "Image aspect ratio",
+      "default": "none",
+      "options": [
+        {
+          "value": "4:3",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "2:3",
+          "label": "Portrait (2:3)"
+        },
+        {
+          "value": "1:1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "none",
+          "label": "Original"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "grid_alignment",
+      "label": "Grid row alignment",
+      "info": "Visible when 'Image aspect ratio' set to 'Original'",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "bottom_top",
+          "label": "Alternating bottom & top"
+        }
+      ],
+      "default": "bottom_top"
+    },
+    {
+      "type": "range",
+      "id": "gutter",
+      "min": 0,
+      "max": 40,
+      "label": "Gutter size",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "📱 Mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_per_row",
+      "label": "Images per row",
+      "default": 1,
+      "min": 1,
+      "max": 3
+    },
+    {
+      "type": "header",
+      "content": "✏️ Text appearance"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 80,
+      "max": 120,
+      "step": 5,
+      "default": 100,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "🎨 Design"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_label_color",
+      "label": "Button label",
+      "default": "#FAFAFA"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background",
+      "default": "#283144"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 50,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "color_background",
+      "id": "background_color",
+      "label": "Background",
+      "default": "linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) 100%)"
+    },
+    {
+      "type": "select",
+      "id": "animation",
+      "label": "Animation",
+      "default": "none",
+      "options": [
+        {
+          "value": "fade-in",
+          "label": "Fade-in"
+        },
+        {
+          "value": "fade-in-left",
+          "label": "Fade-in left"
+        },
+        {
+          "value": "fade-in-right",
+          "label": "Fade-in right"
+        },
+        {
+          "value": "fade-in-up",
+          "label": "Fade-in up"
+        },
+        {
+          "value": "fade-in-down",
+          "label": "Fade-in down"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "🖼 Layout"
+    },
+    {
+      "type": "range",
+      "id": "base_width",
+      "label": "Size",
+      "min": 60,
+      "max": 100,
+      "step": 5,
+      "default": 95,
+      "unit": "%"
+    },
+    {
+      "type": "text",
+      "id": "max_width",
+      "label": "Maximum width",
+      "placeholder": "eg. 1200px",
+      "info": "Sets width constraint for content."
+    },
+    {
+      "type": "range",
+      "id": "inner_padding",
+      "label": "Inner padding",
+      "info": "Only applies to top and bottom.",
+      "min": 0,
+      "max": 100,
+      "default": 40,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "outer_margin",
+      "label": "Outer margin",
+      "info": "Only applies to top and bottom.",
+      "min": 0,
+      "max": 100,
+      "default": 40,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "🚨 Advanced"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_css",
+      "label": "CSS"
+    },
+    {
+      "type": "liquid",
+      "id": "mobile_custom_css",
+      "label": "Mobile CSS",
+      "info": "Applied on screens less than 480px."
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Link anchor id",
+      "placeholder": "#design-pack-section",
+      "info": "Enter a unique value to jump to this section from same page using a link or button. Eg. #design-pack-section [Learn more](https://app.gitbook.com/o/UwqKbTxsdQExehd4SSPM/s/iJpf70jLagzGk8zoz4fu/fundamentals/how-to-guides/how-to-jump-link-to-another-section-on-the-same-page)"
+    },
+    {
+      "type": "text",
+      "id": "custom_classes",
+      "label": "Custom classes",
+      "placeholder": "my-custom-class my-custom-class--2",
+      "info": "Add your own CSS classes to section. Eg. my-custom-class my-custom-class--2 [Learn more](https://design-packs.gitbook.io/docs/fundamentals/settings/custom-classes-setting)"
+    },
+    {
+      "type": "checkbox",
+      "id": "override_theme_font",
+      "label": "Override default theme font",
+      "default": false
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Headings",
+      "default": "serif"
+    },
+    {
+      "type": "font_picker",
+      "id": "main_font",
+      "label": "Text",
+      "default": "sans-serif"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "html5_video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Thumbnail image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "label": "Autoplay",
+          "info": "Video will be muted.",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "loop",
+          "label": "Loop video",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Product title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh enim, ornare at consequat sed, placerat quis libero. Curabitur id nulla ut nunc aliquam sodales.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button",
+          "default": "View more"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "external_link",
+          "label": "Open this link in a new window"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_lightbox",
+          "label": "Enable lightbox",
+          "default": false,
+          "info": "Show video on click. Url link is disabled when lightbox is enabled."
+        },
+        {
+          "type": "select",
+          "id": "text_position",
+          "label": "Text position",
+          "default": "center center",
+          "options": [
+            {
+              "value": "left top",
+              "label": "Top left"
+            },
+            {
+              "value": "center top",
+              "label": "Top center"
+            },
+            {
+              "value": "right top",
+              "label": "Top right"
+            },
+            {
+              "value": "left center",
+              "label": "Left"
+            },
+            {
+              "value": "center center",
+              "label": "Center"
+            },
+            {
+              "value": "right center",
+              "label": "Right"
+            },
+            {
+              "value": "left bottom",
+              "label": "Bottom left"
+            },
+            {
+              "value": "center bottom",
+              "label": "Bottom center"
+            },
+            {
+              "value": "right bottom",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "color_background",
+          "id": "text_background_color",
+          "label": "Text background",
+          "info": "Visible text background for better readability. Use opacity settings to adjust transparency."
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_image",
+          "label": "Hover image (optional)",
+          "info": "Shown when hovering over image."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Product title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nibh enim, ornare at consequat sed, placerat quis libero. Curabitur id nulla ut nunc aliquam sodales.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button",
+          "default": "View more"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "external_link",
+          "label": "Open this link in a new window"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_lightbox",
+          "label": "Enable lightbox",
+          "default": false,
+          "info": "Show larger image on click. Url link is disabled when lightbox is enabled."
+        },
+        {
+          "type": "select",
+          "id": "text_position",
+          "label": "Text position",
+          "default": "center center",
+          "options": [
+            {
+              "value": "left top",
+              "label": "Top left"
+            },
+            {
+              "value": "center top",
+              "label": "Top center"
+            },
+            {
+              "value": "right top",
+              "label": "Top right"
+            },
+            {
+              "value": "left center",
+              "label": "Left"
+            },
+            {
+              "value": "center center",
+              "label": "Center"
+            },
+            {
+              "value": "right center",
+              "label": "Right"
+            },
+            {
+              "value": "left bottom",
+              "label": "Bottom left"
+            },
+            {
+              "value": "center bottom",
+              "label": "Bottom center"
+            },
+            {
+              "value": "right bottom",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "color_background",
+          "id": "text_background_color",
+          "label": "Text background",
+          "info": "Visible text background for better readability. Use opacity settings to adjust transparency."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery - text overlay 🎒",
+      "blocks": [
+        {
+          "type": "image",
+          "settings": {
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{%- comment -%} JSON Settings {%- endcomment -%}
+<script type="application/json" data-dsgn-pck="{{ section_id }}">
+  {
+    "id": {{ section_id | json }},
+    "animation": {{ section.settings.animation | json }},
+    "enable_lightbox": {{ lightbox_enabled_on_block | json }}
+  }
+</script>
+{%- comment -%} JavaScript {%- endcomment -%}
+{%- if lightbox_enabled_on_block == true -%}
+  <script data-dsgn-pck-external-js="{{ section_id }}" src="https://cdn.shopify.com/s/files/1/0577/7673/4361/files/bigger-picture.min.js?v=1661823226" defer></script>
+{%- endif -%}
+<script data-dsgn-pck-js="{{ section_id }}" type="module" defer>
+(function(){
+
+  const designPack = {
+    settings: {},
+    animateSection: function(entries, observer){
+      // Target the first entry available.
+      let observedSection = entries[0];
+      if (observedSection.isIntersecting) {
+        observedSection.target.classList.add('dsgn-pck__animation-applied');
+      }
+    },
+    enableLightbox: function(section){
+      const bp = BiggerPicture({
+        target: document.body
+      });
+
+      const imageLinks = section.querySelectorAll('[data-dsgn-pck-lightbox="true"]');
+
+      for (let link of imageLinks) {
+        link.addEventListener('click', openGallery);
+      }
+
+      function openGallery(e) {
+        e.preventDefault();
+        bp.open({
+          items: imageLinks,
+          el: e.currentTarget,
+          intro: 'fadeup'
+        });
+      }
+    },
+    load: function(section){
+
+      if (this.settings.animation !== 'none'){
+        const options = {
+          root: null,
+          rootMargin: '0px',
+          threshold: [0, 0.25, 0.5, 0.75, 1]
+        };
+        // Construct Intersection Observer.
+        const observer = new IntersectionObserver( this.animateSection, options );
+        // Observe if element is present.
+        if (section) {
+          observer.observe(section);
+        }
+      }
+
+      if (designPack.settings.enable_lightbox === true){
+        designPack.enableLightbox(section);
+      }
+
+      // Handle hover images
+      const itemsWithHoverImages = section.querySelectorAll('.dsgn-pack__secondary-image--true');
+      itemsWithHoverImages.forEach(item => {
+        const mainImage = item.querySelector('.dsgn-pck__image__first');
+        const hoverImage = item.querySelector('.dsgn-pck__image__second');
+
+        if (mainImage && hoverImage) {
+          // Force browser to preload the hover image
+          const hoverImg = hoverImage.querySelector('img');
+          if (hoverImg && hoverImg.src) {
+            const preloadImg = new Image();
+            preloadImg.src = hoverImg.src;
+          }
+        }
+      });
+    },
+    unload: function(section){
+      section.classList.remove('dsgn-pck__animation-applied')
+    }
+  }
+
+  window.addEventListener('shopify:section:unload', function (e) {
+    const settings = document.querySelector(`[data-dsgn-pck="${e.detail.sectionId}"]`);
+    const sectionId = e.detail.sectionId;
+    const section = document.querySelector(`#DP--${e.detail.sectionId}`);
+    if (sectionId == designPack.settings.id){
+      designPack.unload(section);
+    }
+  });
+
+  designPack.settings = JSON.parse(document.querySelector('[data-dsgn-pck="{{ section_id }}"]').innerHTML);
+  const sectionId = {{ section_id | json }};
+  const section = document.querySelector(`#DP--${sectionId}`);
+
+  if (sectionId == designPack.settings.id){
+    designPack.load(section);
+  }
+})()
+</script>

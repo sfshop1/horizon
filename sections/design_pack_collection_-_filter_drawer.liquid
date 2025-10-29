@@ -1,0 +1,1099 @@
+{%- comment -%}
+{
+  "pack_name": "Collection filter - drawer",
+  "pack_author": "Design Packs",
+  "license": "© Design Packs. All rights reserved. This code is protected by copyright law and may not be reproduced, distributed, or used without explicit permission from the author. Shopify complies with the Digital Millennium Copyright Act (DMCA) and responds to claims of copyright infringement using DMCA procedures, which could result in the termination of your Shopify account.",
+}
+{%- endcomment -%}
+
+{% comment %} Security Code - hides section when app uninstalled {% endcomment %}
+{%- unless content_for_header contains 'design_packs_file.js' -%}
+  {%- if request.design_mode -%}
+    <div class="dsgn-pck__no-app-warning">
+      <div class="dsgn-pck__no-app-warning-background">
+      </div>
+      <div class="dsgn-pck__no-app-warning-text dsgn-pck__rte">
+        <p><strong>WARNING!</strong> This premium section will not display properly without an active subscription for <a href="https://apps.shopify.com/design-packs" target="_blank" rel="noopener nofollow">Design Packs</a>. If you need any support please email <a href="mailto:info@design-packs.com" target="_blank" rel="noopener">info@design-packs.com</a> with your questions.</p>
+      </div>
+    </div>
+  {%- endif -%}
+  {%- break -%}
+{%- endunless -%}
+
+{%- comment -%} Assign: Preview section js fix {%- endcomment -%}
+{%- assign section_id = section.id | replace: '+', '' | replace: '=', '' -%}
+
+{%- comment -%} Color: check if color is set to transparent {%- endcomment -%}
+{%- assign button_alpha = section.settings.button_background_color | color_extract: 'alpha' -%}
+
+{% comment %} Layout: check for filter status {% endcomment %}
+{%- liquid
+  for filter in collection.filters
+    if filter.type == "price_range"
+      assign filter_range_max = filter.range_max | money_without_currency | floor | times: 100
+      if filter.min_value.value != nil or filter.max_value.value != nil
+        if filter.min_value.value != 0 or filter.max_value.value != filter_range_max
+          assign has_active_filters = true
+          break
+        endif
+      endif
+    endif
+    if filter.active_values.size > 0
+      assign has_active_filters = true
+      break
+    else
+      assign has_active_filters = false
+    endif
+endfor
+-%}
+
+{%- comment -%}Layout: current sort status{%- endcomment -%}
+{%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+
+{%- comment -%} Layout: has user entered measurement value into max-width field? {%- endcomment -%}
+{%- if section.settings.max_width contains 'px' or section.settings.max_width contains '%' -%}
+  {%- assign max_width = section.settings.max_width -%}
+{%- else -%}
+  {%- assign max_width = section.settings.max_width | append: 'px' -%}
+{%- endif -%}
+
+{%- comment -%} Text: custom font_picker values {%- endcomment -%}
+{%- capture font_settings_list -%}
+{{ section.settings.main_font | font_face: font_display: 'swap' }}~
+{{ section.settings.main_font | font_modify: 'weight', 'bolder' | font_face: font_display: 'swap' }}~
+{{ section.settings.main_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}~
+{{ section.settings.main_font | font_modify: 'style', 'italic' | font_modify: 'weight', 'bolder' | font_face: font_display: 'swap' }}
+{%- endcapture -%}
+{%- assign font_array = font_settings_list | split: '~' -%}
+
+{%- comment -%} CSS {%- endcomment -%}
+<style>
+{%- if section.settings.override_theme_font != blank -%}
+  {%- for font in font_array -%}
+    {%- unless font contains 'error' -%}{{ font }}{%- endunless -%}
+  {%- endfor -%}
+  .DP--{{ section_id }} {
+    --main-font: {{ section.settings.main_font.family }}, {{ section.settings.main_font.fallback_families }};
+    --main-font-weight: {{ section.settings.main_font.weight }};
+    --main-font-style: {{ section.settings.main_font.style }};
+  }
+{%- endif -%}
+
+#dsgn-pck__filter-hidden-trigger-{{ section_id }},
+#dsgn-pck__sort-hidden-trigger-{{ section_id }} {
+  display: none !important;
+}
+
+#dsgn-pck__filter-hidden-trigger-{{ section_id }}:checked ~ .dsgn-pck__drawer-form--filter {
+
+  transform: translateX(0);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#dsgn-pck__sort-hidden-trigger-{{ section_id }}:checked ~ .dsgn-pck__drawer-form--sort {
+
+  transform: translateX(0);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.DP--{{ section_id }} {
+  position: relative;
+  background: {{ section.settings.background_color }};
+  color: {{ section.settings.text_color }};
+  margin-top: {{ section.settings.outer_margin }}px;
+  margin-bottom: {{ section.settings.outer_margin }}px;
+  line-height: 1.2;
+  font-size: calc(var(--dp-g-body-size, var(--dp-body-size, 18px)) * {{ section.settings.text_size | times: 0.01 }});
+  {%- if section.settings.override_theme_font != blank -%}
+  font-family: var(--main-font);
+  font-weight: var(--main-font-weight);
+  font-style: var(--main-font-style);
+  {%- endif -%}
+}
+
+.DP--{{ section_id }} .dsgn-pck__sizer {
+  padding-top: {{ section.settings.inner_padding }}px;
+  padding-bottom: {{ section.settings.inner_padding }}px;
+  width: 90%;
+  max-width: {{ max_width }};
+}
+
+.DP--{{ section_id }} .dsgn-pck__collection-nav__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.DP--{{ section_id }} .dsgn-pck__collection-nav__heading {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: flex-end;
+}
+
+.DP--{{ section_id }} .dsgn-pck__filter-wrapper {
+  display: flex;
+  flex: 1 0 60%;
+  max-width: max(400px, 60%);
+}
+
+.dsgn-pck__sort-wrapper {
+  flex: 1 0 40%;
+  max-width: max(400px, 40%);
+}
+
+.DP--{{ section_id }} .dsgn-pck__filter-icon {
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+}
+
+.DP--{{ section_id }} .dsgn-pck__filter-icon path {
+  fill: {{ section.settings.text_color }};
+}
+
+.DP--{{ section_id }} .dsgn-pck__active-filters--true {
+  padding: 5px 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.DP--{{ section_id }} .dsgn-pck__active-filters--true a {
+  font-size: calc(var(--dp-g-body-size, var(--dp-body-size, 18px)) * {{ section.settings.text_size | times: 0.008 }});
+  {%- if section.settings.override_theme_font != blank -%}
+  font-family: var(--main-font);
+  font-weight: var(--main-font-weight);
+  font-style: var(--main-font-style);
+  {%- endif -%}
+}
+
+.DP--{{ section_id }} .dsgn-pck__active-filters__remove-filter {
+  display: block;
+  position: relative;
+  padding: 4px 20px 4px 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 12px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border-radius: {{ section.settings.button_radius }}px;
+  border: 1px solid {{ section.settings.text_color }};
+  background: {{ section.settings.text_color }};
+  color: {{ section.settings.background_color }};
+}
+
+.DP--{{ section_id }} .dsgn-pck__active-filters__remove-filter svg {
+  fill: {{ section.settings.background_color }};
+  max-width: 20px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.DP--{{ section_id }} .dsgn-pck__active-filters__clear {
+  display: block;
+  position: relative;
+  padding: 4px 20px 4px 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 12px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border-radius: {{ section.settings.button_radius }}px;
+  border: 1px solid {{ section.settings.text_color }};
+  background: transparent;
+  color: {{ section.settings.text_color }};
+}
+
+.DP--{{ section_id }} .dsgn-pck__active-filters__clear svg {
+  fill: {{ section.settings.text_color }};
+  max-width: 20px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.DP--{{ section_id }} .dsgn-pck__current-sort {
+  margin-left: 10px;
+}
+
+.DP--{{ section_id }} .dsgn-pck__sort-icon {
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+}
+
+.DP--{{ section_id }} .dsgn-pck__sort-icon path {
+  fill: {{ section.settings.text_color }};
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} {
+  z-index: 50;
+  padding: 20px;
+  width: min(400px, 100vw);
+  position: fixed;
+  top: 0;
+  background: {{ section.settings.background_color }};
+  height: 100vh;
+  overflow-y: scroll;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  transition: transform 0.5s cubic-bezier(0.55, 0.09, 0.68, 0.53);
+}
+
+.dsgn-pck__drawer-form--filter {
+  left: 0;
+  transform: translateX(-120%);
+}
+
+.dsgn-pck__drawer-form--sort {
+  right: 0;
+  transform: translateX(120%);
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__drawer-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__drawer-close svg {
+  height: 100%;
+  width: 100%;
+  width: 20px;
+  height: 20px;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__drawer-close path {
+  fill: {{ section.settings.text_color }};
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group {
+  margin-bottom: 40px;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group:last-of-type {
+  margin-bottom: 0;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display {
+  line-height: var(--dp-g-body-line-height, var(--dp-body-line-height, calc(3px + 2ex + 3px)));
+  font-size: calc(var(--dp-g-body-size, var(--dp-body-size, 18px)) * {{ section.settings.text_size | times: 0.01 }});
+  color: {{ section.settings.text_color }};
+  {%- if section.settings.override_theme_font != blank -%}
+  font-family: var(--main-font);
+  font-weight: var(--main-font-weight);
+  font-style: var(--main-font-style);
+  {%- endif -%}
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__small-heading {
+  border-bottom: thin solid {{ section.settings.text_color }};
+  line-height: var(--dp-g-body-line-height, var(--dp-body-line-height, calc(3px + 2ex + 3px)));
+  font-size: calc(var(--dp-g-small-heading-size, var(--dp-small-heading-size, 24px)) * {{ section.settings.text_size | times: 0.008 }});
+  margin-bottom: 0;
+  padding-bottom: 5px;
+  color: {{ section.settings.text_color }};
+  {%- if section.settings.override_theme_font != blank -%}
+  font-family: var(--main-font);
+  font-weight: var(--main-font-weight);
+  font-style: var(--main-font-style);
+  {%- endif -%}
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display {
+  background: {{ section.settings.background_color }};
+  width: 100%;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__submit .dsgn-pck__button {
+  margin-right: 20px;
+  font-size: calc(var(--dp-g-body-size, var(--dp-body-size, 14px)) * {{ section.settings.text_size | times: 0.01 }});
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  padding: var(--dp-button-padding, 0.5em 1.2em);
+  border: thin solid;
+  transition: all 0.3s ease-in-out;
+  border-radius: {{ section.settings.button_radius }}px;
+  line-height: 1.2;
+  font-size: calc(var(--dp-g-body-size, var(--dp-body-size, 18px)) * {{ section.settings.text_size | times: 0.01 }});
+  {%- if section.settings.override_theme_font != blank -%}
+  font-family: var(--main-font);
+  font-weight: var(--main-font-weight);
+  font-style: var(--main-font-style);
+  {%- endif -%}
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter__button-primary {
+  color: {{ section.settings.button_label_color }};
+  border-color: {%- if button_alpha != 0 -%}{{ section.settings.button_background_color }}{%- else -%}{{ section.settings.button_label_color }}{%- endif -%};
+  background-color: {{ section.settings.button_background_color }};
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter__button-secondary {
+  color: {{ section.settings.button_background_color }};
+  border-color: {{ section.settings.button_background_color }}
+  background-color: {{ section.settings.button_label_color }};
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter__button-primary:hover {
+  opacity: 1;
+  {%- if button_alpha != 0 -%}
+  background-color: {{ section.settings.button_background_color | color_darken: 10 }};
+  border-color: transparent;
+  {%- else -%}
+  background-color: {{ section.settings.button_label_color | color_modify: 'alpha', 0.1 }}
+  {%- endif -%};
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__list {
+  display: block;
+  grid-gap: 15px 0;
+  list-style: none;
+  margin: 0;
+  padding: 20px 0;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__list-item {
+  margin-right: 20px;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__list-item label {
+  padding: 0.2em 0;
+  transition: 0.3s;
+  cursor: pointer;
+  white-space: nowrap;
+  display: block;
+  font-size: calc(var(--dp-g-body-size, var(--dp-body-size, 14px)) * {{ section.settings.text_size | times: 0.01 }});
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__list-item label:hover {
+  text-decoration: underline;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__list-item input{
+  display: none;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__list-item input:checked + label {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__list-item input:disabled + label {
+  color: {{ section.settings.text_color | color_modify: 'alpha', 0.4 }};
+  cursor: not-allowed;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__price-range {
+  min-width: 300px;
+  margin: 20px 0;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__submit {
+  padding: 0;
+  display: flex;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__price-range__slider__container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  margin-top: 0;
+  max-width: 300px;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} select {
+  font-size: calc(var(--dp-g-body-size, var(--dp-body-size, 14px)) * {{ section.settings.text_size | times: 0.01 }});
+  padding: 8px 30px 8px 8px;
+  border-color: {{ section.settings.text_color }};
+  color: {{ section.settings.text_color }};
+  background:  {{ section.settings.background_color }};
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  outline: none;
+  border: none;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  background-color: transparent;
+  pointer-events: none;
+  padding: 0;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__slider-track {
+  width: 100%;
+  height: 5px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  border-radius: 5px;
+  pointer-events: none;
+  background: {{ section.settings.text_color | color_modify: 'alpha', 0.5 }};
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  height: 5px;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} input[type="range"]::-moz-range-track {
+  -moz-appearance: none;
+  height: 5px;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} input[type="range"]::-ms-track {
+    appearance: none;
+    height: 5px;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 1.2em;
+  width: 1.2em;
+  background-color: {{ section.settings.text_color }};
+  cursor: pointer;
+  margin-top: -5px;
+  pointer-events: auto;
+  border-radius: 50%;
+  position: relative;
+  z-index: 3;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 1.2em;
+  width: 1.2em;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: {{ section.settings.text_color }};
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} input[type="range"]::-ms-thumb {
+  appearance: none;
+  height: 1.2em;
+  width: 1.2em;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: {{ section.settings.text_color }};
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} input[type="range"]:active::-webkit-slider-thumb {
+  background-color: {{ section.settings.background_color }};
+  border: 2px solid {{ section.settings.text_color }};
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__price-range__slider {
+  display: flex;
+  align-items: center;
+  font-size: calc(var(--dp-g-body-size, var(--dp-body-size, 14px)) * {{ section.settings.text_size | times: 0.01 }});
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__price-range__slider-inner {
+  position: relative;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__slider {
+  -webkit-appearance: none;
+  background-color: {{ section.settings.text_color }};
+  outline: none;
+  height: 2px;
+  position: absolute;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__min-value {
+  margin-right: 8px;
+}
+
+.dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__max-currency {
+  margin-left: 8px;
+}
+
+/* Fix for Showcase theme */
+.template-collection #page-content {
+  z-index: auto;
+}
+
+{%- if section.settings.custom_css != blank -%}
+  {%- assign custom_section_declarations = section.settings.custom_css | split: '}' -%}
+  {%- for declaration in custom_section_declarations -%}
+    {%- if declaration contains '{' -%}
+      #shopify-section-{{ section_id }} {{ declaration }} }
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  .DP--{{ section_id }} .dsgn-pck__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+  .DP--{{ section_id }} .dsgn-pck__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .DP--{{ section_id }} {
+    margin-top: {{ section.settings.outer_margin | times: 0.67 }}px;
+    margin-bottom: {{ section.settings.outer_margin | times: 0.67 }}px;
+  }
+
+  .DP--{{ section_id }} .dsgn-pck__sizer {
+    min-width: 70%;
+    padding-top: {{ section.settings.inner_padding | times: 0.67 }}px;
+    padding-bottom: {{ section.settings.inner_padding | times: 0.67 }}px;
+  }
+
+  .DP--{{ section_id }} .dsgn-pck__current-sort {
+    display: none;
+  }
+
+  .DP--{{ section_id }} .dsgn-pck__active-filters--true {
+    display: none;
+  }
+
+  .dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display__submit {
+    padding: {{ section.settings.inner_padding | divided_by: 2 }}px 0 0 0;
+  }
+
+  .dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__button {
+    padding: 0.2em 0.5em;
+    font-size: calc(var(--dp-g-body-size, var(--dp-body-size, 14px)) * {{ section.settings.text_size | times: 0.01 }});
+  }
+
+  .dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group {
+    border-bottom: 1px solid;
+    border-right: none;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  .dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display {
+    position: static;
+    z-index: 1;
+  }
+
+  .dsgn-pck__drawer-form-{{ section_id }} .dsgn-pck__filter-group-display .dsgn-pck__sizer {
+    width: 100%;
+  }
+
+  {%- if section.settings.mobile_custom_css != blank -%}
+    {%- assign mobile_custom_declarations = section.settings.mobile_custom_css | split: '}' -%}
+    {%- for declaration in mobile_custom_declarations -%}
+      {%- if declaration contains '{' -%}
+        #DP--{{ section_id }} {{ declaration }} }
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+}
+</style>
+
+{%- comment -%} HTML {%- endcomment -%}
+<input type="checkbox" id="dsgn-pck__filter-hidden-trigger-{{ section_id }}">
+<input type="checkbox" id="dsgn-pck__sort-hidden-trigger-{{ section_id }}">
+<section id="DP--{{ section_id }}" class="DP--{{ section_id }} dsgn-pck__collection-filter dsgn-pck__section">
+  <div class="dsgn-pck__sizer">
+    <div class="dsgn-pck__collection-nav__header">
+      <div class="dsgn-pck__filter-wrapper">
+        {%- if section.settings.show_filter -%}
+          <label for="dsgn-pck__filter-hidden-trigger-{{ section_id }}" class="dsgn-pck__collection-nav__heading" data-dsgn-pck-open-drawer data-dsgn-pck-filter>
+            <span>{{ 'filters' | t }}</span>
+            <span class="dsgn-pck__filter-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 5a1 1 0 011-1h18a1 1 0 110 2H1a1 1 0 01-1-1zm3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm5 4a1 1 0 100 2h4a1 1 0 100-2H8z" fill="#5C5F62"/></svg>
+            </span>
+          </label>
+          <div class="dsgn-pck__active-filters {% if has_active_filters %} dsgn-pck__active-filters--true {% endif %}">
+            {%- if has_active_filters -%}
+              <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="dsgn-pck__active-filters__clear">{{ 'clear_filters' | t }}
+                <svg  viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="16.9287" y="14.1005" width="24" height="3" transform="rotate(45 16.9287 14.1005)" />
+                  <rect x="14.1006" y="31.0711" width="24" height="3" transform="rotate(-45 14.1006 31.0711)" />
+                </svg>
+              </a>
+            {%- endif -%}
+            {%- for filter in collection.filters -%}
+              {%- if filter.type == "price_range" -%}
+                {%- assign filter_range_max = filter.range_max | money_without_currency | floor | times: 100 -%}
+                {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+                  {%- if filter.min_value.value != 0 or filter.max_value.value != filter_range_max -%}
+                    <a class="dsgn-pck__active-filters__remove-filter" href="{{ filter.url_to_remove }}">
+                      {%- assign min_value = filter.min_value.value | default: 0 -%}
+                      {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+                      {{ min_value | money }} - {{ max_value | money }}
+                      <svg  viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="16.9287" y="14.1005" width="24" height="3" transform="rotate(45 16.9287 14.1005)" />
+                        <rect x="14.1006" y="31.0711" width="24" height="3" transform="rotate(-45 14.1006 31.0711)" />
+                      </svg>
+                    </a>
+                  {%- endif -%}
+                {%- endif -%}
+              {%- else -%}
+                {%- for filter_value in filter.active_values -%}
+                  <a class="dsgn-pck__active-filters__remove-filter" href="{{ filter_value.url_to_remove }}">
+                    {{ filter_value.label }}
+                    <svg  viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="16.9287" y="14.1005" width="24" height="3" transform="rotate(45 16.9287 14.1005)" />
+                      <rect x="14.1006" y="31.0711" width="24" height="3" transform="rotate(-45 14.1006 31.0711)" />
+                    </svg>
+                  </a>
+                {%- endfor -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="dsgn-pck__sort-wrapper">
+        {%- if section.settings.show_sort -%}
+          <label for="dsgn-pck__sort-hidden-trigger-{{ section_id }}" class="dsgn-pck__collection-nav__heading" data-dsgn-pck-open-drawer data-dsgn-pck-sort>
+            <span>{{ 'sort_by' | t }}</span>
+            <span class="dsgn-pck__sort-icon">
+              <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5.293 2.293a.997.997 0 011.414 0l3 3a1 1 0 01-1.414 1.414L7 5.414V13a1 1 0 11-2 0V5.414L3.707 6.707a1 1 0 01-1.414-1.414l3-3zM13 7a1 1 0 012 0v7.585l1.293-1.292a.999.999 0 111.414 1.414l-3 3a.997.997 0 01-1.414 0l-3-3a.997.997 0 010-1.414.999.999 0 011.414 0L13 14.585V7z" fill="#5C5F62"/></svg>
+            </span>
+            {%- for option in collection.sort_options -%}
+              {%- assign option_yml = option.value | split: '-' | join: '_' -%}
+              {%- if option.value == sort_by -%}
+                <span class="dsgn-pck__current-sort">{{ option_yml | t }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+          </label>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+<form class="dsgn-pck__drawer-form-{{ section_id }} dsgn-pck__drawer-form--filter" id="form-{{ section_id }}" data-dsgn-pck-filter-drawer>
+  <button class="dsgn-pck__drawer-close" data-dsgn-pck-close-drawer>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11.414 10l6.293-6.293a1 1 0 10-1.414-1.414L10 8.586 3.707 2.293a1 1 0 00-1.414 1.414L8.586 10l-6.293 6.293a1 1 0 101.414 1.414L10 11.414l6.293 6.293A.998.998 0 0018 17a.999.999 0 00-.293-.707L11.414 10z" fill="#5C5F62"/></svg>
+  </button>
+  {%- for filter in collection.filters -%}
+    <div class="dsgn-pck__filter-group">
+      <div class="dsgn-pck__filter-name__heading dsgn-pck__small-heading">
+        {{ filter.label }}
+        {%- if filter.active_values.size > 0 -%}
+          <span class="dsgn-pck__filter-name__count">({{ filter.active_values.size }})</span>
+        {%- endif -%}
+      </div>
+      <div class="dsgn-pck__filter-group-display">
+        {%- case filter.type -%}
+          {%- when 'list' -%}
+            <ul class="dsgn-pck__filter-group-display__list">
+              {%- for filter_value in filter.values -%}
+                <li class="dsgn-pck__filter-group-display__list-item">
+                  <input type="checkbox"
+                    name="{{ filter_value.param_name }}"
+                    value="{{ filter_value.value }}"
+                    id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                    {% if filter_value.active -%}checked{%- endif %}
+                    {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}
+                  >
+                  <label for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
+                    {{ filter_value.label }}
+                  </label>
+                </li>
+              {%- endfor -%}
+            </ul>
+
+            <div class="dsgn-pck__filter-group-display__submit">
+              <input type="submit" value="Apply" class="dsgn-pck__button dsgn-pck__filter__button-primary">
+              {%- if filter.active_values.size > 0 -%}
+                <a href="{{ filter.url_to_remove }}" class="dsgn-pck__filter-group-display__header-reset dsgn-pck__button dsgn-pck__filter__button-secondary">Reset</a>
+              {%- endif -%}
+            </div>
+          {%- when 'price_range' -%}
+            <div class="dsgn-pck__filter-group-display__price-range">
+              <div class="dsgn-pck__filter-group-display__price-range__slider">
+                <span>{{ cart.currency.symbol }}</span>
+                <span id="dsgn-pck__range-text--min" class="dsgn-pck__min-value">{{ filter.min_value.value | divided_by: 100 }}</span>
+                <div class="dsgn-pck__filter-group-display__price-range__slider__container">
+                  <div class="dsgn-pck__slider-track" data-min-limit="0" data-max-limit="{{ filter.range_max | divided_by: 100 }}"></div>
+                  <input
+                    name="{{ filter.min_value.param_name }}"
+                    type="range"
+                    min="0"
+                    max="{{ filter.range_max | divided_by: 100 }}"
+                    value="{{ filter.min_value.value | divided_by: 100 }}"
+                    id="dsgn-pck__range-node--min"
+                  >
+                  <input
+                    name="{{ filter.max_value.param_name }}"
+                    type="range"
+                    min="0"
+                    max="{{ filter.range_max | divided_by: 100 }}"
+                    value="{%- if filter.max_value.value -%}{{ filter.max_value.value | divided_by: 100 }}{%- else -%}{{ filter.range_max | divided_by: 100 }}{%- endif -%}"
+                    id="dsgn-pck__range-node--max"
+                  >
+                </div>
+                <span class="dsgn-pck__max-currency">{{ cart.currency.symbol }}</span>
+                <span id="dsgn-pck__range-text--max" class="dsgn-pck__max-value">{%- if filter.max_value.value -%}{{ filter.max_value.value | divided_by: 100 }}{%- else -%}{{ filter.range_max | divided_by: 100 }}{%- endif -%}</span>
+              </div>
+            </div>
+
+            <div class="dsgn-pck__filter-group-display__submit">
+              <input class="dsgn-pck__button dsgn-pck__filter__button-primary" type="submit" value="Apply">
+            </div>
+        {%- endcase -%}
+      </div>
+    </div>
+  {%- endfor -%}
+</form>
+
+<form class="dsgn-pck__drawer-form-{{ section_id }} dsgn-pck__drawer-form--sort" data-dsgn-pck-sort-drawer>
+  <button class="dsgn-pck__drawer-close" data-dsgn-pck-close-drawer>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M11.414 10l6.293-6.293a1 1 0 10-1.414-1.414L10 8.586 3.707 2.293a1 1 0 00-1.414 1.414L8.586 10l-6.293 6.293a1 1 0 101.414 1.414L10 11.414l6.293 6.293A.998.998 0 0018 17a.999.999 0 00-.293-.707L11.414 10z" fill="#5C5F62"/></svg>
+  </button>
+  <div class="dsgn-pck__sort-group">
+    <div class="dsgn-pck__sort-name dsgn-pck__small-heading">
+      <span>{{ 'sort' | t }}</span>
+    </div>
+
+    <div class="dsgn-pck__filter-group-display">
+      <ul class="dsgn-pck__filter-group-display__list">
+        {%- for option in collection.sort_options -%}
+          <li class="dsgn-pck__filter-group-display__list-item">
+            <input
+              form="form-{{ section_id }}"
+              type="radio"
+              name="sort_by"
+              id="Sort-{{ option.value }}"
+              value="{{ option.value | escape }}" {% if option.value == sort_by %}checked{% endif %}/>
+              {%- assign option_yml = option.value | split: '-' | join: '_' -%}
+            <label for="Sort-{{ option.value }}">{{ option_yml | t }}</label>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <div class="dsgn-pck__filter-group-display__submit">
+        <input form="form-{{ section_id }}" class="dsgn-pck__button dsgn-pck__filter__button-primary" type="submit" value="Apply">
+      </div>
+    </div>
+  </div>
+</form>
+{% schema %}
+{
+  "name": "Collection filter",
+  "class": "DP__collection-filter-drawer",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_filter",
+      "label": "Show filters",
+      "default": true,
+      "info": "Set up your filters under [Apps > Search & Discovery](/admin/apps/search-and-discovery/filters) Must have free Search & Discovery app installed. [Download here](https://apps.shopify.com/search-and-discovery)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sort",
+      "label": "Show sort",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "✏️ Text appearance"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 80,
+      "max": 120,
+      "step": 5,
+      "default": 100,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "🎨 Design"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_label_color",
+      "label": "Button label",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 50,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "🖼 Layout"
+    },
+    {
+      "type": "text",
+      "id": "max_width",
+      "label": "Maximum width",
+      "placeholder": "eg. 1200px",
+      "info": "Sets width constraint for content."
+    },
+    {
+      "type": "range",
+      "id": "inner_padding",
+      "label": "Inner padding",
+      "info": "Only applies to top and bottom.",
+      "min": 0,
+      "max": 100,
+      "default": 20,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "outer_margin",
+      "label": "Outer margin",
+      "info": "Only applies to top and bottom.",
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "🚨 Advanced"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_css",
+      "label": "CSS"
+    },
+    {
+      "type": "liquid",
+      "id": "mobile_custom_css",
+      "label": "Mobile CSS",
+      "info": "Applied on screens less than 480px."
+    },
+    {
+      "type": "checkbox",
+      "id": "override_theme_font",
+      "label": "Override default theme font",
+      "default": false
+    },
+    {
+      "type": "font_picker",
+      "id": "main_font",
+      "label": "Text",
+      "default": "sans-serif"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection filter - drawer 🎒"
+    }
+  ],
+  "locales": {
+    "en": {
+      "sold_out": "Sold Out",
+      "sale": "Sale",
+      "filters": "Filter",
+      "sort": "Sort",
+      "sort_by": "Sort by",
+      "clear_filters": "Clear All",
+      "manual": "Featured",
+      "best_selling": "Best selling",
+      "title_ascending": "Alphabetically, A-Z",
+      "title_descending": "Alphabetically, Z-A",
+      "price_ascending": "Price, low to high",
+      "price_descending": "Price, high to low",
+      "created_ascending": "Date, old to new",
+      "created_descending": "Date, new to old"
+    }
+  }
+}
+{% endschema %}
+
+  {%- comment -%} JSON Settings {%- endcomment -%}
+<script type="application/json" data-dsgn-pck="{{ section_id }}">
+  {
+    "id": {{ section_id | json }},
+    "text_color": {{ section.settings.text_color | json }},
+    "text_color_light": {{ section.settings.text_color | color_modify: 'alpha', 0.5 | json }}
+  }
+</script>
+{%- comment -%} JavaScript {%- endcomment -%}
+<script data-dsgn-pck-js="{{ section_id }}" type="module" defer>
+(function(){
+
+  const designPack = {
+    settings: {},
+    openDrawer: function(e){
+      e.preventDefault();
+
+      if (e.currentTarget.hasAttribute('data-dsgn-pck-filter')){
+        const filterCheckbox = document.getElementById(`dsgn-pck__filter-hidden-trigger-${designPack.settings.id}`);
+        filterCheckbox.checked = true;
+        //console.log('open filter');
+      } else if (e.currentTarget.hasAttribute('data-dsgn-pck-sort')){
+        const filterCheckbox = document.getElementById(`dsgn-pck__sort-hidden-trigger-${designPack.settings.id}`);
+        filterCheckbox.checked = true;
+        //console.log('open sort');
+      }
+
+      //Fix for Retina theme
+      const retinaHeader = document.querySelector('.site-header__outer-wrapper');
+      if (typeof(retinaHeader) != 'undefined' && retinaHeader != null){
+        retinaHeader.style.zIndex = 2;
+      }
+    },
+    closeDrawer: function(e){
+      e.preventDefault();
+
+      if (e.currentTarget.closest('form').hasAttribute('data-dsgn-pck-filter-drawer')){
+        const filterCheckbox = document.getElementById(`dsgn-pck__filter-hidden-trigger-${designPack.settings.id}`);
+        filterCheckbox.checked = false;
+        //console.log('close filter');
+      } else if (e.currentTarget.closest('form').hasAttribute('data-dsgn-pck-sort-drawer')){
+        const filterCheckbox = document.getElementById(`dsgn-pck__sort-hidden-trigger-${designPack.settings.id}`);
+        filterCheckbox.checked = false;
+        //console.log('close sort');
+      }
+
+    },
+    toggleSortDrawer: function(e){
+      e.preventDefault();
+      const filterCheckbox = document.getElementById(`dsgn-pck__sort-hidden-trigger-${designPack.settings.id}`);
+      filterCheckbox.checked = !filterCheckbox.checked;
+    },
+    slideOne: function(){
+      if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
+        sliderOne.value = parseInt(sliderTwo.value) - minGap;
+      }
+      displayValOne.textContent = sliderOne.value;
+    },
+    slideTwo: function(){
+        if(parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap){
+          sliderTwo.value = parseInt(sliderOne.value) + minGap;
+        }
+        displayValTwo.textContent = sliderTwo.value;
+    },
+    updateRangeColor: function(min, max){
+      const sliderTrack = document.querySelector('.dsgn-pck__slider-track');
+      const maxLimit = parseInt(sliderTrack.dataset.maxLimit);
+      const percent1 = (min / maxLimit) * 100;
+      const percent2 = (max / maxLimit) * 100;
+
+      sliderTrack.style.background = `linear-gradient(to right, ${designPack.settings.text_color_light} ${percent1}% , ${designPack.settings.text_color} ${percent1}% , ${designPack.settings.text_color} ${percent2}%, ${designPack.settings.text_color_light} ${percent2}%)`;
+    },
+    updateMaxPriceRange: function(e){
+      const minGap = 1;
+      const maxText = document.getElementById('dsgn-pck__range-text--max');
+      const min = document.getElementById('dsgn-pck__range-node--min');
+      const max = e.target;
+
+      if (parseInt(max.value) - parseInt(min.value) <= minGap){
+        max.value = parseInt(min.value) + minGap;
+      }
+      maxText.textContent = max.value;
+      designPack.updateRangeColor(min.value, max.value);
+    },
+    updateMinPriceRange: function(e){
+      const minGap = 1;
+      const minText = document.getElementById('dsgn-pck__range-text--min');
+      const min = e.target;
+      const max = document.getElementById('dsgn-pck__range-node--max');
+
+      if (parseInt(max.value) - parseInt(min.value) <= minGap){
+        min.value = parseInt(max.value) - minGap;
+      }
+      minText.textContent = min.value;
+      designPack.updateRangeColor(min.value, max.value);
+    },
+    load: function(section){
+
+      document.querySelectorAll('[data-dsgn-pck-open-drawer]').forEach(item => {
+        item.addEventListener('click', designPack.openDrawer)
+      })
+
+      document.querySelectorAll('[data-dsgn-pck-close-drawer]').forEach(item => {
+        item.addEventListener('click', designPack.closeDrawer)
+      })
+
+      const nodeMin = document.getElementById('dsgn-pck__range-node--min');
+      const nodeMax = document.getElementById('dsgn-pck__range-node--max');
+
+      if (typeof nodeMin != undefined){
+        nodeMin.addEventListener('input', designPack.updateMinPriceRange);
+        nodeMax.addEventListener('input', designPack.updateMaxPriceRange);
+
+        designPack.updateRangeColor(nodeMin.value, nodeMax.value);
+      }
+
+    },
+    unload: function(section){
+      nodeMin.removeEventListener('change', designPack.updateMinPriceRange);
+      nodeMax.removeEventListener('change', designPack.updateMaxPriceRange);
+    }
+  }
+
+  window.addEventListener('shopify:section:unload', function (e) {
+    const settings = document.querySelector(`[data-dsgn-pck="${e.detail.sectionId}"]`);
+    const sectionId = e.detail.sectionId;
+    const section = document.querySelector(`#DP--${e.detail.sectionId}`);
+    if (sectionId == designPack.settings.id){
+      designPack.unload(section);
+    }
+  });
+
+  designPack.settings = JSON.parse(document.querySelector('[data-dsgn-pck="{{ section_id }}"]').innerHTML);
+  const sectionId = {{ section_id | json }};
+  const section = document.querySelector(`#DP--${sectionId}`);
+
+  if (sectionId == designPack.settings.id){
+    designPack.load(section);
+  }
+})()
+</script>
