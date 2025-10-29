@@ -1,0 +1,535 @@
+{%- comment -%}
+{
+  "pack_name": "Column block",
+  "pack_author": "Design Packs",
+  "license": "© Design Packs. All rights reserved. This code is protected by copyright law and may not be reproduced, distributed, or used without explicit permission from the author. Shopify complies with the Digital Millennium Copyright Act (DMCA) and responds to claims of copyright infringement using DMCA procedures, which could result in the termination of your Shopify account.",
+}
+{%- endcomment -%}
+
+{% comment %} Security Code - hides section when app uninstalled {% endcomment %}
+{%- unless content_for_header contains 'design_packs_file.js' -%}
+  {%- if request.design_mode -%}
+    <div class="dsgn-pck__no-app-warning">
+      <div class="dsgn-pck__no-app-warning-background">
+      </div>
+      <div class="dsgn-pck__no-app-warning-text dsgn-pck__rte">
+        <p><strong>WARNING!</strong> This premium section will not display properly without an active subscription for <a href="https://apps.shopify.com/design-packs" target="_blank" rel="noopener nofollow">Design Packs</a>. If you need any support please email <a href="mailto:info@design-packs.com" target="_blank" rel="noopener">info@design-packs.com</a> with your questions.</p>
+      </div>
+    </div>
+  {%- endif -%}
+  {%- break -%}
+{%- endunless -%}
+
+{%- assign block_horizontal_setting = block.settings.horizontal_alignment | default: section.settings.text_alignment -%}
+
+{%- capture css_styles -%}
+<style data-dp-css="blocks/_dpb_sub_-_columns-column.liquid">
+
+  .dsgn-pck__block-id-{{ block.id }} {
+    display: flex;
+    flex-direction: column;
+    background-color: {{ block.settings.background_solid }};
+    background-image: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    border: {{ block.settings.border_style }} {{ block.settings.border_width }}px {{ block.settings.border_color }};
+    overflow: hidden;
+    {%- if block.settings.padding_type == 'custom' -%}
+      padding: {{ block.settings.padding }};
+    {%- elsif block.settings.padding_type == 'range' -%}
+      padding: {{ block.settings.padding_top }}px {{ block.settings.padding_right }}px {{ block.settings.padding_bottom }}px {{ block.settings.padding_left }}px;
+    {%- else -%}
+      padding: 1.2rem;
+    {%- endif -%}
+    {%- if block.settings.vertical_alignment == 'top' -%}
+      justify-content: flex-start;
+    {%- elsif block.settings.vertical_alignment == 'middle' -%}
+      justify-content: center;
+    {%- elsif block.settings.vertical_alignment == 'bottom' -%}
+      justify-content: flex-end;
+    {%- endif -%}
+
+    {%- if block.settings.horizontal_alignment == 'left' -%}
+      align-items: flex-start;
+    {%- elsif block.settings.horizontal_alignment == 'right' -%}
+      align-items: flex-end;
+    {%- elsif block.settings.horizontal_alignment == 'center' -%}
+      align-items: center;
+    {%- endif -%}
+    {% if block.settings.enable_box_shadow %}
+      box-shadow:
+        {% case block.settings.card_box_shadow_intensity %}
+          {% when 'subtle' %} 0 1px 4px 0 {{ block.settings.card_box_shadow_color }}33;
+          {% when 'medium' %} 0 2px 8px 0 {{ block.settings.card_box_shadow_color }}55;
+          {% when 'strong' %} 0 4px 16px 0 {{ block.settings.card_box_shadow_color }}88;
+          {% when 'custom' %} {{ block.settings.card_box_shadow_custom_value }};
+          {% else %} none;
+        {% endcase %}
+    {% else %}
+      box-shadow: none;
+    {% endif %}
+  }
+
+
+  .dsgn-pck__block-id-{{ block.id }}.dsgn-pck__grid-column--third {
+    flex: 0 0 calc(33.333% - (var(--dp-columns-gap) * 2/3));
+  }
+
+  .dsgn-pck__block-id-{{ block.id }}.dsgn-pck__grid-column--two-thirds {
+    flex: 0 0 calc(66.667% - (var(--dp-columns-gap) * 1/3));
+  }
+
+  .dsgn-pck__block-id-{{ block.id }}.dsgn-pck__grid-column--half {
+    flex: 0 0 calc(50% - (var(--dp-columns-gap) * 1/2));
+  }
+
+  .dsgn-pck__block-id-{{ block.id }}.dsgn-pck__grid-column--fourth {
+    flex: 0 0 calc(25% - (var(--dp-columns-gap) * 3/4));
+  }
+
+  .dsgn-pck__block-id-{{ block.id }}.dsgn-pck__grid-column--two-fourths {
+    flex: 0 0 calc(50% - (var(--dp-columns-gap) * 1/2));
+  }
+
+  .dsgn-pck__block-id-{{ block.id }}.dsgn-pck__grid-column--three-fourths {
+    flex: 0 0 calc(75% - (var(--dp-columns-gap) * 1/4));
+  }
+
+  .dsgn-pck__block-id-{{ block.id }}.dsgn-pck__grid-column--fifth {
+    flex: 0 0 calc(20% - (var(--dp-columns-gap) * 4/5));
+  }
+
+  .dsgn-pck__block-id-{{ block.id }}.dsgn-pck__grid-column--two-fifths {
+    flex: 0 0 calc(40% - (var(--dp-columns-gap) * 3/5));
+  }
+
+  .dsgn-pck__block-id-{{ block.id }}.dsgn-pck__grid-column--three-fifths {
+    flex: 0 0 calc(60% - (var(--dp-columns-gap) * 2/5));
+  }
+
+  .dsgn-pck__block-id-{{ block.id }}.dsgn-pck__grid-column--four-fifths {
+    flex: 0 0 calc(80% - (var(--dp-columns-gap) * 1/5));
+  }
+
+  .dsgn-pck__block-id-{{ block.id }}.dsgn-pck__grid-column--full {
+    flex: 0 0 100%;
+  }
+
+  /* Custom CSS */
+  {%- if block.settings.enable_custom_css == true and block.settings.custom_css != blank -%}
+    {%- assign custom_css_rules = block.settings.custom_css | strip | split: '}' -%}
+    {%- for rule in custom_css_rules -%}
+      {%- assign clean_rule = rule | strip -%}
+      {%- if clean_rule contains '{' and clean_rule != blank -%}
+        {%- assign rule_parts = clean_rule | split: '{' -%}
+        {%- if rule_parts.size >= 2 -%}
+          {%- assign selector_part = rule_parts[0] | strip -%}
+          {%- assign css_part = rule_parts[1] | strip -%}
+          {%- if css_part != blank -%}
+            {%- if selector_part == blank -%}
+              #DP--{{ block.id }} { {{ css_part }} }
+            {%- else -%}
+              #DP--{{ block.id }} {{ selector_part }} { {{ css_part }} }
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  /* Small context - small container and mobile */
+  {%- capture small_context -%}
+
+    /* Mobile & narrow custom CSS */
+    {%- if block.settings.enable_custom_css == true and block.settings.mobile_css != blank -%}
+      {%- assign mobile_css_rules = block.settings.mobile_css | strip | split: '}' -%}
+      {%- for rule in mobile_css_rules -%}
+        {%- assign clean_rule = rule | strip -%}
+        {%- if clean_rule contains '{' and clean_rule != blank -%}
+          {%- assign rule_parts = clean_rule | split: '{' -%}
+          {%- if rule_parts.size >= 2 -%}
+            {%- assign selector_part = rule_parts[0] | strip -%}
+            {%- assign css_part = rule_parts[1] | strip -%}
+            {%- if css_part != blank -%}
+              {%- if selector_part == blank -%}
+                #DP--{{ block.id }} { {{ css_part }} }
+              {%- else -%}
+                #DP--{{ block.id }} {{ selector_part }} { {{ css_part }} }
+              {%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endcapture -%}
+
+  @supports (container-type: inline-size) {
+    @container dp-columns-container (max-width: 300px) {
+      {{ small_context }}
+    }
+  }
+
+  @media (max-width: 767px) {
+    {{ small_context }}
+  }
+</style>
+{%- endcapture -%}
+
+<div id="DP--{{ block.id }}" class="DP--{{ block.id }} dsgn-pck__block-id-{{ block.id }} dsgn-pck__grid-column dsgn-pck__grid-column--{{ block.settings.column_width }} dsgn-pck__grid-column--{{ block.index }}" {{ block.shopify_attributes }}>
+  {{ css_styles }}
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Column",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "column_width",
+      "label": "Column width",
+      "options": [
+        {
+          "value": "full",
+          "label": "Full-width"
+        },
+        {
+          "value": "half",
+          "label": "Half-width"
+        },
+        {
+          "group": "Thirds",
+          "value": "third",
+          "label": "One-third"
+        },
+        {
+          "value": "two-thirds",
+          "group": "Thirds",
+          "label": "Two-thirds"
+        },
+        {
+          "group": "Fourths",
+          "value": "fourth",
+          "label": "One-fourth"
+        },
+        {
+          "group": "Fourths",
+          "value": "two-fourths",
+          "label": "Two-fourths"
+        },
+        {
+          "group": "Fourths",
+          "value": "three-fourths",
+          "label": "Three-fourths"
+        },
+        {
+          "group": "Fifths",
+          "value": "fifth",
+          "label": "One-fifth"
+        },
+        {
+          "group": "Fifths",
+          "value": "two-fifths",
+          "label": "Two-fifths"
+        },
+        {
+          "group": "Fifths",
+          "value": "three-fifths",
+          "label": "Three-fifths"
+        },
+        {
+          "group": "Fifths",
+          "value": "four-fifths",
+          "label": "Four-fifths"
+        }
+      ],
+      "default": "half"
+    },
+    {
+      "type": "select",
+      "id": "padding_type",
+      "label": "Padding",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto"
+        },
+        {
+          "value": "range",
+          "label": "Range"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "auto"
+    },
+    {
+      "visible_if": "{{ block.settings.padding_type == 'custom' }}",
+      "type": "text",
+      "id": "padding",
+      "label": "Custom padding",
+      "default": "0px 0px 0px 0px",
+      "info": "Enter padding in the format: top right bottom left. Example: 10px 20px 30px 40px [Learn more](https://developer.mozilla.org/en-US/docs/Web/CSS/padding)"
+    },
+    {
+      "visible_if": "{{ block.settings.padding_type == 'range' }}",
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "visible_if": "{{ block.settings.padding_type == 'range' }}",
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "visible_if": "{{ block.settings.padding_type == 'range' }}",
+      "type": "range",
+      "id": "padding_left",
+      "label": "Padding left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "visible_if": "{{ block.settings.padding_type == 'range' }}",
+      "type": "range",
+      "id": "padding_right",
+      "label": "Padding right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "visible_if": "{{ false }}",
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal alignment",
+      "default": "default",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "default",
+          "label": "Default"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "default": "default",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "default",
+          "label": "Default"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "🎨 Design"
+    },
+    {
+      "type": "color",
+      "id": "background_solid",
+      "label": "Background",
+      "alpha": true
+    },
+    {
+      "type": "color_background",
+      "id": "background_color",
+      "label": "Background gradient",
+      "info": "Background gradient replaces background where possible."
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Rounded corners",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_box_shadow",
+      "label": "Box shadow",
+      "default": true
+    },
+    {
+      "visible_if": "{{ block.settings.enable_box_shadow }}",
+      "type": "select",
+      "id": "card_box_shadow_intensity",
+      "label": "Intensity",
+      "options": [
+        { "value": "subtle", "label": "Subtle" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "strong", "label": "Strong" },
+        { "value": "custom", "label": "Custom" }
+      ],
+      "default": "subtle",
+      "info": "How strong the shadow appears."
+    },
+    {
+      "visible_if": "{{ block.settings.enable_box_shadow and block.settings.card_box_shadow_intensity != 'custom' }}",
+      "type": "color",
+      "id": "card_box_shadow_color",
+      "label": "Shadow color",
+      "default": "#000000"
+    },
+    {
+      "visible_if": "{{ block.settings.enable_box_shadow and block.settings.card_box_shadow_intensity == 'custom' }}",
+      "type": "text",
+      "id": "card_box_shadow_custom_value",
+      "label": "Custom value",
+      "info": "Enter a custom value for the box shadow. Example: 0 1px 4px 0 rgba(0, 0, 0, 0.33)",
+      "default": "0 1px 4px 0 rgba(0, 0, 0, 0.33)"
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Border style",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "dashed",
+          "label": "Dashed"
+        },
+        {
+          "value": "dotted",
+          "label": "Dotted"
+        },
+        {
+          "value": "double",
+          "label": "Double"
+        },
+        {
+          "value": "groove",
+          "label": "Groove"
+        },
+        {
+          "value": "ridge",
+          "label": "Ridge"
+        },
+        {
+          "value": "inset",
+          "label": "Inset"
+        },
+        {
+          "value": "outset",
+          "label": "Outset"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1,
+      "visible_if": "{{ block.settings.border_style != 'none' }}"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#000000",
+      "alpha": true,
+      "visible_if": "{{ block.settings.border_style != 'none' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_custom_css",
+      "label": "Enable custom CSS",
+      "default": false
+    },
+    {
+      "visible_if": "{{ block.settings.enable_custom_css == true }}",
+      "type": "liquid",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    },
+    {
+      "visible_if": "{{ block.settings.enable_custom_css == true }}",
+      "type": "liquid",
+      "id": "mobile_css",
+      "label": "Mobile & narrow custom CSS",
+      "info": "Applied on small screens or in tight spaces."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Column",
+      "blocks": [
+        {
+          "type": "dpb_-_text",
+          "settings": {
+            "text": "<p>Set up your columns with different widths and backgrounds. Use the full library of blocks as content.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

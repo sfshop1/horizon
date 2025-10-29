@@ -1,0 +1,443 @@
+{%- comment -%}
+{
+  "pack_name": "Collapsible content block",
+  "pack_author": "Design Packs",
+  "license": "© Design Packs. All rights reserved. This code is protected by copyright law and may not be reproduced, distributed, or used without explicit permission from the author. Shopify complies with the Digital Millennium Copyright Act (DMCA) and responds to claims of copyright infringement using DMCA procedures, which could result in the termination of your Shopify account.",
+}
+{%- endcomment -%}
+
+{% comment %} Security Code - hides section when app uninstalled {% endcomment %}
+{%- unless content_for_header contains 'design_packs_file.js' -%}
+  {%- if request.design_mode -%}
+    <div class="dsgn-pck__no-app-warning">
+      <div class="dsgn-pck__no-app-warning-background">
+      </div>
+      <div class="dsgn-pck__no-app-warning-text dsgn-pck__rte">
+        <p><strong>WARNING!</strong> This premium section will not display properly without an active subscription for <a href="https://apps.shopify.com/design-packs" target="_blank" rel="noopener nofollow">Design Packs</a>. If you need any support please email <a href="mailto:info@design-packs.com" target="_blank" rel="noopener">info@design-packs.com</a> with your questions.</p>
+      </div>
+    </div>
+  {%- endif -%}
+  {%- break -%}
+{%- endunless -%}
+
+{%- comment -%} Assign: Preview section js fix {%- endcomment -%}
+{%- assign section_id = section.id | replace: '+', '' | replace: '=', '' -%}
+{%- assign enable_metafield_detect = block.settings.enabled_metafield_detect | default:section.settings.enable_metafield_detect | default: false -%}
+
+{%- comment -%}Icons: SVG URI encoded icons{%- endcomment -%}
+{%- capture closed_icon -%}
+  {%- case block.settings.icon_style -%}
+    {%- when 'plus_minus' -%}
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z' fill='{{ section.settings.text_color | replace: "#", "%23" }}'/%3E%3C/svg%3E")
+    {%- when 'caret' -%}
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z' fill='{{ section.settings.text_color | replace: "#", "%23" }}'/%3E%3C/svg%3E")
+    {%- when 'plus_minus_square' -%}
+      url("data:image/svg+xml,%3Csvg clip-rule='evenodd' fill-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m21 3.998c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-16.5.5h15v15h-15zm6.75 6.752h-3.5c-.414 0-.75.336-.75.75s.336.75.75.75h3.5v3.5c0 .414.336.75.75.75s.75-.336.75-.75v-3.5h3.5c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-3.5v-3.5c0-.414-.336-.75-.75-.75s-.75.336-.75.75z' fill-rule='nonzero' fill='{{ section.settings.text_color | replace: "#", "%23" }}'/%3E%3C/svg%3E")
+  {%- endcase -%}
+{%- endcapture -%}
+
+{%- capture open_icon -%}
+  {%- case block.settings.icon_style -%}
+    {%- when 'plus_minus' -%}
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M0 10h24v4h-24z' fill='{{ section.settings.text_color | replace: "#", "%23" }}'/%3E%3C/svg%3E")
+    {%- when 'caret' -%}
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z' fill='{{ section.settings.text_color | replace: "#", "%23" }}'/%3E%3C/svg%3E")
+    {%- when 'plus_minus_square' -%}
+      url("data:image/svg+xml,%3Csvg clip-rule='evenodd' fill-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m21 4c0-.478-.379-1-1-1h-16c-.62 0-1 .519-1 1v16c0 .621.52 1 1 1h16c.478 0 1-.379 1-1zm-16.5.5h15v15h-15zm11.75 6.752h-8.5c-.414 0-.75.336-.75.75s.336.75.75.75h8.5c.414 0 .75-.336.75-.75s-.336-.75-.75-.75z' fill-rule='nonzero' fill='{{ section.settings.text_color | replace: "#", "%23" }}'/%3E%3C/svg%3E");
+  {%- endcase -%}
+{%- endcapture -%}
+
+{%- assign block_horizontal_setting = block.settings.horizontal_alignment | default: 'default' -%}
+
+{%- capture css_styles -%}
+<style data-dp-css="blocks/_dpb_-_collapsible_content.liquid">
+
+  [id*=preview-block] .dsgn-pck__accordion {
+    container-type: normal !important;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} {
+    width: {{ block.settings.base_width }}%;
+    max-width: {{ block.settings.max_width | remove: 'px' }}px;
+    display: flex;
+    {%- if section.settings.text_alignment == 'center' and block_horizontal_setting == 'default' -%}
+      margin: 0 auto;
+    {%- elsif section.settings.text_alignment == 'right' and block_horizontal_setting == 'default'  -%}
+      margin: 0 0 0 auto;
+    {%- endif -%}
+    {%- if block.settings.horizontal_alignment == 'left' -%}
+      align-self: flex-start;
+      margin-left: 0;
+      margin-right: auto;
+    {%- elsif block.settings.horizontal_alignment == 'right' -%}
+      align-self: flex-end;
+      margin-left: auto;
+      margin-right: 0;
+    {%- elsif block.settings.horizontal_alignment == 'center' -%}
+      align-self: center;
+      margin-left: auto;
+      margin-right: auto;
+    {%- endif -%}
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__accordion {
+    container-type: inline-size;
+    container-name: dp-collapsible-content-container;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .dsgn-pck__block.dsgn-pck__block--collapsible_content + .dsgn-pck__block.dsgn-pck__block--collapsible_content {
+    margin-top: 0;
+  }
+
+  .dsgn-pck__block.dsgn-pck__block--collapsible_content + .dsgn-pck__block.dsgn-pck__block--collapsible_content .dsgn-pck__accordion {
+    border-top: 0;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__accordion {
+    border-top: thin solid {{ section.settings.text_color }};
+    border-bottom: thin solid {{ section.settings.text_color }};
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__question {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    {%- if section.settings.text_alignment == 'left' or block.settings.text_alignment == 'left' -%}padding: 10px 25px 10px 0;{%- else -%}padding: 10px 25px 10px 25px;{%- endif -%}
+    color: {{ section.settings.text_color }};
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__small-heading {
+    margin: 0;
+    font-size: calc(var(--dp-g-small-heading-size, var(--dp-small-heading-size, 24px)) * {{ section.settings.text_size | default: 100 | times: 0.008 }});
+    {%- if section.settings.override_theme_font != blank -%}
+      font-family: var(--heading-font);
+      font-weight: var(--heading-font-weight);
+      font-style: var(--heading-font-style);
+    {%- endif -%}
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__accordion[open] > .dsgn-pck__question:after {
+    background-image: {{ open_icon }};
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__question:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    height: 20px;
+    width: 20px;
+    background-image: {{ closed_icon }};
+    background-size: contain;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__answer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__inner-answer {
+    padding: 10px;
+    padding-right: 0;
+    padding-left: 0;
+    padding-top: 0;
+  }
+
+  /* Custom CSS */
+  {%- if block.settings.enable_custom_css == true and block.settings.custom_css != blank -%}
+    {%- assign custom_css_rules = block.settings.custom_css | strip | split: '}' -%}
+    {%- for rule in custom_css_rules -%}
+      {%- assign clean_rule = rule | strip -%}
+      {%- if clean_rule contains '{' and clean_rule != blank -%}
+        {%- assign rule_parts = clean_rule | split: '{' -%}
+        {%- if rule_parts.size >= 2 -%}
+          {%- assign selector_part = rule_parts[0] | strip -%}
+          {%- assign css_part = rule_parts[1] | strip -%}
+          {%- if css_part != blank -%}
+            {%- if selector_part == blank -%}
+              #DP--{{ block.id }} { {{ css_part }} }
+            {%- else -%}
+              #DP--{{ block.id }} {{ selector_part }} { {{ css_part }} }
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  /* Small context - small container and mobile */
+  {%- capture small_context -%}
+    /* Mobile & narrow custom CSS */
+    {%- if block.settings.enable_custom_css == true and block.settings.mobile_css != blank -%}
+      {%- assign mobile_css_rules = block.settings.mobile_css | strip | split: '}' -%}
+      {%- for rule in mobile_css_rules -%}
+        {%- assign clean_rule = rule | strip -%}
+        {%- if clean_rule contains '{' and clean_rule != blank -%}
+          {%- assign rule_parts = clean_rule | split: '{' -%}
+          {%- if rule_parts.size >= 2 -%}
+            {%- assign selector_part = rule_parts[0] | strip -%}
+            {%- assign css_part = rule_parts[1] | strip -%}
+            {%- if css_part != blank -%}
+              {%- if selector_part == blank -%}
+                #DP--{{ block.id }} { {{ css_part }} }
+              {%- else -%}
+                #DP--{{ block.id }} {{ selector_part }} { {{ css_part }} }
+              {%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endcapture -%}
+
+  @supports (container-type: inline-size) {
+    @container dp-collapsible-content-container (max-width: 300px) {
+      {{ small_context }}
+    }
+  }
+
+  @media (max-width: 767px) {
+    {{ small_context }}
+  }
+
+  /* Hide or show on mobile and desktop */
+  {%- if block.settings.hidden_on == 'mobile' -%}
+    @media (max-width: 767px) {
+      .dsgn-pck__block-id-{{ block.id }} {
+        display: none;
+      }
+    }
+  {%- endif -%}
+
+  {%- if block.settings.hidden_on == 'desktop' -%}
+    @media (min-width: 768px) {
+      .dsgn-pck__block-id-{{ block.id }} {
+        display: none;
+      }
+    }
+  {%- endif -%}
+
+</style>
+{%- endcapture -%}
+
+<div id="DP--{{ block.id }}" class="DP--{{ block.id }} dsgn-pck__block dsgn-pck__block-id-{{ block.id }} dsgn-pck__block--collapsible_content dsgn-pck__block--{{ block.type }} dsgn-pck__block--{{ block.index }} dsgn-pck__justify-{%- if block.settings.horizontal_alignment != 'default' -%}{{ block.settings.horizontal_alignment }}{%- else -%}{{ section.settings.text_alignment }}{%- endif -%}" {{ block.shopify_attributes }}>
+  {{ css_styles }}
+  <details class="dsgn-pck__accordion dsgn-pck__icon-style-{{ block.settings.icon_style }}" {%- if block.settings.show_open == true -%} open {%- endif -%}>
+    <summary class="dsgn-pck__question">
+      <h3 class="dsgn-pck__small-heading">{{ block.settings.title }}</h3>
+    </summary>
+    <div class="dsgn-pck__answer">
+      <div class="dsgn-pck__inner-answer dsgn-pck__text dsgn-pck__rte">
+        {{ block.settings.text }}
+        {%- content_for 'blocks' -%}
+      </div>
+    </div>
+  </details>
+</div>
+
+{% schema %}
+  {
+    "name": "Collapsible content 🎒",
+    "tag": null,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Shipping information"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Collapsed content",
+        "default": "<p>Lorem ipsum dolor.</p>"
+      },
+      {
+        "type": "select",
+        "id": "icon_style",
+        "label": "Collapsible icon style",
+        "options": [
+          {
+            "value": "plus_minus",
+            "label": "Plus and minus"
+          },
+          {
+            "value": "plus_minus_square",
+            "label": "Plus and minus buttons"
+          },
+          {
+            "value": "caret",
+            "label": "Carets"
+          }
+        ],
+        "default": "plus_minus_square"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_open",
+        "label": "Show open by default",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "🖼 Layout"
+      },
+      {
+        "type": "range",
+        "id": "base_width",
+        "label": "Size",
+        "min": 10,
+        "max": 100,
+        "default": 100,
+        "unit": "%",
+        "info": "Size is based on the width of the container. [Learn more]( https://design-packs.gitbook.io/docs/fundamentals/block-settings/size-controls-for-image-and-video-blocks)"
+      },
+      {
+        "type": "text",
+        "id": "max_width",
+        "label": "Maximum width",
+        "placeholder": "eg. 400px",
+        "info": "Sets width constraint for content."
+      },
+      {
+        "visible_if": "{{ block.settings.base_width < 100 or block.settings.max_width != blank }}",
+        "type": "select",
+        "id": "horizontal_alignment",
+        "label": "Horizontal alignment",
+        "default": "default",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "default",
+            "label": "Default"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "hidden_on",
+        "label": "Hidden on",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "desktop",
+            "label": "Desktop"
+          },
+          {
+            "value": "mobile",
+            "label": "Mobile"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_custom_css",
+        "label": "Enable custom CSS",
+        "default": false
+      },
+      {
+        "visible_if": "{{ block.settings.enable_custom_css == true }}",
+        "type": "liquid",
+        "id": "custom_css",
+        "label": "Custom CSS"
+      },
+      {
+        "visible_if": "{{ block.settings.enable_custom_css == true }}",
+        "type": "liquid",
+        "id": "mobile_css",
+        "label": "Mobile & narrow custom CSS",
+        "info": "Applied on small screens or in tight spaces."
+      },
+      {
+        "type": "paragraph",
+        "content": "Open [Design Packs](/admin/apps/design-packs-1/dashboard) to add/update new sections and blocks."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "@theme"
+      },
+      {
+        "type": "@app"
+      },
+      {
+        "type": "dpb_-_heading"
+      },
+      {
+        "type": "dpb_-_buttons"
+      },
+      {
+        "type": "dpb_-_inset_image"
+      },
+      {
+        "type": "dpb_-_video"
+      },
+      {
+        "type": "dpb_-_icons"
+      },
+      {
+        "type": "dpb_-_text"
+      },
+      {
+        "type": "dpb_-_divider"
+      },
+      {
+        "type": "dpb_-_spacer"
+      },
+      {
+        "type": "_dpb_-_columns"
+      },
+      {
+        "type": "_dpb_-_group"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collapsible content 🎒",
+        "category": "* Design Packs * Interactive"
+      }
+    ],
+  }
+{% endschema %}

@@ -1,0 +1,763 @@
+{%- comment -%}
+{
+  "pack_name": "Icons block",
+  "pack_author": "Design Packs",
+  "license": "© Design Packs. All rights reserved. This code is protected by copyright law and may not be reproduced, distributed, or used without explicit permission from the author. Shopify complies with the Digital Millennium Copyright Act (DMCA) and responds to claims of copyright infringement using DMCA procedures, which could result in the termination of your Shopify account.",
+}
+{%- endcomment -%}
+
+{% comment %} Security Code - hides section when app uninstalled {% endcomment %}
+{%- unless content_for_header contains 'design_packs_file.js' -%}
+  {%- if request.design_mode -%}
+    <div class="dsgn-pck__no-app-warning">
+      <div class="dsgn-pck__no-app-warning-background">
+      </div>
+      <div class="dsgn-pck__no-app-warning-text dsgn-pck__rte">
+        <p><strong>WARNING!</strong> This premium section will not display properly without an active subscription for <a href="https://apps.shopify.com/design-packs" target="_blank" rel="noopener nofollow">Design Packs</a>. If you need any support please email <a href="mailto:info@design-packs.com" target="_blank" rel="noopener">info@design-packs.com</a> with your questions.</p>
+      </div>
+    </div>
+  {%- endif -%}
+  {%- break -%}
+{%- endunless -%}
+
+{%- comment -%} Assign: Preview section js fix {%- endcomment -%}
+{%- assign section_id = section.id | replace: '+', '' | replace: '=', '' -%}
+
+{%- assign block_horizontal_setting = block.settings.horizontal_alignment | default: 'default' -%}
+
+{%- capture css_styles -%}
+<style data-dp-css="blocks/_dpb_-_icons.liquid">
+
+  [id*=preview-block] .dsgn-pck__icons {
+    container-type: normal !important;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} {
+    width: {{ block.settings.base_width }}%;
+    max-width: {{ block.settings.max_width | remove: 'px' }}px;
+    --flex-gap: {{ block.settings.gap }}px;
+    --icon-text-gap: {{ block.settings.icon_gap }}px;
+    display: flex;
+    {%- if section.settings.text_alignment == 'center' and block_horizontal_setting == 'default' -%}
+      margin: 0 auto;
+    {%- elsif section.settings.text_alignment == 'right' and block_horizontal_setting == 'default'  -%}
+      margin: 0 0 0 auto;
+    {%- endif -%}
+    {%- if block.settings.horizontal_alignment == 'left' -%}
+      align-self: flex-start;
+      margin-left: 0;
+      margin-right: auto;
+    {%- elsif block.settings.horizontal_alignment == 'right' -%}
+      align-self: flex-end;
+      margin-left: auto;
+      margin-right: 0;
+    {%- elsif block.settings.horizontal_alignment == 'center' -%}
+      align-self: center;
+      margin-left: auto;
+      margin-right: auto;
+    {%- endif -%}
+    {%- if block.settings.enable_custom_font_size == true and block.settings.icon_heading_size != blank -%}
+      --icon-heading-size: calc({{ block.settings.icon_heading_size }} * {{ section.settings.text_size | default: 100 | times: 0.01 }});
+    {%- else -%}
+      --icon-heading-size: calc(var(--dp-g-heading-size, var(--dp-heading-size, 20px)) * {{ section.settings.text_size | default: 100 | times: 0.01 }});
+    {%- endif -%}
+    {%- if block.settings.enable_custom_font_size == true and block.settings.icon_text_size != blank -%}
+      --icon-text-size: calc({{ block.settings.icon_text_size }} * {{ section.settings.text_size | default: 100 | times: 0.01 }});
+    {%- else -%}
+      --icon-text-size: calc(var(--dp-g-body-size, var(--dp-body-size, 16px)) * {{ section.settings.text_size | default: 100 | times: 0.01 }});
+    {%- endif -%}
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icons {
+    container-type: inline-size;
+    container-name: dp-icons-container;
+    display: flex;
+    gap: var(--flex-gap);
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon {
+    --flex-items: {{ 100.00 | divided_by: block.settings.icon_width }};
+    text-align: center;
+    flex: 0 1 calc((100% / var(--flex-items)) - (((var(--flex-items) - 1) / var(--flex-items)) * var(--flex-gap)));
+    width: calc((100% / var(--flex-items)) - (((var(--flex-items) - 1) / var(--flex-items)) * var(--flex-gap)));
+    --icon-size: {% if block.settings.icon_size_type == 'percentage' %}{{ block.settings.image_size }}%{% else %}{{ block.settings.image_size_fixed }}px{% endif %};
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__image__wrapper {
+    position: relative;
+    width: var(--icon-size);
+    max-width: var(--icon-size);
+    height: auto;
+    display: inline-block;
+    font-size: 0;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} svg.dsgn-pck__svg-sizer {
+    width: 100%;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon-heading {
+    margin-bottom: 5px;
+    font-size: var(--icon-heading-size);
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__small-heading + .dsgn-pck__icon-text {
+    margin-top: 5px;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon-text {
+    font-size: var(--icon-text-size);
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon a,
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon p {
+    color: {{ section.settings.text_color }};
+    line-height: 1.2;
+    margin: 0;
+    text-decoration: none;
+  }
+
+  {%- if block.settings.icon_layout == 'left' -%}
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: var(--icon-text-gap);
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__image__wrapper {
+      flex: 0 0 {% if block.settings.icon_size_type == 'percentage' %}{{ block.settings.image_size }}%{% else %}{{ block.settings.image_size_fixed }}px{% endif %};
+      max-width: {% if block.settings.icon_size_type == 'percentage' %}{{ block.settings.image_size }}%{% else %}{{ block.settings.image_size_fixed }}px{% endif %};
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon-content {
+      flex: 1 1 auto;
+      text-align: left;
+    }
+
+  {%- elsif block.settings.icon_layout == 'right' -%}
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: var(--icon-text-gap);
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__image__wrapper {
+      flex: 0 0 var(--icon-size);
+      max-width: var(--icon-size);
+      width: var(--icon-size);
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon-content {
+      flex: 1 1 auto;
+      text-align: right;
+    }
+
+  {%- elsif block.settings.icon_layout == 'top' -%}
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: {{ block.settings.icon_gap }}px;
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon-content {
+      text-align: center;
+      flex: 1;
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__image__wrapper {
+      flex: 0 0 auto;
+      max-width: var(--icon-size);
+      width: var(--icon-size);
+    }
+
+  {%- elsif block.settings.icon_layout == 'bottom' -%}
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: {{ block.settings.icon_gap }}px;
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__image__wrapper {
+      flex: 0 0 var(--icon-size);
+      max-width: var(--icon-size);
+      width: var(--icon-size);
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon-content {
+      text-align: center;
+      flex: 1;
+    }
+
+  {%- endif -%}
+
+  {%- if block.settings.icon_layout == 'top' or block.settings.icon_layout == 'bottom' -%}
+    {%- if block.settings.icon_alignment == 'left' -%}
+      .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon {
+        align-items: flex-start;
+      }
+
+      .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon-content {
+        text-align: left;
+      }
+
+    {%- elsif block.settings.icon_alignment == 'right' -%}
+      .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon {
+        align-items: flex-end;
+      }
+
+      .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon-content {
+        text-align: right;
+      }
+
+    {%- endif -%}
+  {%- endif -%}
+
+  /* Custom CSS */
+  {%- if block.settings.enable_custom_css == true and block.settings.custom_css != blank -%}
+    {%- assign custom_css_rules = block.settings.custom_css | strip | split: '}' -%}
+    {%- for rule in custom_css_rules -%}
+      {%- assign clean_rule = rule | strip -%}
+      {%- if clean_rule contains '{' and clean_rule != blank -%}
+        {%- assign rule_parts = clean_rule | split: '{' -%}
+        {%- if rule_parts.size >= 2 -%}
+          {%- assign selector_part = rule_parts[0] | strip -%}
+          {%- assign css_part = rule_parts[1] | strip -%}
+          {%- if css_part != blank -%}
+            {%- if selector_part == blank -%}
+              #DP--{{ block.id }} { {{ css_part }} }
+            {%- else -%}
+              #DP--{{ block.id }} {{ selector_part }} { {{ css_part }} }
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  /* Small context - small container and mobile */
+  {%- capture small_context -%}
+    {%- if block.settings.mobile_styles == true -%}
+      .dsgn-pck__block-id-{{ block.id }} {
+        --flex-gap: {{ block.settings.mobile_gap }}px;
+      }
+
+      .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon {
+        --flex-items: {{ 100.00 | divided_by: block.settings.mobile_icon_width }};
+        --icon-text-gap: {{ block.settings.mobile_icon_gap }}px;
+        --icon-size: {% if block.settings.mobile_icon_size_type == 'percentage' %}{{ block.settings.mobile_image_size }}%{% else %}{{ block.settings.mobile_image_size_fixed }}px{% endif %};
+      }
+
+      {%- if block.settings.mobile_icon_layout == 'left' or block.settings.mobile_icon_layout == 'right' -%}
+        .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon {
+          display: flex;
+          flex-direction: {% if block.settings.mobile_icon_layout == 'left' %}row{% else %}row-reverse{% endif %};
+          gap: var(--icon-text-gap);
+          justify-content: {{ block.settings.mobile_icon_layout }};
+        }
+
+        .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__image__wrapper {
+          flex: 0 0 var(--icon-size);
+          max-width: var(--icon-size);
+          width: var(--icon-size);
+        }
+
+        .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon-content {
+          flex: 1 1 auto;
+          text-align: {{ block.settings.mobile_icon_layout }};
+        }
+
+      {%- elsif block.settings.mobile_icon_layout == 'top' or block.settings.mobile_icon_layout == 'bottom' -%}
+        .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon {
+          display: flex;
+          {%- if block.settings.mobile_icon_layout == 'top' -%}
+            flex-direction: column;
+          {%- else -%}
+            flex-direction: column-reverse;
+          {%- endif -%}
+          align-items: center;
+          gap: {{ block.settings.mobile_icon_gap }}px;
+          justify-content: {{ block.settings.mobile_icon_alignment }};
+        }
+
+        .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__image__wrapper {
+          flex: 0 0 var(--icon-size);
+          max-width: var(--icon-size);
+          width: var(--icon-size);
+          flex: 1;
+          align-self: {% if block.settings.mobile_icon_alignment == 'left' %}flex-start{% elsif block.settings.mobile_icon_alignment == 'right' %}flex-end{% else %}center{% endif %};
+        }
+
+        .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon-content {
+          text-align: {{ block.settings.mobile_icon_alignment }};
+          flex: 1;
+          width: 100%;
+        }
+
+      {%- endif -%}
+      .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon-heading {
+        {%- if block.settings.mobile_icon_heading_size != blank and block.settings.enable_custom_font_size == true -%}
+          font-size: {{ block.settings.mobile_icon_heading_size }};
+        {%- elsif block.settings.enable_custom_font_size == true and block.settings.icon_heading_size != blank -%}
+          font-size: calc({{ block.settings.icon_heading_size | remove: 'px' | times: 0.75 | round: 0 | at_least: 12 }}px * {{ section.settings.text_size | default: 100 | times: 0.01 }});
+        {%- endif -%}
+      }
+      .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__icon-text {
+        {%- if block.settings.mobile_icon_text_size != blank and block.settings.enable_custom_font_size == true -%}
+          font-size: {{ block.settings.mobile_icon_text_size }};
+        {%- elsif block.settings.enable_custom_font_size == true and block.settings.icon_text_size != blank -%}
+          font-size: calc({{ block.settings.icon_text_size | remove: 'px' | times: 0.75 | round: 0 | at_least: 10 }}px * {{ section.settings.text_size | default: 100 | times: 0.01 }});
+        {%- endif -%}
+      }
+    {%- endif -%}
+
+  /* Mobile & narrow custom CSS */
+  {%- if block.settings.enable_custom_css == true and block.settings.mobile_css != blank -%}
+    {%- assign mobile_css_rules = block.settings.mobile_css | strip | split: '}' -%}
+    {%- for rule in mobile_css_rules -%}
+      {%- assign clean_rule = rule | strip -%}
+      {%- if clean_rule contains '{' and clean_rule != blank -%}
+        {%- assign rule_parts = clean_rule | split: '{' -%}
+        {%- if rule_parts.size >= 2 -%}
+          {%- assign selector_part = rule_parts[0] | strip -%}
+          {%- assign css_part = rule_parts[1] | strip -%}
+          {%- if css_part != blank -%}
+            {%- if selector_part == blank -%}
+              #DP--{{ block.id }} { {{ css_part }} }
+            {%- else -%}
+              #DP--{{ block.id }} {{ selector_part }} { {{ css_part }} }
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- endcapture -%}
+
+  @supports (container-type: inline-size) {
+    @container dp-icons-container (max-width: 300px) {
+      {{ small_context }}
+    }
+  }
+
+  @media (max-width: 767px) {
+    {{ small_context }}
+  }
+
+  /* Hide or show on mobile and desktop */
+  {%- if block.settings.hidden_on == 'mobile' -%}
+    @media (max-width: 767px) {
+      .dsgn-pck__block-id-{{ block.id }} {
+        display: none;
+      }
+    }
+  {%- endif -%}
+
+  {%- if block.settings.hidden_on == 'desktop' -%}
+    @media (min-width: 768px) {
+      .dsgn-pck__block-id-{{ block.id }} {
+        display: none;
+      }
+    }
+  {%- endif -%}
+</style>
+{%- endcapture -%}
+
+<div id="DP--{{ block.id }}" class="DP--{{ block.id }} dsgn-pck__block dsgn-pck__block-id-{{ block.id }} dsgn-pck__block--{{ block.type }} dsgn-pck__block--{{ block.index }}" {{ block.shopify_attributes }}>
+  {{ css_styles }}
+  <div class="dsgn-pck__icons {% if block.settings.horizontal_alignment == 'default' %}dsgn-pck__justify-{{ section.settings.text_alignment }}{% else %}dsgn-pck__justify-{{ block.settings.horizontal_alignment }}{% endif %}">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Icons 🎒",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "_dpb_sub_-_icons-icon"
+    }
+  ],
+  "settings": [
+    {
+      "type": "range",
+      "id": "icon_width",
+      "label": "Icon container width",
+      "default": 33,
+      "min": 10,
+      "max": 100,
+      "unit": "%",
+      "info": "Set how many icons are displayed in a row."
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 40,
+      "label": "Spacing gap",
+      "unit": "px",
+      "default": 10,
+      "info": "Spacing between icons."
+    },
+    {
+      "type": "select",
+      "id": "icon_layout",
+      "label": "Icon position to text",
+      "info": "The position of the icon relative to the text.",
+      "default": "top",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ]
+    },
+    {
+      "info": "Controls the spacing between the icon and the text.",
+      "type": "range",
+      "id": "icon_gap",
+      "label": "Icon text gap",
+      "default": 5,
+      "min": 0,
+      "max": 40,
+      "unit": "px"
+    },
+    {
+      "visible_if": "{{ block.settings.icon_layout == 'top' or block.settings.icon_layout == 'bottom' }}",
+      "type": "text_alignment",
+      "id": "icon_alignment",
+      "label": "Text alignment",
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "icon_size_type",
+      "label": "Icon width",
+      "default": "percentage",
+      "options": [
+        {
+          "value": "percentage",
+          "label": "Percentage"
+        },
+        {
+          "value": "fixed",
+          "label": "Fixed"
+        }
+      ]
+    },
+    {
+      "visible_if": "{{ block.settings.icon_size_type == 'percentage' }}",
+      "type": "range",
+      "id": "image_size",
+      "min": 10,
+      "max": 100,
+      "label": "Size",
+      "default": 80,
+      "unit": "%"
+    },
+    {
+      "visible_if": "{{ block.settings.icon_size_type == 'fixed' }}",
+      "type": "range",
+      "id": "image_size_fixed",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "label": "Size",
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile & narrow display"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_styles",
+      "label": "Enable mobile & narrow styles",
+      "info": "Settings for small screens or in tight spaces",
+      "default": false
+    },
+    {
+      "visible_if": "{{ block.settings.mobile_styles == true }}",
+      "type": "range",
+      "id": "mobile_icon_width",
+      "label": "Mobile icon container width",
+      "default": 33,
+      "min": 10,
+      "max": 100,
+      "unit": "%",
+      "info": "Set how many icons are displayed in a row on small screens."
+    },
+    {
+      "visible_if": "{{ block.settings.mobile_styles == true }}",
+      "type": "range",
+      "id": "mobile_gap",
+      "min": 0,
+      "max": 40,
+      "label": "Mobile spacing gap",
+      "unit": "px",
+      "default": 10,
+      "info": "Spacing between icons."
+    },
+    {
+      "visible_if": "{{ block.settings.mobile_styles == true }}",
+      "type": "select",
+      "id": "mobile_icon_layout",
+      "label": "Mobile icon position to text",
+      "info": "The position of the icon relative to the text.",
+      "default": "top",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ]
+    },
+    {
+      "visible_if": "{{ block.settings.mobile_styles == true }}",
+      "info": "Controls the spacing between the icon and the text.",
+      "type": "range",
+      "id": "mobile_icon_gap",
+      "label": "Mobile icon text gap",
+      "default": 5,
+      "min": 0,
+      "max": 40,
+      "unit": "px"
+    },
+    {
+      "visible_if": "{{ block.settings.mobile_styles == true and block.settings.mobile_icon_layout == 'top' or block.settings.mobile_icon_layout == 'bottom' }}",
+      "type": "text_alignment",
+      "id": "mobile_icon_alignment",
+      "label": "Mobile text alignment",
+      "default": "center"
+    },
+    {
+      "visible_if": "{{ block.settings.mobile_styles == true }}",
+      "type": "select",
+      "id": "mobile_icon_size_type",
+      "label": "Mobile icon width",
+      "default": "percentage",
+      "options": [
+        {
+          "value": "percentage",
+          "label": "Percentage"
+        },
+        {
+          "value": "fixed",
+          "label": "Fixed"
+        }
+      ]
+    },
+    {
+      "visible_if": "{{ block.settings.mobile_icon_size_type == 'percentage' and block.settings.mobile_styles == true }}",
+      "type": "range",
+      "id": "mobile_image_size",
+      "min": 10,
+      "max": 100,
+      "label": "Size",
+      "default": 80,
+      "unit": "%"
+    },
+    {
+      "visible_if": "{{ block.settings.mobile_icon_size_type == 'fixed' and block.settings.mobile_styles == true }}",
+      "type": "range",
+      "id": "mobile_image_size_fixed",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "label": "Size",
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "🖼 Layout"
+    },
+    {
+      "type": "range",
+      "id": "base_width",
+      "label": "Size",
+      "min": 50,
+      "max": 100,
+      "default": 100,
+      "unit": "%",
+      "info": "Size is based on the width of the container. [Learn more]( https://design-packs.gitbook.io/docs/fundamentals/block-settings/size-controls-for-image-and-video-blocks)"
+    },
+    {
+      "type": "text",
+      "id": "max_width",
+      "label": "Maximum width",
+      "placeholder": "eg. 1200px",
+      "info": "Sets width constraint for content."
+    },
+    {
+      "visible_if": "{{ block.settings.base_width < 100 or block.settings.max_width != blank }}",
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal alignment",
+      "default": "default",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "default",
+          "label": "Default"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "hidden_on",
+      "label": "Hidden on",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "desktop",
+          "label": "Desktop"
+        },
+        {
+          "value": "mobile",
+          "label": "Mobile"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_custom_css",
+      "label": "Enable custom CSS",
+      "default": false
+    },
+    {
+      "visible_if": "{{ block.settings.enable_custom_css == true }}",
+      "type": "liquid",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    },
+    {
+      "visible_if": "{{ block.settings.enable_custom_css == true }}",
+      "type": "liquid",
+      "id": "mobile_css",
+      "label": "Mobile & narrow custom CSS",
+      "info": "Applied on small screens or in tight spaces."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_custom_font_size",
+      "label": "Enable custom font size",
+      "default": false
+    },
+    {
+      "visible_if": "{{ block.settings.enable_custom_font_size }}",
+      "type": "text",
+      "id": "icon_heading_size",
+      "label": "Icon heading size",
+      "info": "e.g. 24px or 2rem"
+    },
+    {
+      "visible_if": "{{ block.settings.enable_custom_font_size }}",
+      "type": "text",
+      "id": "mobile_icon_heading_size",
+      "label": "Mobile icon heading size",
+      "info": "e.g. 18px or 1.2rem"
+    },
+    {
+      "visible_if": "{{ block.settings.enable_custom_font_size }}",
+      "type": "text",
+      "id": "icon_text_size",
+      "label": "Icon text size",
+      "info": "e.g. 16px or 1rem"
+    },
+    {
+      "visible_if": "{{ block.settings.enable_custom_font_size }}",
+      "type": "text",
+      "id": "mobile_icon_text_size",
+      "label": "Mobile icon text size",
+      "info": "e.g. 14px or 0.9rem"
+    },
+    {
+      "type": "paragraph",
+      "content": "Open [Design Packs](/admin/apps/design-packs-1/dashboard) to add/update new sections and blocks."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icons 🎒",
+      "category": "* Design Packs * Basic",
+      "blocks": {
+        "icon-1": {
+          "type": "_dpb_sub_-_icons-icon",
+          "name": "Icon 1 🎒",
+          "settings": {
+            "heading": "Top Rated",
+            "text": "We are the best in the business"
+          }
+        },
+        "icon-2": {
+          "type": "_dpb_sub_-_icons-icon",
+          "name": "Icon 2 🎒",
+          "settings": {
+            "heading": "Eco Friendly",
+            "text": "Save the planet"
+          }
+        },
+        "icon-3": {
+          "type": "_dpb_sub_-_icons-icon",
+          "name": "Icon 3 🎒",
+          "settings": {
+            "heading": "Free Shipping",
+            "text": "On all orders over $100"
+          }
+        }
+      },
+      "block_order": [
+        "icon-1",
+        "icon-2",
+        "icon-3"
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,771 @@
+{%- comment -%}
+{
+  "pack_name": "Comparison slider block",
+  "pack_author": "Design Packs",
+  "license": "© Design Packs. All rights reserved. This code is protected by copyright law and may not be reproduced, distributed, or used without explicit permission from the author. Shopify complies with the Digital Millennium Copyright Act (DMCA) and responds to claims of copyright infringement using DMCA procedures, which could result in the termination of your Shopify account.",
+}
+{%- endcomment -%}
+
+{% comment %} Security Code - hides section when app uninstalled {% endcomment %}
+{%- unless content_for_header contains 'design_packs_file.js' -%}
+  {%- if request.design_mode -%}
+    <div class="dsgn-pck__no-app-warning">
+      <div class="dsgn-pck__no-app-warning-background">
+      </div>
+      <div class="dsgn-pck__no-app-warning-text dsgn-pck__rte">
+        <p><strong>WARNING!</strong> This premium section will not display properly without an active subscription for <a href="https://apps.shopify.com/design-packs" target="_blank" rel="noopener nofollow">Design Packs</a>. If you need any support please email <a href="mailto:info@design-packs.com" target="_blank" rel="noopener">info@design-packs.com</a> with your questions.</p>
+      </div>
+    </div>
+  {%- endif -%}
+  {%- break -%}
+{%- endunless -%}
+
+{%- comment -%} Assign: Preview section js fix {%- endcomment -%}
+{%- assign section_id = section.id | replace: '+', '' | replace: '=', '' -%}
+{%- assign enable_metafield_detect = section.settings.enable_metafield_detect | default: false -%}
+{%- comment -%} Videos: all placeholders {%- endcomment -%}
+{%- assign background_placeholder_video_id = '5f2ab401807b458383fb168fbc4e5b03' -%}
+{%- comment -%} Videos: check image crop aspect ratio {%- endcomment -%}
+{%- if block.settings.image_crop == 'none' -%}
+  {%- assign image_crop_width = block.settings.aspect_ratio | split: ':' | first | times: 1000 -%}
+  {%- assign image_crop_height = block.settings.aspect_ratio | split: ':' | last | times: 1000 -%}
+{%- else -%}
+  {%- assign image_crop_width = block.settings.image_crop | split: ':' | first | times: 1000 -%}
+  {%- assign image_crop_height = block.settings.image_crop | split: ':' | last | times: 1000 -%}
+{%- endif -%}
+
+{%- assign block_horizontal_setting = block.settings.horizontal_alignment | default: 'default' -%}
+
+{% if block.settings.video == blank and enable_metafield_detect == true %}
+  {% continue %}
+{% endif %}
+
+{%- capture css_styles -%}
+<style data-dp-css="blocks/_dpb_-_video.liquid">
+
+  [id*=preview-block] .dsgn-pck__video-container {
+    container-type: normal !important;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} {
+    width: {{ block.settings.base_width }}%;
+    max-width: {{ block.settings.max_width | remove: 'px' }}px;
+    display: flex;
+    {%- if section.settings.text_alignment == 'center' and block_horizontal_setting == 'default' -%}
+      margin: 0 auto;
+    {%- elsif section.settings.text_alignment == 'right' and block_horizontal_setting == 'default'  -%}
+      margin: 0 0 0 auto;
+    {%- endif -%}
+    {%- if block.settings.horizontal_alignment == 'left' -%}
+      align-self: flex-start;
+      margin-left: 0;
+      margin-right: auto;
+    {%- elsif block.settings.horizontal_alignment == 'right' -%}
+      align-self: flex-end;
+      margin-left: auto;
+      margin-right: 0;
+    {%- elsif block.settings.horizontal_alignment == 'center' -%}
+      align-self: center;
+      margin-left: auto;
+      margin-right: auto;
+    {%- endif -%}
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} dp-video {
+    container-type: inline-size;
+    container-name: dp-video-container;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__video__wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__inset-video video {
+    object-fit: cover;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+  }
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__inset-video video:not(:root):fullscreen {
+    object-fit: contain;
+  }
+
+  {%- if block.settings.show_controls == false -%}
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__inset-video video::-webkit-media-controls-panel {
+      background-image: none !important;
+      filter: brightness(0.4);
+    }
+  {%- endif -%}
+
+  .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__inset-video iframe {
+    object-fit: cover;
+    width: 100%;
+    aspect-ratio: {{ image_crop_width }} / {{ image_crop_height }};
+  }
+
+  /* Play button */
+  {%- if block.settings.show_controls == true and block.settings.video_style == 'play_button' -%}
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__video-wrapper {
+      --play-button-size: 50px;
+      position: relative;
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__play-button-wrapper {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} svg.dsgn-pck__play-button,
+    .dsgn-pck__block-id-{{ block.id }} svg.dsgn-pck__pause-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: var(--play-button-size);
+      height: var(--play-button-size);
+      fill: {{ block.settings.play_button_color }};
+      transition: 0.1s ease;
+      cursor: pointer;
+      pointer-events: none;
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} svg.dsgn-pck__pause-button {
+      opacity: 0;
+      transition: 0.1s ease;
+      width: calc(var(--play-button-size)/1.5);
+      height: calc(var(--play-button-size)/1.5);
+      fill: {{ block.settings.play_button_color }};
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__playing svg.dsgn-pck__play-button {
+      opacity: 0;
+    }
+
+    .dsgn-pck__block-id-{{ block.id }} .dsgn-pck__video-wrapper:hover .dsgn-pck__playing svg.dsgn-pck__pause-button {
+      opacity: 100;
+      pointer-events: initial;
+      animation: fadeOutAnimation 1.5s cubic-bezier(0.4, 0, 1, 1);
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes fadeOutAnimation {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+  {%- endif -%}
+
+  {%- if block.settings.enable_custom_css == true and block.settings.custom_css != blank -%}
+    {%- assign custom_css_rules = block.settings.custom_css | strip | split: '}' -%}
+    {%- for rule in custom_css_rules -%}
+      {%- assign clean_rule = rule | strip -%}
+      {%- if clean_rule contains '{' and clean_rule != blank -%}
+        {%- assign rule_parts = clean_rule | split: '{' -%}
+        {%- if rule_parts.size >= 2 -%}
+          {%- assign selector_part = rule_parts[0] | strip -%}
+          {%- assign css_part = rule_parts[1] | strip -%}
+          {%- if css_part != blank -%}
+            {%- if selector_part == blank -%}
+              #DP--{{ block.id }} { {{ css_part }} }
+            {%- else -%}
+              #DP--{{ block.id }} {{ selector_part }} { {{ css_part }} }
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  /* Small context - small container and mobile */
+  {%- capture small_context -%}
+    {%- if block.settings.enable_custom_css == true and block.settings.mobile_css != blank -%}
+      {%- assign mobile_css_rules = block.settings.mobile_css | strip | split: '}' -%}
+      {%- for rule in mobile_css_rules -%}
+        {%- assign clean_rule = rule | strip -%}
+        {%- if clean_rule contains '{' and clean_rule != blank -%}
+          {%- assign rule_parts = clean_rule | split: '{' -%}
+          {%- if rule_parts.size >= 2 -%}
+            {%- assign selector_part = rule_parts[0] | strip -%}
+            {%- assign css_part = rule_parts[1] | strip -%}
+            {%- if css_part != blank -%}
+              {%- if selector_part == blank -%}
+                #DP--{{ block.id }} { {{ css_part }} }
+              {%- else -%}
+                #DP--{{ block.id }} {{ selector_part }} { {{ css_part }} }
+              {%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endcapture -%}
+
+  @supports (container-type: inline-size) {
+    @container dp-video-container (max-width: 300px) {
+      {{ small_context }}
+    }
+  }
+
+  @media (max-width: 767px) {
+    {{ small_context }}
+  }
+
+  /* Hide or show on mobile and desktop */
+  {%- if block.settings.hidden_on == 'mobile' -%}
+    @media (max-width: 767px) {
+      .dsgn-pck__block-id-{{ block.id }} {
+        display: none;
+      }
+    }
+  {%- endif -%}
+
+  {%- if block.settings.hidden_on == 'desktop' -%}
+    @media (min-width: 768px) {
+      .dsgn-pck__block-id-{{ block.id }} {
+        display: none;
+      }
+    }
+  {%- endif -%}
+
+</style>
+{%- endcapture -%}
+
+{%- capture js_scripts -%}
+  <script type="module" defer>
+    class DesignPackVideo extends HTMLElement {
+      constructor() {
+        super();
+        this.section = this.closest('#DP--{{ section_id }}');
+        this.videoWrapper = this.querySelector('.dsgn-pck__video-wrapper');
+        this.video = this.querySelector('video');
+        this.playButton = this.querySelector('[data-play-trigger]');
+        this.playButtonIcon = this.querySelector('.dsgn-pck__play-button');
+        this.pauseButtonIcon = this.querySelector('.dsgn-pck__pause-button');
+
+        this.isPlaying = false;
+        this.hasInitialized = false;
+        this.isLoading = true;
+        this.hasError = false;
+
+        this.intersectionObserver = null;
+        this.parentBlock = null;
+
+        /* Bind methods to preserve context */
+        this.handlePlayToggle = this.handlePlayToggle.bind(this);
+        this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
+        this.handleVideoEnded = this.handleVideoEnded.bind(this);
+        this.handleVideoError = this.handleVideoError.bind(this);
+        this.handleMetadataLoaded = this.handleMetadataLoaded.bind(this);
+        this.handleVideoLoaded = this.handleVideoLoaded.bind(this);
+        this.onIntersect = this.onIntersect.bind(this);
+      }
+
+      connectedCallback() {
+        if (!this.video) {
+          console.error('Video element not found');
+          return;
+        }
+
+        /* Set up Intersection Observer on parent container */
+        this.parentBlock = this.closest('.dsgn-pck__block-id-{{ block.id }}');
+        if (this.parentBlock) {
+          this.intersectionObserver = new window.IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              this.onIntersect(entry);
+            });
+          }, { threshold: [0, 0.1, 0.5, 1] });
+          this.intersectionObserver.observe(this.parentBlock);
+        }
+      }
+
+      disconnectedCallback() {
+        this.removeEventListeners();
+        /* Clean up video resources */
+        if (this.video) {
+          this.video.pause();
+          this.video.src = '';
+        }
+        /* Clean up Intersection Observer */
+        if (this.intersectionObserver && this.parentBlock) {
+          this.intersectionObserver.unobserve(this.parentBlock);
+          this.intersectionObserver.disconnect();
+        }
+      }
+
+      onIntersect(entry) {
+        if (entry.isIntersecting) {
+          /* Block is in view */
+          if (!this.hasInitialized) {
+            this.initVideo();
+            this.hasInitialized = true;
+          }
+        } else {
+          /* Block is out of view */
+        }
+      }
+
+      removeEventListeners() {
+        if (this.playButton) {
+          this.playButton.removeEventListener('click', this.handlePlayToggle);
+        }
+        if (this.video) {
+          this.video.removeEventListener('timeupdate', this.handleTimeUpdate);
+          this.video.removeEventListener('ended', this.handleVideoEnded);
+          this.video.removeEventListener('error', this.handleVideoError);
+          this.video.removeEventListener('loadedmetadata', this.handleMetadataLoaded);
+          this.video.removeEventListener('loadeddata', this.handleVideoLoaded);
+        }
+      }
+
+      initVideo() {
+        if (!this.hasInitialized) {
+          this.setupEventListeners();
+          this.setupVideoAttributes();
+        }
+      }
+
+      setupVideoAttributes() {
+        if (this.video) {
+
+
+          /* Add preload="metadata" to load just enough to show first frame */
+          this.video.setAttribute('preload', 'metadata');
+
+        }
+      }
+
+      setupEventListeners() {
+        if (this.playButton) {
+          this.playButton.addEventListener('click', this.handlePlayToggle);
+        }
+
+        if (this.video) {
+          this.video.addEventListener('timeupdate', this.handleTimeUpdate);
+          this.video.addEventListener('ended', this.handleVideoEnded);
+          this.video.addEventListener('error', this.handleVideoError);
+          this.video.addEventListener('loadedmetadata', this.handleMetadataLoaded);
+          this.video.addEventListener('loadeddata', this.handleVideoLoaded);
+        }
+      }
+
+      handlePlayToggle() {
+        if (!this.video || this.hasError) return;
+
+        try {
+          if (this.isPlaying) {
+            this.video.pause();
+            this.updatePlayButtonState(false);
+          } else {
+            const playPromise = this.video.play();
+            if (playPromise !== undefined) {
+              playPromise
+                .then(() => {
+                  this.updatePlayButtonState(true);
+                  /* Track video play event if needed */
+                  this.trackVideoEvent('play');
+                })
+                .catch(error => {
+                  console.error('Error playing video:', error);
+                  this.handleVideoError(error);
+                });
+            }
+          }
+        } catch (error) {
+          console.error('Error toggling video playback:', error);
+          this.handleVideoError(error);
+        }
+      }
+
+      updatePlayButtonState(isPlaying) {
+        this.isPlaying = isPlaying;
+        if (this.playButton) {
+          this.playButton.classList.toggle('dsgn-pck__playing', isPlaying);
+        }
+        if (this.playButtonIcon) {
+          this.playButtonIcon.style.opacity = isPlaying ? '0' : '1';
+        }
+        if (this.pauseButtonIcon) {
+          this.pauseButtonIcon.style.opacity = isPlaying ? '1' : '0';
+        }
+      }
+
+      handleTimeUpdate() {
+        if (!this.video || this.hasError) return;
+
+        try {
+          const currentTime = this.video.currentTime;
+          const duration = this.video.duration;
+
+          if (isNaN(duration)) return;
+
+          /* Update any time-based UI elements here if needed */
+          /* For example, you could add a progress bar or time display */
+        } catch (error) {
+          console.error('Error updating video time:', error);
+        }
+      }
+
+      handleVideoEnded() {
+        this.updatePlayButtonState(false);
+        /* Track video end event if needed */
+        this.trackVideoEvent('end');
+      }
+
+      handleVideoError(error) {
+        this.hasError = true;
+        console.error('Video error:', error);
+        this.updatePlayButtonState(false);
+
+        if (this.video) {
+          const errorMessage = this.video.error?.message || 'An error occurred while playing the video';
+          console.error('Video error details:', errorMessage);
+        }
+      }
+
+      handleMetadataLoaded() {
+        if (!this.video || this.hasError) return;
+
+        try {
+          const duration = this.video.duration;
+          if (!isNaN(duration)) {
+            /* Initialize any duration-based UI elements */
+            /* For example, set up a progress bar or duration display */
+          }
+        } catch (error) {
+          console.error('Error handling video metadata:', error);
+        }
+      }
+
+      handleVideoLoaded() {
+        this.isLoading = false;
+      }
+
+      trackVideoEvent(eventType) {
+
+      }
+
+    }
+
+    if (!customElements.get('dp-video')) {
+      customElements.define('dp-video', DesignPackVideo);
+    }
+  </script>
+{%- endcapture -%}
+
+<div id="DP--{{ block.id }}" class="DP--{{ block.id }} dsgn-pck__block dsgn-pck__block-id-{{ block.id }} dsgn-pck__block--{{ block.type }} dsgn-pck__block--{{ block.index }}" {{ block.shopify_attributes }}>
+  {{ css_styles }}
+  <dp-video>
+    <div class="dsgn-pck__inset-video dsgn-pck__video-wrapper dsgn-pck__justify-{%- if block.settings.horizontal_alignment != 'default' -%}{{ block.settings.horizontal_alignment }}{%- else -%}{{ section.settings.text_alignment }}{%- endif -%}">
+      <div class="dsgn-pck__video__wrapper">
+        {%- if block.settings.third_party_video != blank %}
+            {%- if block.settings.third_party_video.type == 'youtube' -%}
+              <iframe
+                class="dsgn-pck__youtube-video"
+                src="https://www.youtube.com/embed/{{- block.settings.third_party_video.id -}}?autoplay={%- if block.settings.autoplay -%}1&mute=1{%- else -%}0{%- endif -%}&loop={%- if block.settings.loop -%}1{%- else -%}0{%- endif -%}&controls={%- if block.settings.show_controls -%}1{%- else -%}0{%- endif -%}"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+                allowfullscreen></iframe>
+            {%- elsif block.settings.third_party_video.type == 'vimeo' -%}
+              <iframe
+                class="dsgn-pck__vimeo-video"
+                src="https://player.vimeo.com/video/{{ block.settings.third_party_video.id }}?autoplay={%- if block.settings.autoplay -%}1&muted=1{%- else -%}0{%- endif -%}&loop={%- if block.settings.loop -%}1{%- else -%}0{%- endif -%}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            {%- endif -%}
+        {% elsif block.settings.video != blank %}
+            {%- if block.settings.link != blank and block.settings.show_controls == false -%}
+              <a href="{{ block.settings.link }}" {% if block.settings.external_link %}target="_blank" rel="noopener"{% endif %}>
+            {%- endif -%}
+            <svg class="dsgn-pck__svg-sizer" viewBox="0 0 {{ image_crop_width }} {{ image_crop_height }}"></svg>
+            {%- assign video = block.settings.video -%}
+            <video width="{{ video.aspect_ratio | times: 100 }}" height="100"
+              playsinline
+              {% if block.settings.autoplay %}autoplay muted{% endif %}
+              {% if block.settings.loop %}loop{% endif %}
+              {% if block.settings.show_controls == true and block.settings.video_style == 'control_bar' %}controls controlsList="nodownload"{% endif %}
+              loading="lazy" poster="{{ video.preview_image | image_url: width: 2000 }}">
+              {% if video != blank %}
+                {%- for source in video.sources -%}
+                  {%- if source.format == 'mp4' -%}
+                    <source src="{{ source.url }}">
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
+            </video>
+            {%- if block.settings.link != blank and block.settings.show_controls == false -%}
+              </a>
+            {%- endif -%}
+          {% if block.settings.show_controls == true and block.settings.video_style == 'play_button'  %}
+            <div class="dsgn-pck__play-button-wrapper {% if block.settings.autoplay == true %}dsgn-pck__playing{% endif %}" data-play-trigger>
+              <svg id="dsgn-pck__play-button" class="dsgn-pck__play-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/></svg>
+              <svg id="dsgn-pck__pause-button" class="dsgn-pck__pause-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11 22h-4v-20h4v20zm6-20h-4v20h4v-20z"/></svg>
+            </div>
+          {% endif %}
+        {%- elsif enable_metafield_detect == false -%}
+          {% comment %} Placeholder {% endcomment %}
+            <svg class="dsgn-pck__svg-sizer" viewBox="0 0 {{ image_crop_width }} {{ image_crop_height }}"></svg>
+            <video width="2000" height="1000"
+              playsinline
+              {% if block.settings.autoplay %}autoplay muted{% endif %}
+              {% if block.settings.loop %}loop{% endif %}
+              {% if block.settings.show_controls == true and block.settings.video_style == 'control_bar' %}controls controlsList="nodownload"{% endif %}
+              loading="lazy">
+                <source src="https://cdn.shopify.com/videos/c/o/v/{{ background_placeholder_video_id }}.mp4" data-dsgn-pck-default-src>
+            </video>
+          {% if block.settings.show_controls == true and block.settings.video_style == 'play_button'  %}
+            <div class="dsgn-pck__play-button-wrapper {% if block.settings.autoplay == true %}dsgn-pck__playing{% endif %}" data-play-trigger>
+              <svg id="dsgn-pck__play-button" class="dsgn-pck__play-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/></svg>
+              <svg id="dsgn-pck__pause-button" class="dsgn-pck__pause-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11 22h-4v-20h4v20zm6-20h-4v20h4v-20z"/></svg>
+            </div>
+          {% endif %}
+        {%- endif -%}
+      </div>
+    </div>
+  </dp-video>
+  {{ js_scripts }}
+</div>
+
+{% schema %}
+{
+  "name": "Video 🎒",
+  "tag": null,
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "video_url",
+      "id": "third_party_video",
+      "label": "Third-party video",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "info": "Video will be muted.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop video",
+      "default": false
+    },
+    {
+      "visible_if": "{{ block.settings.third_party_video.type != 'vimeo' }}",
+      "type": "checkbox",
+      "id": "show_controls",
+      "label": "Show controls",
+      "default": true
+    },
+    {
+      "visible_if": "{{ block.settings.show_controls == true }}",
+      "type": "select",
+      "id": "video_style",
+      "label": "Controls style",
+      "default": "play_button",
+      "options": [
+        {
+          "value": "control_bar",
+          "label": "Control bar"
+        },
+        {
+          "value": "play_button",
+          "label": "Play button"
+        }
+      ],
+      "info": "Does not apply to Youtube or Vimeo videos."
+    },
+    {
+      "visible_if": "{{ block.settings.show_controls == true and block.settings.video_style == 'play_button' }}",
+      "type": "color",
+      "id": "play_button_color",
+      "label": "Play button",
+      "default": "#FFFFFF"
+    },
+    {
+      "visible_if": "{{ block.settings.third_party_video.type != 'vimeo' }}",
+      "type": "select",
+      "id": "image_crop",
+      "label": "Video aspect ratio",
+      "default": "16:9",
+      "options": [
+        {
+          "value": "16:9",
+          "label": "Cinema (16:9)"
+        },
+        {
+          "value": "4:3",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "2:3",
+          "label": "Portrait (2:3)"
+        },
+        {
+          "value": "1:1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "none",
+          "label": "Custom aspect ratio (see below)"
+        }
+      ]
+    },
+    {
+      "visible_if": "{{ block.settings.image_crop == 'none' }}",
+      "type": "text",
+      "id": "aspect_ratio",
+      "label": "Aspect ratio",
+      "default": "2:3"
+    },
+    {
+      "visible_if": "{{ block.settings.video != blank and block.settings.show_controls == false }}",
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "visible_if": "{{ block.settings.link != blank }}",
+      "type": "checkbox",
+      "id": "external_link",
+      "label": "Open link in a new window"
+    },
+    {
+      "type": "header",
+      "content": "Mobile & narrow display",
+      "info": "Shown on small screens or in tight spaces"
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile video (optional)"
+    },
+    {
+      "type": "text",
+      "id": "mobile_aspect_ratio",
+      "label": "Mobile aspect ratio",
+      "info": "Set specific aspect ratio for smaller screensizes - eg. 1:1."
+    },
+    {
+      "type": "header",
+      "content": "🖼 Layout"
+    },
+    {
+      "type": "range",
+      "id": "base_width",
+      "label": "Size",
+      "min": 10,
+      "max": 100,
+      "default": 100,
+      "unit": "%",
+      "info": "Size is based on the width of the container. [Learn more]( https://design-packs.gitbook.io/docs/fundamentals/block-settings/size-controls-for-image-and-video-blocks)"
+    },
+    {
+      "type": "text",
+      "id": "max_width",
+      "label": "Maximum width",
+      "placeholder": "eg. 1200px",
+      "info": "Sets width constraint for content."
+    },
+    {
+      "visible_if": "{{ block.settings.base_width < 100 or block.settings.max_width != blank }}",
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Video alignment",
+      "default": "default",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "default",
+          "label": "Default"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "hidden_on",
+      "label": "Hidden on",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "desktop",
+          "label": "Desktop"
+        },
+        {
+          "value": "mobile",
+          "label": "Mobile"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_custom_css",
+      "label": "Enable custom CSS",
+      "default": false
+    },
+    {
+      "visible_if": "{{ block.settings.enable_custom_css == true }}",
+      "type": "liquid",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    },
+    {
+      "visible_if": "{{ block.settings.enable_custom_css == true }}",
+      "type": "liquid",
+      "id": "mobile_css",
+      "label": "Mobile & narrow custom CSS",
+      "info": "Applied on small screens or in tight spaces."
+    },
+    {
+      "type": "paragraph",
+      "content": "Open [Design Packs](/admin/apps/design-packs-1/dashboard) to add/update new sections and blocks."
+    },
+    {
+      "type": "paragraph",
+      "content": "Open [Design Packs](/admin/apps/design-packs-1/dashboard) to add/update new sections and blocks."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video 🎒",
+      "category": "* Design Packs * Basic"
+    }
+  ]
+}
+{% endschema %}

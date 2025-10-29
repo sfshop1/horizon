@@ -32,7 +32,10 @@
     {% endif %}
 
     {{ content_for_header }}
-  </head>
+        <link rel="preload" href="{{ 'design-pack-styles.css' | asset_url }}" as="style">
+      {{ 'design-pack-styles.css' | asset_url | stylesheet_tag }} 
+      </head>
+
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
