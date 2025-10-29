@@ -113,7 +113,7 @@
       "scheme-1": {
         "settings": {
           "background": "#ffffff",
-          "foreground_heading": "#000000",
+          "foreground_heading": "#6b5436",
           "foreground": "#6b5436",
           "primary": "#000000cf",
           "primary_hover": "#000000",
