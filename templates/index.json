@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "hero_jVaWmY": {
       "type": "hero",
@@ -61,8 +61,9 @@
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
+        "image_1": "shopify://shop_images/black_on_tri_tip_application_a79e4800-0178-405a-beae-48541ee6a268.jpg",
         "media_type_2": "image",
-        "link": "",
+        "link": "shopify://collections/seasonings",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
