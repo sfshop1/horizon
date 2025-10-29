@@ -11,34 +11,86 @@
   "type": "header",
   "name": "t:names.header",
   "sections": {
-    "header_announcements_9jGBFp": {
-      "type": "header-announcements",
+    "design_pack_announcement_slider_WqhaKp": {
+      "type": "design_pack_-_announcement_-_slider",
       "blocks": {
-        "announcement_BxgCk9": {
-          "type": "_announcement",
+        "announcement_8MHaXR": {
+          "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "title": "<p>Local Pickup Now Available!</p>",
+            "image": "shopify://shop_images/pickup_icon_3ab3c8c2-fa35-460b-b5c1-1c7b91836be0.png",
+            "image_crop": "circle",
+            "image_size": 42,
+            "link_label": "",
             "link": "",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none"
-          },
-          "blocks": {}
+            "external_link": false
+          }
+        },
+        "announcement_dVDq9p": {
+          "type": "announcement",
+          "settings": {
+            "title": "<p><strong>Delivery </strong>On orders over $100</p>",
+            "image": "shopify://shop_images/delivery_icon_3c876de6-1d76-4d9d-af8c-a0d36f61215f.png",
+            "image_crop": "circle",
+            "image_size": 42,
+            "link_label": "",
+            "link": "",
+            "external_link": false
+          }
+        },
+        "announcement_paHjMf": {
+          "type": "announcement",
+          "settings": {
+            "title": "<p>Fall collection out now</p>",
+            "image_crop": "circle",
+            "image_size": 40,
+            "link_label": "",
+            "link": "",
+            "external_link": false
+          }
+        },
+        "announcement_y3Pbez": {
+          "type": "announcement",
+          "settings": {
+            "title": "<p>Free shipping over $50</p>",
+            "image_crop": "circle",
+            "image_size": 40,
+            "link_label": "",
+            "link": "",
+            "external_link": false
+          }
         }
       },
       "block_order": [
-        "announcement_BxgCk9"
+        "announcement_8MHaXR",
+        "announcement_dVDq9p",
+        "announcement_paHjMf",
+        "announcement_y3Pbez"
       ],
-      "name": "t:names.announcement_bar",
+      "name": "Announcement - slider 🎒",
       "settings": {
-        "speed": 5,
-        "section_width": "page-width",
-        "color_scheme": "scheme-1",
-        "divider_width": 1,
-        "padding-block-start": 15,
-        "padding-block-end": 15
+        "per_row": "1",
+        "match_height": true,
+        "autoplay": 0,
+        "gap": 0,
+        "show_arrows": false,
+        "text_size": 70,
+        "text_alignment": "center",
+        "text_color": "#f5e8d3",
+        "arrow_color": "#121212",
+        "announcement_background_color": "",
+        "background_color": "#6b5436",
+        "base_width": 90,
+        "max_width": "",
+        "inner_padding": 5,
+        "outer_margin": 0,
+        "custom_css": "",
+        "mobile_custom_css": "",
+        "anchor_id": "",
+        "custom_classes": "",
+        "override_theme_font": false,
+        "main_font": "cabin_n4",
+        "enable_metafield_detect": false
       }
     },
     "header_section": {
@@ -112,7 +164,7 @@
     }
   },
   "order": [
-    "header_announcements_9jGBFp",
+    "design_pack_announcement_slider_WqhaKp",
     "header_section"
   ]
 }
