@@ -196,7 +196,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>A Look Back in Time at Slabaugh Farms</p>",
+            "text": "<p>Slabaugh Farms is a multi-generational family farm with a rich legacy dating back to 1931, when John Slabaugh first purchased land in Clinton Township—land that has remained in the Slabaugh family ever since.</p><p>Now operated by <strong>Mark Slabaugh and his family</strong>, the farm has grown to specialize in <strong>corn, soybeans, and hay</strong> while maintaining a strong focus on <strong>beef cattle production</strong>. Their <strong>purebred Angus herd</strong> produces high-quality <strong>breeding stock and freezer beef</strong>, providing customers with premium farm-to-table meat.</p><p>Our cattle graze on <strong>nutrient-rich pastures</strong>, free from added hormones and antibiotics, ensuring <strong>healthy, natural beef with exceptional taste and tenderness</strong>. From juicy steaks to hearty roasts, every cut reflects our dedication to <strong>raising cattle the right way.</strong></p><p><strong>From our farm to your table—quality you can trust, raised with care.</strong></p>",
             "width": "fit-content",
             "max_width": "none",
             "alignment": "left",
@@ -225,12 +225,12 @@
       ],
       "name": "t:names.rich_text_section",
       "settings": {
-        "content_direction": "column",
+        "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "flex-start",
         "gap": 25,
         "section_width": "page-width",
