@@ -678,7 +678,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Taste</h2>",
+            "text": "<h2>Taste the difference</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -692,33 +692,7 @@
             "color": "var(--color-foreground-heading)",
             "background": true,
             "background_color": "#f5e8d3",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_f9CXjx": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<h2>the difference</h2>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h1",
-            "font": "var(--font-heading--family)",
-            "font_size": "1.5rem",
-            "line_height": "loose",
-            "letter_spacing": "loose",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#c1272d",
-            "corner_radius": 0,
+            "corner_radius": 11,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -755,7 +729,6 @@
       },
       "block_order": [
         "text_3Vz44g",
-        "text_f9CXjx",
         "text_bmBhxj"
       ],
       "name": "t:names.rich_text_section",
@@ -801,7 +774,7 @@
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
-            "border": "none",
+            "border": "solid",
             "border_width": 1,
             "border_opacity": 100,
             "border_radius": 0,
@@ -940,68 +913,6 @@
         "gradient_direction": "to top",
         "padding-block-start": 40,
         "padding-block-end": 40
-      }
-    },
-    "section_zjFedm": {
-      "type": "section",
-      "blocks": {
-        "text_LYLP4R": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p><em>“Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.”  </em><br/>Colossians 3:23</p>",
-            "width": "fit-content",
-            "max_width": "none",
-            "alignment": "left",
-            "type_preset": "h4",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_LYLP4R"
-      ],
-      "name": "t:names.rich_text_section",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 25,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 9,
-        "padding-block-end": 12
       }
     },
     "collection_list_eBrz4D": {
@@ -1146,7 +1057,7 @@
       "block_order": [
         "group_j8k8PP"
       ],
-      "name": "t:names.collections_grid",
+      "name": "Popular Collections",
       "settings": {
         "collection_list": [
           "beef-bundles",
@@ -1170,6 +1081,68 @@
         "color_scheme": "",
         "padding-block-start": 48,
         "padding-block-end": 48
+      }
+    },
+    "section_zjFedm": {
+      "type": "section",
+      "blocks": {
+        "text_LYLP4R": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p><em>“Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.”  </em><br/>Colossians 3:23</p>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_LYLP4R"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 30,
+        "padding-block-end": 15
       }
     },
     "section_w8mYyJ": {
@@ -1316,7 +1289,7 @@
         "gap": 25,
         "section_width": "page-width",
         "section_height": "custom",
-        "section_height_custom": 38,
+        "section_height_custom": 60,
         "color_scheme": "",
         "background_media": "none",
         "video_position": "cover",
@@ -1329,8 +1302,8 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 40,
+        "padding-block-end": 40
       }
     },
     "section_c66dwp": {
@@ -1344,7 +1317,7 @@
             "width": "100%",
             "max_width": "none",
             "alignment": "left",
-            "type_preset": "rte",
+            "type_preset": "h3",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
             "line_height": "normal",
@@ -1377,8 +1350,8 @@
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-start": 100,
+            "padding-inline-end": 100
           },
           "blocks": {
             "accordion_row_ALEgx6": {
@@ -1387,7 +1360,7 @@
                 "heading": "What makes Slabaugh Farms’ beef different from store-bought meat?",
                 "open_by_default": false,
                 "icon": "none",
-                "width": 36
+                "width": 12
               },
               "blocks": {
                 "text_LDtaJe": {
@@ -1440,8 +1413,8 @@
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-start": 100,
+            "padding-inline-end": 100
           },
           "blocks": {
             "accordion_row_ExhXc4": {
@@ -1473,8 +1446,8 @@
                     "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-start": 100,
+                    "padding-inline-end": 100
                   },
                   "blocks": {}
                 }
@@ -1699,8 +1672,8 @@
     "hero_jVaWmY",
     "section_CJ8diN",
     "section_DtDPiF",
-    "section_zjFedm",
     "collection_list_eBrz4D",
+    "section_zjFedm",
     "section_w8mYyJ",
     "section_c66dwp",
     "section_zdbVNB"
