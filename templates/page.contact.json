@@ -1,5 +1,68 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "17617989222d5d8b90": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_21bb8e0_TBNt3K": {
+          "type": "ai_gen_block_21bb8e0",
+          "settings": {
+            "heading": "Contact Us",
+            "phone": "574-501-3755",
+            "email": "info@slabaughfarms.com",
+            "address": "63235 CR 31 Goshen, IN 46528",
+            "map_embed_url": "<iframe title=\"63235 CR 31 Goshen, IN 46528\" src=\"https://maps.google.com/maps?q=63235%20CR%2031%20Goshen,%20IN%2046528&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\">        </iframe>",
+            "heading_size": 34,
+            "background_color": "#ffffff",
+            "text_color": "#4a3c31",
+            "icon_color": "#c1272d",
+            "link_hover_color": "#c1272d",
+            "map_border_radius": 0,
+            "map_border_width": 0,
+            "map_border_color": "#e6e6e6"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_21bb8e0_TBNt3K"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "main": {
       "type": "main-page",
       "blocks": {
@@ -7,10 +70,10 @@
           "type": "text",
           "name": "t:names.title",
           "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
+            "text": "<h1>We're here to help!</h1>",
             "width": "100%",
             "max_width": "normal",
-            "alignment": "center",
+            "alignment": "left",
             "type_preset": "h2",
             "font": "var(--font-primary--family)",
             "font_size": "",
@@ -29,15 +92,15 @@
           },
           "blocks": {}
         },
-        "content": {
+        "text_R8MdxR": {
           "type": "text",
           "name": "t:names.content",
           "settings": {
-            "text": "{{ closest.page.content }}",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "rte",
+            "text": "<p>Questions about our products or fulfillment? We respond to all enquiries within 24-48 hours of receiving your message.</p>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "h4",
             "font": "var(--font-primary--family)",
             "font_size": "",
             "line_height": "normal",
@@ -56,7 +119,10 @@
           "blocks": {}
         }
       },
-      "block_order": ["title", "content"],
+      "block_order": [
+        "title",
+        "text_R8MdxR"
+      ],
       "settings": {
         "content_direction": "column",
         "gap": 32,
@@ -72,7 +138,7 @@
           "type": "contact-form",
           "settings": {
             "width": "custom",
-            "custom_width": 50,
+            "custom_width": 56,
             "width_mobile": "custom",
             "custom_width_mobile": 100,
             "inherit_color_scheme": true,
@@ -100,7 +166,9 @@
           "block_order": []
         }
       },
-      "block_order": ["contact_form_UwiCkQ"],
+      "block_order": [
+        "contact_form_UwiCkQ"
+      ],
       "name": "t:names.contact_form",
       "settings": {
         "content_direction": "column",
@@ -123,7 +191,7 @@
         "border_opacity": 100,
         "border_radius": 0,
         "toggle_overlay": false,
-        "overlay_color": "#00000026",
+        "overlay_color": "#f5e8d3",
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 32,
@@ -131,5 +199,9 @@
       }
     }
   },
-  "order": ["main", "form"]
+  "order": [
+    "17617989222d5d8b90",
+    "main",
+    "form"
+  ]
 }
