@@ -195,7 +195,7 @@
               "name": "Description",
               "settings": {
                 "text": "<p>The original <strong>Slabaugh Farms</strong> farmhouse stands as a testament to the family’s deep-rooted history in agriculture. This charming home has been the heart of the farm for generations, witnessing decades of hard work, growth, and tradition.</p>",
-                "width": "100%",
+                "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "custom",
@@ -317,7 +317,7 @@
               "name": "Description",
               "settings": {
                 "text": "<p>Three boys, one tractor, and a legacy taking root. Growing up on <strong>Slabaugh Farms</strong> meant learning the value of <strong>hard work</strong> and <strong>responsibility</strong>. From sunrise to sunset, they spent their days keeping the farms heritage alive.</p>",
-                "width": "100%",
+                "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "custom",
@@ -439,7 +439,7 @@
               "name": "Description",
               "settings": {
                 "text": "<p>Amidst the golden fields of <strong>Slabaugh Farms</strong>, a tractor hums as fresh ear<strong> corn</strong> is carefully loaded for storage. With two hardworking men at the helm, this moment captures the dedication and teamwork that go into a successful harvest.</p>",
-                "width": "100%",
+                "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "custom",
