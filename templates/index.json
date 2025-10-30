@@ -864,7 +864,7 @@
               "name": "t:names.heading",
               "settings": {
                 "text": "<h2>OUR STORY</h2>",
-                "width": "100%",
+                "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "h2",
@@ -1101,7 +1101,7 @@
           "specialties"
         ],
         "layout_type": "grid",
-        "carousel_on_mobile": true,
+        "carousel_on_mobile": false,
         "columns": 4,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
@@ -1176,8 +1176,8 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 74,
-        "padding-block-end": 73
+        "padding-block-start": 37,
+        "padding-block-end": 40
       }
     },
     "section_w8mYyJ": {
@@ -1197,9 +1197,9 @@
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
-            "custom_width_mobile": 100,
+            "custom_width_mobile": 43,
             "height": "fill",
-            "custom_height": 100,
+            "custom_height": 48,
             "inherit_color_scheme": false,
             "color_scheme": "scheme-5",
             "background_media": "image",
@@ -1217,10 +1217,10 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-2",
-            "padding-block-start": 40,
-            "padding-block-end": 40,
-            "padding-inline-start": 40,
-            "padding-inline-end": 40
+            "padding-block-start": 20,
+            "padding-block-end": 20,
+            "padding-inline-start": 20,
+            "padding-inline-end": 20
           },
           "blocks": {}
         },
@@ -1315,7 +1315,7 @@
       "name": "t:names.split_showcase",
       "settings": {
         "content_direction": "row",
-        "vertical_on_mobile": false,
+        "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
@@ -1324,7 +1324,7 @@
         "gap": 25,
         "section_width": "page-width",
         "section_height": "custom",
-        "section_height_custom": 60,
+        "section_height_custom": 76,
         "color_scheme": "",
         "background_media": "none",
         "video_position": "cover",
@@ -1377,8 +1377,8 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-2",
-            "padding-block-start": 40,
-            "padding-block-end": 40,
+            "padding-block-start": 16,
+            "padding-block-end": 91,
             "padding-inline-start": 40,
             "padding-inline-end": 40
           },
@@ -1390,12 +1390,12 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "center",
-                "type_preset": "h3",
+                "type_preset": "custom",
                 "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
+                "font_size": "1.25rem",
+                "line_height": "tight",
+                "letter_spacing": "loose",
+                "case": "uppercase",
                 "wrap": "pretty",
                 "color": "var(--color-foreground)",
                 "background": false,
@@ -1441,9 +1441,9 @@
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
-                "type_preset": "h4",
+                "type_preset": "custom",
                 "font": "var(--font-body--family)",
-                "font_size": "1rem",
+                "font_size": "0.875rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
@@ -1530,7 +1530,7 @@
                     "heading": "What makes Slabaugh Farms’ beef different from store-bought meat?",
                     "open_by_default": false,
                     "icon": "none",
-                    "width": 12
+                    "width": 50
                   },
                   "blocks": {
                     "text_LDtaJe": {
@@ -1593,7 +1593,7 @@
                     "heading": "How does farm-to-table delivery work?",
                     "open_by_default": false,
                     "icon": "none",
-                    "width": 36
+                    "width": 50
                   },
                   "blocks": {
                     "text_mjma8W": {
@@ -1656,7 +1656,7 @@
                     "heading": "Why choose pasture-raised, grain-finished beef?",
                     "open_by_default": false,
                     "icon": "none",
-                    "width": 36
+                    "width": 50
                   },
                   "blocks": {
                     "text_ceTBLd": {
