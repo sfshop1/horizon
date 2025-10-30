@@ -1126,10 +1126,10 @@
           "name": "t:names.heading",
           "settings": {
             "text": "<p><em>“Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.”  </em><br/>Colossians 3:23</p>",
-            "width": "fit-content",
+            "width": "100%",
             "max_width": "none",
-            "alignment": "left",
-            "type_preset": "h4",
+            "alignment": "center",
+            "type_preset": "h3",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
             "line_height": "normal",
