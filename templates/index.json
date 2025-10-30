@@ -154,9 +154,9 @@
         },
         "slide_qC8f8a": {
           "type": "_slide",
-          "disabled": true,
           "settings": {
             "media_type_1": "image",
+            "image_1": "shopify://shop_images/7523D6DF-632B-4688-9E41-779C08640CE5_1_105_c_f5eab5cf-c5dc-4913-ab6c-de67a7b2bb70.jpg",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
