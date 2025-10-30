@@ -85,11 +85,6 @@
     "button_font_weight_secondary": "default",
     "content_for_index": [],
     "blocks": {
-      "13416097264177121472": {
-        "type": "shopify://apps/design-packs/blocks/design_packs/1efa8e58-6fa1-4c9a-9c0a-e71446c20785",
-        "disabled": false,
-        "settings": {}
-      },
       "7570552984445421165": {
         "type": "shopify://apps/yotpo-product-reviews/blocks/settings/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
         "disabled": false,
@@ -107,6 +102,11 @@
           "border_radius": 0,
           "subscription_policy_url": ""
         }
+      },
+      "13416097264177121472": {
+        "type": "shopify://apps/design-packs/blocks/design_packs/1efa8e58-6fa1-4c9a-9c0a-e71446c20785",
+        "disabled": true,
+        "settings": {}
       }
     },
     "color_schemes": {
