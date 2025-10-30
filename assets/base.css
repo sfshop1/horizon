@@ -4290,3 +4290,17 @@ text-component {
 .menu-list span {
   letter-spacing: 0.20em !important;
 }
+/* HORIZON – WOOD HEADER + 0.2em LETTER SPACING */
+.header-wrapper,
+.header {
+  background-image: url({{ 'wood-pattern.png' | asset_url }}) !important;
+  background-repeat: repeat !important;
+  background-size: auto !important;
+  background-position: center !important;
+}
+
+.header__heading-link,
+.header__menu-item span,
+.header__menu-item a {
+  letter-spacing: 0.2em !important;
+}
