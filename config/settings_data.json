@@ -745,7 +745,9 @@
   "platform_customizations": {
     "custom_css": [
       "/* CUSTOM MENU GAP – LOADED LAST */.menu-list {--menu-horizontal-gap: var(--gap-3xl) !important;}",
-      " /* LOOSER FONT SPACING – MENU TEXT */.menu-list a,.menu-list span {letter-spacing: 0.2em !important;}"
+      " /* LOOSER FONT SPACING – MENU TEXT */.menu-list a,.menu-list span {letter-spacing: 0.2em !important;}",
+      "img[loading=\"lazy\"] {opacity: 1 !important; transition: opacity 0.2s ease-in-out;}",
+      ".product__image-wrapper--loading img {opacity: 1 !important;}"
     ]
   }
 }
