@@ -4284,9 +4284,9 @@ text-component {
   }
 }
 /* CUSTOM MENU GAP – LOADED LAST */
-.menu-list { --menu-horizontal-gap: var(--gap-2xl) !important; }
+.menu-list { --menu-horizontal-gap: var(--gap-3xl) !important; }
 /* LOOSER FONT SPACING – MENU TEXT */
 .menu-list a,
 .menu-list span {
-  letter-spacing: 0.08em !important;
+  letter-spacing: 0.010em !important;
 }
