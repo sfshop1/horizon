@@ -682,7 +682,7 @@
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
-            "type_preset": "h1",
+            "type_preset": "h2",
             "font": "var(--font-heading--family)",
             "font_size": "1.5rem",
             "line_height": "loose",
@@ -730,7 +730,7 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 19,
-        "padding-block-end": 22
+        "padding-block-end": 10
       }
     },
     "section_tp6CMW": {
@@ -812,7 +812,7 @@
             "border": "solid",
             "border_width": 1,
             "border_opacity": 100,
-            "border_radius": 0,
+            "border_radius": 32,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -1048,7 +1048,7 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "rte",
+                "type_preset": "h4",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
