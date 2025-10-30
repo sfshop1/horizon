@@ -456,7 +456,7 @@
               "type": "image",
               "name": "t:names.image",
               "settings": {
-                "image": "shopify://shop_images/Original_farm_house_July_37.jpg",
+                "image": "shopify://shop_images/tractor_ride.jpg",
                 "link": "",
                 "image_ratio": "square",
                 "width": "fill",
@@ -578,7 +578,7 @@
               "type": "image",
               "name": "t:names.image",
               "settings": {
-                "image": "shopify://shop_images/Original_farm_house_July_37.jpg",
+                "image": "shopify://shop_images/Storing_corn.jpg",
                 "link": "",
                 "image_ratio": "square",
                 "width": "fill",
