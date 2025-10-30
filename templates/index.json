@@ -994,16 +994,16 @@
           "name": "t:names.collection_card",
           "static": true,
           "settings": {
-            "placement": "on_image",
-            "horizontal_alignment": "flex-start",
+            "placement": "below_image",
+            "horizontal_alignment": "center",
             "vertical_alignment": "flex-start",
-            "collection_card_gap": 8,
+            "collection_card_gap": 12,
             "inherit_color_scheme": true,
             "color_scheme": "",
-            "border": "none",
+            "border": "solid",
             "border_width": 1,
             "border_opacity": 100,
-            "border_radius": 0
+            "border_radius": 32
           },
           "blocks": {
             "collection_title_WjkDCd": {
@@ -1074,7 +1074,7 @@
         "bento_gap": 8,
         "rows_gap": 8,
         "max_collections": 4,
-        "icons_style": "arrow",
+        "icons_style": "none",
         "icons_shape": "none",
         "section_width": "page-width",
         "gap": 12,
