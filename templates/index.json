@@ -31,7 +31,7 @@
             "overlay_color": "#12121266",
             "overlay_style": "solid",
             "gradient_direction": "to top",
-            "padding-block-start": 100,
+            "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
@@ -864,7 +864,7 @@
               "name": "t:names.heading",
               "settings": {
                 "text": "<h2>OUR STORY</h2>",
-                "width": "fit-content",
+                "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "h2",
@@ -880,7 +880,7 @@
                 "corner_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
-                "padding-inline-start": 50,
+                "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
               "blocks": {}
@@ -889,7 +889,7 @@
               "type": "text",
               "settings": {
                 "text": "<p>Slabaugh Farms is a fourth-generation farm.  Specializing in corn, soybeans, and hay and a strong focus on beef cattle production. Their purebred Angus herd produces high-quality breeding stock and freezer beef, providing customers with premium farm-to-table meat.</p>",
-                "width": "fit-content",
+                "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "custom",
@@ -905,7 +905,7 @@
                 "corner_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
-                "padding-inline-start": 50,
+                "padding-inline-start": 10,
                 "padding-inline-end": 0
               },
               "blocks": {}
