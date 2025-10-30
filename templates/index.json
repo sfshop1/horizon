@@ -1139,7 +1139,7 @@
             "color": "var(--color-foreground)",
             "background": true,
             "background_color": "#00000026",
-            "corner_radius": 0,
+            "corner_radius": 32,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
