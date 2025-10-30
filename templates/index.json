@@ -24,7 +24,7 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 29,
+            "gap": 0,
             "inherit_color_scheme": true,
             "color_scheme": "scheme-6",
             "toggle_overlay": true,
@@ -587,7 +587,7 @@
         "autoplay": true,
         "autoplay_speed": 7,
         "section_width": "full-width",
-        "slide_height": "medium",
+        "slide_height": "small",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
@@ -1073,7 +1073,7 @@
               "settings": {
                 "image_ratio": "square",
                 "toggle_overlay": true,
-                "overlay_color": "#4a3c3118",
+                "overlay_color": "#4a3c3117",
                 "overlay_style": "solid",
                 "gradient_direction": "to top",
                 "border": "none",
