@@ -1071,9 +1071,9 @@
               "name": "t:names.collection_card_image",
               "static": true,
               "settings": {
-                "image_ratio": "adapt",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
+                "image_ratio": "square",
+                "toggle_overlay": true,
+                "overlay_color": "#4a3c3118",
                 "overlay_style": "solid",
                 "gradient_direction": "to top",
                 "border": "none",
@@ -1107,15 +1107,15 @@
         "mobile_card_size": "60cqw",
         "columns_gap": 8,
         "bento_gap": 8,
-        "rows_gap": 8,
+        "rows_gap": 10,
         "max_collections": 4,
         "icons_style": "none",
         "icons_shape": "none",
         "section_width": "page-width",
         "gap": 12,
         "color_scheme": "",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 55,
+        "padding-block-end": 57
       }
     },
     "section_zjFedm": {
