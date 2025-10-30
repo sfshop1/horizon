@@ -743,6 +743,9 @@
     }
   },
   "platform_customizations": {
-    "custom_css": []
+    "custom_css": [
+      "/* CUSTOM MENU GAP – LOADED LAST */.menu-list {--menu-horizontal-gap: var(--gap-3xl) !important; }",
+      "/* LOOSER FONT SPACING – MENU TEXT */.menu-list a,.menu-list span {letter-spacing: 0.20em !important;}"
+    ]
   }
 }
