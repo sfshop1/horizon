@@ -1509,7 +1509,7 @@
               "type": "accordion",
               "name": "t:names.accordion",
               "settings": {
-                "icon": "plus",
+                "icon": "caret",
                 "dividers": false,
                 "type_preset": "h4",
                 "inherit_color_scheme": true,
@@ -1572,7 +1572,7 @@
               "type": "accordion",
               "name": "t:names.accordion",
               "settings": {
-                "icon": "plus",
+                "icon": "caret",
                 "dividers": false,
                 "type_preset": "h4",
                 "inherit_color_scheme": true,
@@ -1635,7 +1635,7 @@
               "type": "accordion",
               "name": "t:names.accordion",
               "settings": {
-                "icon": "plus",
+                "icon": "caret",
                 "dividers": false,
                 "type_preset": "h4",
                 "inherit_color_scheme": true,
