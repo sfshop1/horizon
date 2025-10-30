@@ -98,195 +98,6 @@
         "padding-block-end": 21
       }
     },
-    "section_GKUxQL": {
-      "type": "section",
-      "blocks": {
-        "text_fwwiwa": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p>Slabaugh Farms Today: Growing with Tradition</p>",
-            "width": "fit-content",
-            "max_width": "none",
-            "alignment": "left",
-            "type_preset": "h3",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_pzFReX": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p>Slabaugh Farms is a multi-generational family farm with a rich legacy dating back to 1931, when John Slabaugh first purchased land in Clinton Township—land that has remained in the Slabaugh family ever since.</p><p>Now operated by <strong>Mark Slabaugh and his family</strong>, the farm has grown to specialize in <strong>corn, soybeans, and hay</strong> while maintaining a strong focus on <strong>beef cattle production</strong>. Their <strong>purebred Angus herd</strong> produces high-quality <strong>breeding stock and freezer beef</strong>, providing customers with premium farm-to-table meat.</p><p>Our cattle graze on <strong>nutrient-rich pastures</strong>, free from added hormones and antibiotics, ensuring <strong>healthy, natural beef with exceptional taste and tenderness</strong>. From juicy steaks to hearty roasts, every cut reflects our dedication to <strong>raising cattle the right way.</strong></p><p><strong>From our farm to your table—quality you can trust, raised with care.</strong></p>",
-            "width": "fit-content",
-            "max_width": "none",
-            "alignment": "left",
-            "type_preset": "h4",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_fwwiwa",
-        "text_pzFReX"
-      ],
-      "name": "t:names.rich_text_section",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "flex-start",
-        "gap": 25,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 45,
-        "padding-block-end": 21
-      }
-    },
-    "main": {
-      "type": "main-page",
-      "blocks": {
-        "heading": {
-          "type": "text",
-          "name": "Title",
-          "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "heading"
-      ],
-      "disabled": true,
-      "settings": {
-        "content_direction": "column",
-        "gap": 0,
-        "color_scheme": "",
-        "padding-block-start": 40,
-        "padding-block-end": 0
-      }
-    },
-    "section_W4zQ7g": {
-      "type": "section",
-      "blocks": {
-        "image_EtCkbF": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Slabaugh23_160of358_3b7ea05b-a2f1-4b86-b98e-5ec9d01b87ec.jpg",
-            "link": "",
-            "image_ratio": "adapt",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "image_EtCkbF"
-      ],
-      "name": "t:names.image_with_text",
-      "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 40,
-        "padding-block-end": 40
-      }
-    },
     "section_YPXAMw": {
       "type": "section",
       "blocks": {
@@ -690,13 +501,202 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "section_GKUxQL": {
+      "type": "section",
+      "blocks": {
+        "text_fwwiwa": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Slabaugh Farms Today: Growing with Tradition</p>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "h3",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_pzFReX": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Slabaugh Farms is a multi-generational family farm with a rich legacy dating back to 1931, when John Slabaugh first purchased land in Clinton Township—land that has remained in the Slabaugh family ever since.</p><p>Now operated by <strong>Mark Slabaugh and his family</strong>, the farm has grown to specialize in <strong>corn, soybeans, and hay</strong> while maintaining a strong focus on <strong>beef cattle production</strong>. Their <strong>purebred Angus herd</strong> produces high-quality <strong>breeding stock and freezer beef</strong>, providing customers with premium farm-to-table meat.</p><p>Our cattle graze on <strong>nutrient-rich pastures</strong>, free from added hormones and antibiotics, ensuring <strong>healthy, natural beef with exceptional taste and tenderness</strong>. From juicy steaks to hearty roasts, every cut reflects our dedication to <strong>raising cattle the right way.</strong></p><p><strong>From our farm to your table—quality you can trust, raised with care.</strong></p>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_fwwiwa",
+        "text_pzFReX"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "flex-start",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 45,
+        "padding-block-end": 21
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 0,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 0
+      }
+    },
+    "section_W4zQ7g": {
+      "type": "section",
+      "blocks": {
+        "image_EtCkbF": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Slabaugh23_160of358_3b7ea05b-a2f1-4b86-b98e-5ec9d01b87ec.jpg",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "image_EtCkbF"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
     }
   },
   "order": [
     "section_zjjide",
+    "section_YPXAMw",
     "section_GKUxQL",
     "main",
-    "section_W4zQ7g",
-    "section_YPXAMw"
+    "section_W4zQ7g"
   ]
 }
