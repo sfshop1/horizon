@@ -4283,4 +4283,6 @@ text-component {
     font-size: max(1rem, 100%);
   }
 }
-
+.menu-list {
+  --menu-horizontal-gap: var(--gap-2xl); /* Use a larger predefined gap */
+}
