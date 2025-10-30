@@ -4283,3 +4283,9 @@ text-component {
     font-size: max(1rem, 100%);
   }
 }
+.product-media img,
+.collection img {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
