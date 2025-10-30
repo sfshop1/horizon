@@ -1,5 +1,78 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "1761795477e35e8473": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f9a529c_HbW3yP": {
+          "type": "ai_gen_block_f9a529c",
+          "settings": {
+            "section_padding": 50,
+            "column_gap": 30,
+            "border_radius": 12,
+            "background_color": "#ffffff",
+            "gradient_start": "#f5e8d3",
+            "gradient_end": "#6b5436",
+            "gradient_angle": 180,
+            "image_aspect_ratio": 75,
+            "content_padding": 30,
+            "text_alignment": "left",
+            "title_size": 24,
+            "title_color": "#ffffff",
+            "title_spacing": 12,
+            "description_size": 14,
+            "description_color": "#f5e8d3",
+            "image_1": "shopify://shop_images/Original_farm_house_July_37.jpg",
+            "title_1": "The Original 1854 Farmhouse",
+            "description_1": "The original Slabaugh Farms farmhouse stands as a testament to the family’s deep-rooted history in agriculture. This charming home has been the heart of the farm for generations, witnessing decades of hard work, growth, and tradition.",
+            "image_2": "shopify://shop_images/tractor_ride.jpg",
+            "title_2": "The Next Generation at Work",
+            "description_2": "Three boys, one tractor, and a legacy taking root. Growing up on Slabaugh Farms meant learning the value of hard work and responsibility. From sunrise to sunset, they spent their days keeping the farms heritage alive.",
+            "title_3": "Feature three",
+            "description_3": "Share details about your product or service"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f9a529c_HbW3yP"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "main": {
       "type": "main-page",
       "blocks": {
@@ -8,10 +81,10 @@
           "name": "Title",
           "settings": {
             "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
+            "width": "fit-content",
+            "max_width": "narrow",
             "alignment": "left",
-            "type_preset": "h2",
+            "type_preset": "rte",
             "font": "var(--font-primary--family)",
             "font_size": "",
             "line_height": "normal",
@@ -28,22 +101,86 @@
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
-        "page-content": {
-          "type": "page-content",
-          "settings": {},
+        }
+      },
+      "block_order": [
+        "heading"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 0,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 0
+      }
+    },
+    "section_zjjide": {
+      "type": "section",
+      "blocks": {
+        "text_amHDjJ": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>About the Farm</h2>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "h3",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
           "blocks": {}
         }
       },
-      "block_order": ["heading", "page-content"],
+      "block_order": [
+        "text_amHDjJ"
+      ],
+      "name": "t:names.rich_text_section",
       "settings": {
         "content_direction": "column",
-        "gap": 32,
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "flex-start",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
         "color_scheme": "",
-        "padding-block-start": 40,
-        "padding-block-end": 80
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 41,
+        "padding-block-end": 21
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "1761795477e35e8473",
+    "main",
+    "section_zjjide"
+  ]
 }
