@@ -4288,5 +4288,5 @@ text-component {
 /* LOOSER FONT SPACING – MENU TEXT */
 .menu-list a,
 .menu-list span {
-  letter-spacing: 0.10em !important;
+  letter-spacing: 0.20em !important;
 }
