@@ -194,7 +194,7 @@
               "type": "text",
               "name": "Description",
               "settings": {
-                "text": "<p>The original <strong>Slabaugh Farms</strong> farmhouse stands as a testament to the family’s deep-rooted history in agriculture. This charming home has been the heart of the farm for generations, witnessing decades of hard work, growth, and tradition.</p>",
+                "text": "<p>The original <strong>farmhouse</strong> stands as a testament to the family’s deep-rooted history in agriculture. This charming home has been the heart of the farm for generations, witnessing decades of hard work, growth, and tradition.</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
