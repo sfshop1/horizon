@@ -729,7 +729,7 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 19,
+        "padding-block-start": 31,
         "padding-block-end": 10
       }
     },
@@ -746,7 +746,7 @@
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
-            "font_size": "1.25rem",
+            "font_size": "1.5rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
