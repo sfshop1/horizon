@@ -4283,4 +4283,5 @@ text-component {
     font-size: max(1rem, 100%);
   }
 }
-
+/* CUSTOM MENU GAP – LOADED LAST */
+.menu-list { --menu-horizontal-gap: var(--gap-2xl) !important; }
