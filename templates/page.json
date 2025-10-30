@@ -317,9 +317,9 @@
             "border_width": 1,
             "border_opacity": 100,
             "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
+            "toggle_overlay": true,
+            "overlay_color": "#f5e8d3b7",
+            "overlay_style": "gradient",
             "gradient_direction": "to top",
             "link": "",
             "open_in_new_tab": false,
@@ -334,8 +334,9 @@
               "type": "image",
               "name": "t:names.image",
               "settings": {
+                "image": "shopify://shop_images/Original_farm_house_July_37.jpg",
                 "link": "",
-                "image_ratio": "adapt",
+                "image_ratio": "square",
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -344,11 +345,11 @@
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
-                "border_radius": 0,
+                "border_radius": 32,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 10,
+                "padding-inline-end": 10
               },
               "blocks": {}
             },
@@ -356,11 +357,11 @@
               "type": "text",
               "name": "Heading",
               "settings": {
-                "text": "<h2>Intentional design</h2>",
+                "text": "<p><strong>The Original 1854 Farmhouse</strong></p>",
                 "width": "100%",
                 "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "h4",
+                "alignment": "left",
+                "type_preset": "h3",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -371,10 +372,10 @@
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-block-start": 10,
+                "padding-block-end": 10,
+                "padding-inline-start": 10,
+                "padding-inline-end": 10
               },
               "blocks": {}
             },
@@ -382,10 +383,10 @@
               "type": "text",
               "name": "Description",
               "settings": {
-                "text": "<p>We create with intention. Our products solve real problems with clean design and honest materials.</p>",
+                "text": "<p>The original <strong>Slabaugh Farms</strong> farmhouse stands as a testament to the family’s deep-rooted history in agriculture. This charming home has been the heart of the farm for generations, witnessing decades of hard work, growth, and tradition.</p>",
                 "width": "100%",
                 "max_width": "normal",
-                "alignment": "center",
+                "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -398,9 +399,9 @@
                 "background_color": "#00000026",
                 "corner_radius": 0,
                 "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-block-end": 10,
+                "padding-inline-start": 10,
+                "padding-inline-end": 10
               },
               "blocks": {}
             }
@@ -411,7 +412,7 @@
             "text_qEzQRU"
           ]
         },
-        "group_nrGHwj": {
+        "group_8PGiiT": {
           "type": "group",
           "name": "Column",
           "settings": {
@@ -438,9 +439,9 @@
             "border_width": 1,
             "border_opacity": 100,
             "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
+            "toggle_overlay": true,
+            "overlay_color": "#f5e8d3b7",
+            "overlay_style": "gradient",
             "gradient_direction": "to top",
             "link": "",
             "open_in_new_tab": false,
@@ -451,15 +452,38 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "text_zNjpRc": {
+            "image_RRV4dT": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/Original_farm_house_July_37.jpg",
+                "link": "",
+                "image_ratio": "square",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 32,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 10,
+                "padding-inline-end": 10
+              },
+              "blocks": {}
+            },
+            "text_GirGiP": {
               "type": "text",
               "name": "Heading",
               "settings": {
-                "text": "<h2>Quality first</h2>",
+                "text": "<p><strong>The Next Generation at Work</strong></p>",
                 "width": "100%",
                 "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "h4",
+                "alignment": "left",
+                "type_preset": "h3",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -470,21 +494,21 @@
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-block-start": 10,
+                "padding-block-end": 10,
+                "padding-inline-start": 10,
+                "padding-inline-end": 10
               },
               "blocks": {}
             },
-            "text_wWYTFL": {
+            "text_gxBd3D": {
               "type": "text",
               "name": "Description",
               "settings": {
-                "text": "<p>We obsess over the details and strive to deliver the best products at the best prices, every time.</p>",
+                "text": "<p>Three boys, one tractor, and a legacy taking root. Growing up on <strong>Slabaugh Farms</strong> meant learning the value of <strong>hard work</strong> and <strong>responsibility</strong>. From sunrise to sunset, they spent their days keeping the farms heritage alive.</p>",
                 "width": "100%",
                 "max_width": "normal",
-                "alignment": "center",
+                "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -497,19 +521,20 @@
                 "background_color": "#00000026",
                 "corner_radius": 0,
                 "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-block-end": 10,
+                "padding-inline-start": 10,
+                "padding-inline-end": 10
               },
               "blocks": {}
             }
           },
           "block_order": [
-            "text_zNjpRc",
-            "text_wWYTFL"
+            "image_RRV4dT",
+            "text_GirGiP",
+            "text_gxBd3D"
           ]
         },
-        "group_ib83em": {
+        "group_3qEqVd": {
           "type": "group",
           "name": "Column",
           "settings": {
@@ -536,9 +561,9 @@
             "border_width": 1,
             "border_opacity": 100,
             "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
+            "toggle_overlay": true,
+            "overlay_color": "#f5e8d3b7",
+            "overlay_style": "gradient",
             "gradient_direction": "to top",
             "link": "",
             "open_in_new_tab": false,
@@ -549,15 +574,38 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "text_NApdAQ": {
+            "image_PCGgkJ": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/Original_farm_house_July_37.jpg",
+                "link": "",
+                "image_ratio": "square",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 32,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 10,
+                "padding-inline-end": 10
+              },
+              "blocks": {}
+            },
+            "text_RzFjdC": {
               "type": "text",
               "name": "Heading",
               "settings": {
-                "text": "<h2>Customer care</h2>",
+                "text": "<p><strong>The Original 1854 Farmhouse</strong></p>",
                 "width": "100%",
                 "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "h4",
+                "alignment": "left",
+                "type_preset": "h3",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -568,21 +616,21 @@
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-block-start": 10,
+                "padding-block-end": 10,
+                "padding-inline-start": 10,
+                "padding-inline-end": 10
               },
               "blocks": {}
             },
-            "text_jykF7n": {
+            "text_Tb9UT4": {
               "type": "text",
               "name": "Description",
               "settings": {
-                "text": "<p>We're always on your side: keeping our loyal customers happy is our top priority and number one goal.</p>",
+                "text": "<p>The original <strong>Slabaugh Farms</strong> farmhouse stands as a testament to the family’s deep-rooted history in agriculture. This charming home has been the heart of the farm for generations, witnessing decades of hard work, growth, and tradition.</p>",
                 "width": "100%",
                 "max_width": "normal",
-                "alignment": "center",
+                "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -595,23 +643,24 @@
                 "background_color": "#00000026",
                 "corner_radius": 0,
                 "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-block-end": 10,
+                "padding-inline-start": 10,
+                "padding-inline-end": 10
               },
               "blocks": {}
             }
           },
           "block_order": [
-            "text_NApdAQ",
-            "text_jykF7n"
+            "image_PCGgkJ",
+            "text_RzFjdC",
+            "text_Tb9UT4"
           ]
         }
       },
       "block_order": [
         "group_mkNYdR",
-        "group_nrGHwj",
-        "group_ib83em"
+        "group_8PGiiT",
+        "group_3qEqVd"
       ],
       "name": "t:names.multicolumn",
       "settings": {
