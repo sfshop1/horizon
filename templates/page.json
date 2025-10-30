@@ -22,7 +22,7 @@
             "gradient_start": "#f5e8d3",
             "gradient_end": "#6b5436",
             "gradient_angle": 180,
-            "image_aspect_ratio": 75,
+            "image_aspect_ratio": 110,
             "content_padding": 30,
             "text_alignment": "left",
             "title_size": 24,
@@ -36,8 +36,9 @@
             "image_2": "shopify://shop_images/tractor_ride.jpg",
             "title_2": "The Next Generation at Work",
             "description_2": "Three boys, one tractor, and a legacy taking root. Growing up on Slabaugh Farms meant learning the value of hard work and responsibility. From sunrise to sunset, they spent their days keeping the farms heritage alive.",
-            "title_3": "Feature three",
-            "description_3": "Share details about your product or service"
+            "image_3": "shopify://shop_images/Storing_corn.jpg",
+            "title_3": "Harvest in Motion",
+            "description_3": "Amidst the golden fields of Slabaugh Farms, a tractor hums as fresh ear corn is carefully loaded for storage. With two hardworking men at the helm, this moment captures the dedication and teamwork that go into a successful harvest."
           },
           "blocks": {}
         }
