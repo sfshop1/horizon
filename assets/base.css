@@ -4283,8 +4283,3 @@ text-component {
     font-size: max(1rem, 100%);
   }
 }
-@media (max-width: 768px) {
-  html, body {
-    overflow-x: hidden !important;
-  }
-}
