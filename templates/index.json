@@ -1370,7 +1370,7 @@
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
-                    "type_preset": "rte",
+                    "type_preset": "custom",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
@@ -1430,10 +1430,10 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>It’s simple! Choose your favorite cuts or a beef bundle, place your order, and we’ll handle the rest. Your premium beef is carefully packed and shipped directly to your doorstep, so you can enjoy farm-fresh flavor without the hassle of grocery shopping.</p>",
-                    "width": "100%",
+                    "width": "fit-content",
                     "max_width": "none",
                     "alignment": "left",
-                    "type_preset": "rte",
+                    "type_preset": "custom",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
@@ -1446,8 +1446,8 @@
                     "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
-                    "padding-inline-start": 100,
-                    "padding-inline-end": 100
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
                   },
                   "blocks": {}
                 }
@@ -1460,12 +1460,76 @@
           "block_order": [
             "accordion_row_ExhXc4"
           ]
+        },
+        "accordion_bQQ94F": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "plus",
+            "dividers": true,
+            "type_preset": "h4",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 100,
+            "padding-inline-end": 100
+          },
+          "blocks": {
+            "accordion_row_mw3w8c": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Why choose pasture-raised, grain-finished beef?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 36
+              },
+              "blocks": {
+                "text_ceTBLd": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>It’s simple! Choose your favorite cuts or a beef bundle, place your order, and we’ll handle the rest. Your premium beef is carefully packed and shipped directly to your doorstep, so you can enjoy farm-fresh flavor without the hassle of grocery shopping.</p>",
+                    "width": "fit-content",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_ceTBLd"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_mw3w8c"
+          ]
         }
       },
       "block_order": [
         "text_KPheEK",
         "accordion_66hTU6",
-        "accordion_7EwfTK"
+        "accordion_7EwfTK",
+        "accordion_bQQ94F"
       ],
       "name": "t:names.rich_text_section",
       "settings": {
