@@ -601,7 +601,7 @@
               "type": "text",
               "name": "Heading",
               "settings": {
-                "text": "<p><strong>The Original 1854 Farmhouse</strong></p>",
+                "text": "<p><strong>Harvest in Motion on the farm</strong></p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -627,7 +627,7 @@
               "type": "text",
               "name": "Description",
               "settings": {
-                "text": "<p>The original <strong>Slabaugh Farms</strong> farmhouse stands as a testament to the family’s deep-rooted history in agriculture. This charming home has been the heart of the farm for generations, witnessing decades of hard work, growth, and tradition.</p>",
+                "text": "<p>Amidst the golden fields of <strong>Slabaugh Farms</strong>, a tractor hums as fresh ear<strong> corn</strong> is carefully loaded for storage. With two hardworking men at the helm, this moment captures the dedication and teamwork that go into a successful harvest.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
