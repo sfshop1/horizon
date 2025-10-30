@@ -4283,11 +4283,3 @@ text-component {
     font-size: max(1rem, 100%);
   }
 }
-
-img[loading="lazy"] {
-  opacity: 1 !important;
-  transition: opacity 0.2s ease-in-out;
-}
-.product__image-wrapper--loading img {
-  opacity: 1 !important;
-}
