@@ -741,5 +741,10 @@
         }
       }
     }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      ".menu-list {--menu-horizontal-gap: var(--gap-2xl);}"
+    ]
   }
 }
