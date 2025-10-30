@@ -84,7 +84,7 @@
           "type": "contact-form",
           "settings": {
             "width": "custom",
-            "custom_width": 56,
+            "custom_width": 41,
             "width_mobile": "custom",
             "custom_width_mobile": 100,
             "inherit_color_scheme": true,
@@ -101,8 +101,8 @@
               "settings": {
                 "label": "Submit",
                 "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
+                "width": "custom",
+                "custom_width": 23,
                 "width_mobile": "fit-content",
                 "custom_width_mobile": 100
               },
