@@ -119,7 +119,7 @@
         "search_row": "top",
         "show_country": false,
         "country_selector_style": false,
-        "show_language": true,
+        "show_language": false,
         "localization_font": "heading",
         "localization_font_size": "1.125rem",
         "localization_position": "right",
