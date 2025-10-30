@@ -425,8 +425,8 @@
       "scheme-beaf3cc4-3a03-449e-81eb-5ec7308c67e8": {
         "settings": {
           "background": "#ffffff",
-          "foreground_heading": "#000000",
-          "foreground": "#0000000f",
+          "foreground_heading": "#ffffff",
+          "foreground": "#ffffff",
           "primary": "#000000cf",
           "primary_hover": "#000000",
           "border": "#0000000f",
