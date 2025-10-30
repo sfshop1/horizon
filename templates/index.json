@@ -1138,7 +1138,7 @@
             "wrap": "pretty",
             "color": "var(--color-foreground)",
             "background": true,
-            "background_color": "#00000026",
+            "background_color": "#f5e8d3",
             "corner_radius": 32,
             "padding-block-start": 0,
             "padding-block-end": 0,
