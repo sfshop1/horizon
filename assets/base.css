@@ -4289,3 +4289,21 @@ text-component {
   overflow-x: hidden;
   overflow-y: scroll;
 }
+/* Prevent iOS pull-to-refresh flash on header */
+header,
+.shopify-section-header,
+.site-header,
+.header-wrapper {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+}
+
+/* Optional: Ensure body background is solid (prevents white flash) */
+body,
+.template-index {
+  background-color: #ffffff !important; /* or your actual background color */
+}
