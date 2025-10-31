@@ -745,9 +745,7 @@
   },
   "platform_customizations": {
     "custom_css": [
-      "/* Target all product badges */.product-badges__badge {font-weight: bold !important; border-radius: 4px !important; padding: 8px 12px !important;}",
-      "/* Customize Sold Out badge */.product-badges__badge--sold-out {background-color: #95a5a6 !important; color: white !important;}",
-      "/* Customize Sale badge - target by color scheme */.product-badges__badge.color-scheme-3 {background-color: #e74c3c !important; color: white !important;}"
+      "/* Hide all built-in product badges */.product-badges {display: none !important;}"
     ]
   }
 }
