@@ -216,22 +216,13 @@
                 "product_swatches_padding_right": 0
               },
               "blocks": {}
-            },
-            "custom_liquid_e8gDdq": {
-              "type": "custom-liquid",
-              "name": "t:names.custom_liquid",
-              "settings": {
-                "custom_liquid": "{% assign product = block.settings.product %}\n{% assign total_inventory = 0 %}\n\n{% for variant in product.variants %}\n  {% if variant.inventory_management == 'shopify' %}\n    {% assign total_inventory = total_inventory | plus: variant.inventory_quantity %}\n  {% endif %}\n{% endfor %}\n\n<div class=\"product-stock-badge\" style=\"position: absolute; top: 10px; left: 10px; z-index: 10; background-color: {% if total_inventory <= 0 %}#ff6b6b{% else %}#4CAF50{% endif %}; color: white; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size: 12px; max-width: 200px;\">\n  Product: {{ product.title }}<br>\n  Variants: {{ product.variants.size }}<br>\n  Total Inventory: {{ total_inventory }}<br>\n  First variant tracking: {{ product.variants.first.inventory_management }}<br>\n  First variant qty: {{ product.variants.first.inventory_quantity }}\n</div>"
-              },
-              "blocks": {}
             }
           },
           "block_order": [
             "card-gallery",
             "product_title_4nY4eT",
             "price_EzJzMm",
-            "swatches",
-            "custom_liquid_e8gDdq"
+            "swatches"
           ]
         }
       },
