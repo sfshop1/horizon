@@ -291,7 +291,7 @@
                     "text_GWX73E": {
                       "type": "text",
                       "settings": {
-                        "text": "{{ closest.product.description }}",
+                        "text": "<p>{{ product.description }}</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
