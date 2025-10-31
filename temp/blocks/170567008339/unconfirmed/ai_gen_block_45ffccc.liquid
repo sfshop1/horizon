@@ -1,6 +1,206 @@
+{% doc %}
+  @prompt
+    in the product card, I want to show the stock levels on top of the product image.  I want it to say, Remaing: # and then if there are 0 or less it should say, Pre-order
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-stock-badge-{{ ai_gen_id }} {
+    position: absolute;
+    top: {{ block.settings.vertical_position }}px;
+    left: {{ block.settings.horizontal_position }}px;
+    z-index: 10;
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+    padding: {{ block.settings.padding_vertical }}px {{ block.settings.padding_horizontal }}px;
+    border-radius: {{ block.settings.border_radius }}px;
+    font-size: {{ block.settings.font_size }}px;
+    font-weight: {{ block.settings.font_weight }};
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .ai-stock-badge-{{ ai_gen_id }}--preorder {
+    background-color: {{ block.settings.preorder_background_color }};
+    color: {{ block.settings.preorder_text_color }};
+  }
+{% endstyle %}
+
+{% liquid
+  assign total_inventory = 0
+  assign inventory_tracked = false
+
+  for variant in product.variants
+    if variant.inventory_management != null
+      assign inventory_tracked = true
+      assign total_inventory = total_inventory | plus: variant.inventory_quantity
+    endif
+  endfor
+%}
+
+{% if inventory_tracked %}
+  <div
+    class="ai-stock-badge-{{ ai_gen_id }} {% if total_inventory <= 0 %}ai-stock-badge-{{ ai_gen_id }}--preorder{% endif %}"
+    {{ block.shopify_attributes }}
+  >
+    {% if total_inventory > 0 %}
+      {{ block.settings.remaining_text }}: {{ total_inventory }}
+    {% else %}
+      {{ block.settings.preorder_text }}
+    {% endif %}
+  </div>
+{% endif %}
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Stock level badge",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "remaining_text",
+      "label": "Remaining text",
+      "default": "Remaining"
+    },
+    {
+      "type": "text",
+      "id": "preorder_text",
+      "label": "Pre-order text",
+      "default": "Pre-order"
+    },
+    {
+      "type": "header",
+      "content": "Position"
+    },
+    {
+      "type": "range",
+      "id": "vertical_position",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Vertical position",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "horizontal_position",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Horizontal position",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 2,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 4,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Stock remaining colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#4a3c31"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Pre-order colors"
+    },
+    {
+      "type": "color",
+      "id": "preorder_background_color",
+      "label": "Background",
+      "default": "#c1272d"
+    },
+    {
+      "type": "color",
+      "id": "preorder_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stock level badge"
+    }
+  ],
+  "tag": null
+}
 {% endschema %}
