@@ -1,6 +1,333 @@
+{% doc %}
+  @prompt
+    create a new accordion section that has the same functionality as the built in accordion but make it so that the accordions are able to be assigned to collections, products or product tags.  They should only display for the assigned. 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% liquid
+  assign should_display = false
+  
+  if block.settings.display_condition == 'always'
+    assign should_display = true
+  elsif block.settings.display_condition == 'collection' and collection and block.settings.assigned_collection
+    if collection.id == block.settings.assigned_collection.id
+      assign should_display = true
+    endif
+  elsif block.settings.display_condition == 'product' and product and block.settings.assigned_product
+    if product.id == block.settings.assigned_product.id
+      assign should_display = true
+    endif
+  elsif block.settings.display_condition == 'product_tag' and product and block.settings.product_tag != blank
+    if product.tags contains block.settings.product_tag
+      assign should_display = true
+    endif
+  endif
+%}
+
+{% if should_display %}
+  {% style %}
+    .ai-accordion-{{ ai_gen_id }} {
+      border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+      border-radius: {{ block.settings.border_radius }}px;
+      background-color: {{ block.settings.background_color }};
+      overflow: hidden;
+    }
+
+    .ai-accordion-header-{{ ai_gen_id }} {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: {{ block.settings.padding }}px;
+      background-color: {{ block.settings.header_background }};
+      color: {{ block.settings.header_text_color }};
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.3s ease;
+    }
+
+    .ai-accordion-header-{{ ai_gen_id }}:hover {
+      background-color: {{ block.settings.header_hover_background }};
+    }
+
+    .ai-accordion-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size }}px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .ai-accordion-icon-{{ ai_gen_id }} {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+
+    .ai-accordion-icon-{{ ai_gen_id }} svg {
+      width: 100%;
+      height: 100%;
+      stroke: {{ block.settings.header_text_color }};
+    }
+
+    .ai-accordion-header-{{ ai_gen_id }}[aria-expanded="true"] .ai-accordion-icon-{{ ai_gen_id }} {
+      transform: rotate(180deg);
+    }
+
+    .ai-accordion-content-{{ ai_gen_id }} {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .ai-accordion-content-{{ ai_gen_id }}.active {
+      max-height: 2000px;
+    }
+
+    .ai-accordion-content-inner-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding }}px;
+      color: {{ block.settings.content_text_color }};
+      font-size: {{ block.settings.content_size }}px;
+      line-height: 1.6;
+    }
+  {% endstyle %}
+
+  <conditional-accordion-{{ ai_gen_id }}
+    class="ai-accordion-{{ ai_gen_id }}"
+    {{ block.shopify_attributes }}
+  >
+    <button
+      class="ai-accordion-header-{{ ai_gen_id }}"
+      aria-expanded="{% if block.settings.open_by_default %}true{% else %}false{% endif %}"
+      aria-controls="ai-accordion-content-{{ ai_gen_id }}"
+    >
+      <h3 class="ai-accordion-title-{{ ai_gen_id }}">{{ block.settings.title }}</h3>
+      <span class="ai-accordion-icon-{{ ai_gen_id }}">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </span>
+    </button>
+    <div
+      id="ai-accordion-content-{{ ai_gen_id }}"
+      class="ai-accordion-content-{{ ai_gen_id }} {% if block.settings.open_by_default %}active{% endif %}"
+    >
+      <div class="ai-accordion-content-inner-{{ ai_gen_id }}">
+        {{ block.settings.content }}
+      </div>
+    </div>
+  </conditional-accordion-{{ ai_gen_id }}>
+
+  <script>
+    (function() {
+      class ConditionalAccordion{{ ai_gen_id }} extends HTMLElement {
+        constructor() {
+          super();
+        }
+
+        connectedCallback() {
+          this.button = this.querySelector('.ai-accordion-header-{{ ai_gen_id }}');
+          this.content = this.querySelector('.ai-accordion-content-{{ ai_gen_id }}');
+          
+          if (this.button && this.content) {
+            this.button.addEventListener('click', this.toggle.bind(this));
+          }
+        }
+
+        toggle() {
+          const isExpanded = this.button.getAttribute('aria-expanded') === 'true';
+          
+          this.button.setAttribute('aria-expanded', !isExpanded);
+          
+          if (isExpanded) {
+            this.content.classList.remove('active');
+          } else {
+            this.content.classList.add('active');
+          }
+        }
+      }
+
+      customElements.define('conditional-accordion-{{ ai_gen_id }}', ConditionalAccordion{{ ai_gen_id }});
+    })();
+  </script>
+{% endif %}
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Conditional accordion",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Display conditions"
+    },
+    {
+      "type": "select",
+      "id": "display_condition",
+      "label": "Display on",
+      "options": [
+        {
+          "value": "always",
+          "label": "Always"
+        },
+        {
+          "value": "collection",
+          "label": "Specific collection"
+        },
+        {
+          "value": "product",
+          "label": "Specific product"
+        },
+        {
+          "value": "product_tag",
+          "label": "Products with tag"
+        }
+      ],
+      "default": "always"
+    },
+    {
+      "type": "collection",
+      "id": "assigned_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "product",
+      "id": "assigned_product",
+      "label": "Product"
+    },
+    {
+      "type": "text",
+      "id": "product_tag",
+      "label": "Product tag"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Accordion title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Add your accordion content here. This can include product details, shipping information, or any other relevant information.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_by_default",
+      "label": "Open by default",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "content_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Content size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "header_background",
+      "label": "Header background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "header_hover_background",
+      "label": "Header hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Header text",
+      "default": "#4a3c31"
+    },
+    {
+      "type": "color",
+      "id": "content_text_color",
+      "label": "Content text",
+      "default": "#4a3c31"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Conditional accordion"
+    }
+  ]
+}
 {% endschema %}
