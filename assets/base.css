@@ -4288,7 +4288,7 @@ text-component {
   Replace 'wood-pattern.png' with your uploaded file
 {% endcomment %}
 
-{% assign wood_tile = 'wood-pattern.png' | asset_url %}
+{% assign wood_tile = 'https://cdn.shopify.com/s/files/1/0674/3467/6307/files/wood-pattern.png?v=1761415503' | asset_url %}
 
 {% comment %}=== 1. FORCE BACKGROUND ON HEADER ROW (overrides color-scheme) ==={% endcomment %}
 .header__row--top {
