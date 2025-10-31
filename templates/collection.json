@@ -149,6 +149,15 @@
               },
               "blocks": {}
             },
+            "custom_liquid_6m3RTQ": {
+              "type": "custom-liquid",
+              "name": "t:names.custom_liquid",
+              "disabled": true,
+              "settings": {
+                "custom_liquid": "{% assign product = closest.product %}\n{% assign on_sale = false %}\n\n{% if product.compare_at_price > product.price %}\n  {% assign on_sale = true %}\n{% endif %}\n\n{% if on_sale %}\n  <div class=\"discount-bundle-badge\" style=\"position: absolute; top: 10px; right: 10px; z-index: 10; background-color: #e74c3c; color: white; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size: 14px;\">\n    Discount Bundle\n  </div>\n{% endif %}"
+              },
+              "blocks": {}
+            },
             "card-gallery": {
               "type": "_product-card-gallery",
               "settings": {
@@ -228,6 +237,7 @@
           },
           "block_order": [
             "custom_liquid_UJjihy",
+            "custom_liquid_6m3RTQ",
             "card-gallery",
             "product_title_4nY4eT",
             "price_EzJzMm",
