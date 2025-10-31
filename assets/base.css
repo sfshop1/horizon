@@ -4284,52 +4284,50 @@ text-component {
   }
 }
 {% comment %}
-  Horizon – Tiled background on the top header row (desktop + sticky)
-  Replace 'wood-pattern.png' with your uploaded file name
+  HORIZON: Tiled wood background on header (overrides white color-scheme-2)
+  Replace 'wood-pattern.png' with your uploaded file
 {% endcomment %}
 
-{% assign header_tile = 'wood-pattern.png' | asset_url %}
+{% assign wood_tile = 'wood-pattern.png' | asset_url %}
 
-{% comment %}=== 1. Normal top header row (always visible) ==={% endcomment %}
+{% comment %}=== 1. FORCE BACKGROUND ON HEADER ROW (overrides color-scheme) ==={% endcomment %}
 .header__row--top {
-  background-image: url('{{ header_tile }}') !important;
-  background-repeat: repeat !important;
-  background-size: auto !important;
-  background-position: center !important;
-  letter-spacing: 0.2em !important;
+  background: url('{{ wood_tile }}') repeat center / auto !important;
+  background-color: rgba(0,0,0,0.04) !important; /* slight darken for text */
+  position: relative !important;
+  z-index: 1 !important;
 }
 
-/* Optional: slight overlay so white text stays readable */
-.header__row--top {
-  background-color: rgba(0,0,0,0.03) !important; /* tweak opacity as needed */
+/* Ensure inner columns don't block it */
+.header__columns,
+.header__column {
+  background: transparent !important;
 }
 
 /* -----------------------------------------------------------------
-   2. Sticky header (when scrolling) – Horizon adds .is-sticky
+   2. STICKY HEADER (when scrolling) – Horizon adds .is-sticky
    ----------------------------------------------------------------- */
 .header__row--top.is-sticky {
-  background-image: url('{{ header_tile }}') !important;
-  background-repeat: repeat !important;
-  background-size: auto !important;
-  background-position: center !important;
+  background: url('{{ wood_tile }}') repeat center / auto !important;
+  background-color: rgba(0,0,0,0.04) !important;
 }
 
 /* -----------------------------------------------------------------
-   3. Mobile – smaller tile size (optional, matches your old code)
+   3. MOBILE: Smaller tiles + same override
    ----------------------------------------------------------------- */
 @media screen and (max-width: 989px) {
   .header__row--top,
   .header__row--top.is-sticky {
-    background-size: 100px auto !important;
+    background-size: 80px auto !important;
   }
 }
 
 /* -----------------------------------------------------------------
-   4. Footer – if you want the same texture there (remove if not)
+   4. OPTIONAL: Darken menu text slightly if needed
    ----------------------------------------------------------------- */
-.site-footer {
-  background-image: url('{{ header_tile }}') !important;
-  background-repeat: repeat !important;
-  background-size: auto !important;
-  background-position: center !important;
+.header__row--top .menu-list__link,
+.header__row--top .header-logo,
+.header__row--top .header-actions__action {
+  color: #3a3a3a !important; /* darker than white for contrast */
+  fill: #3a3a3a !important;
 }
