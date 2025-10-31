@@ -293,7 +293,7 @@
                       "name": "t:names.product_description",
                       "settings": {
                         "text": "{{ closest.product.description }}",
-                        "width": "fit-content",
+                        "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
                         "type_preset": "rte",
@@ -323,7 +323,7 @@
                   "type": "_accordion-row",
                   "settings": {
                     "heading": "Shipping",
-                    "open_by_default": false,
+                    "open_by_default": true,
                     "icon": "none",
                     "width": 20
                   },
@@ -362,7 +362,7 @@
                   "type": "_accordion-row",
                   "settings": {
                     "heading": "Manufacturing",
-                    "open_by_default": false,
+                    "open_by_default": true,
                     "icon": "none",
                     "width": 20
                   },
