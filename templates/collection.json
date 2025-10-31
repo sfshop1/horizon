@@ -217,11 +217,11 @@
               },
               "blocks": {}
             },
-            "custom_liquid_8bcwmN": {
+            "custom_liquid_nn6RFn": {
               "type": "custom-liquid",
               "name": "t:names.custom_liquid",
               "settings": {
-                "custom_liquid": ""
+                "custom_liquid": "{%- comment -%}\n  Horizon – Show stock on collection product cards\n  (Same logic as Dawn product-card.liquid)\n{%- endcomment -%}\n\n{%- assign current_product = card_product | default: product -%}\n{%- if current_product == blank -%}\n  <!-- No product context – block placed wrong -->\n{%- else -%}\n  {%- assign total_inventory = 0 -%}\n  {%- for variant in current_product.variants -%}\n    {%- if variant.inventory_management == 'shopify' -%}\n      {%- assign total_inventory = total_inventory | plus: variant.inventory_quantity -%}\n    {%- endif -%}\n  {%- endfor -%}\n\n  {%- if total_inventory >= 1 -%}\n    <p class=\"product-inventory\" style=\"margin:4px 0 0;font-size:12px;color:#2d3436;\">\n      <span class=\"inventory-label\" style=\"font-weight:600;\">Remaining:</span>\n      <span class=\"inventory-count\" style=\"margin-left:4px;\">{{ total_inventory }}</span>\n    </p>\n  {%- elsif current_product.variants.first.inventory_management == 'shopify' -%}\n    <p class=\"product-inventory\" style=\"margin:4px 0 0;font-size:12px;\">\n      <span class=\"pre-order-label\" style=\"background:#e67e22;padding:2px 6px;border-radius:3px;color:white;font-weight:600;font-size:11px;\">\n        Pre-Order\n      </span>\n    </p>\n  {%- endif -%}\n{%- endif -%}"
               },
               "blocks": {}
             }
@@ -231,7 +231,7 @@
             "product_title_4nY4eT",
             "price_EzJzMm",
             "swatches",
-            "custom_liquid_8bcwmN"
+            "custom_liquid_nn6RFn"
           ]
         }
       },
