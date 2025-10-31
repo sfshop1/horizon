@@ -4283,51 +4283,9 @@ text-component {
     font-size: max(1rem, 100%);
   }
 }
-{% comment %}
-  HORIZON: Tiled wood background on header (overrides white color-scheme-2)
-  Replace 'wood-pattern.png' with your uploaded file
-{% endcomment %}
-
-{% assign wood_tile = 'https://cdn.shopify.com/s/files/1/0674/3467/6307/files/wood-pattern.png?v=1761415503' | asset_url %}
-
-{% comment %}=== 1. FORCE BACKGROUND ON HEADER ROW (overrides color-scheme) ==={% endcomment %}
-.header__row--top {
-  background: url('{{ wood_tile }}') repeat center / auto !important;
-  background-color: rgba(0,0,0,0.04) !important; /* slight darken for text */
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-/* Ensure inner columns don't block it */
-.header__columns,
-.header__column {
-  background: transparent !important;
-}
-
-/* -----------------------------------------------------------------
-   2. STICKY HEADER (when scrolling) – Horizon adds .is-sticky
-   ----------------------------------------------------------------- */
-.header__row--top.is-sticky {
-  background: url('{{ wood_tile }}') repeat center / auto !important;
-  background-color: rgba(0,0,0,0.04) !important;
-}
-
-/* -----------------------------------------------------------------
-   3. MOBILE: Smaller tiles + same override
-   ----------------------------------------------------------------- */
-@media screen and (max-width: 989px) {
-  .header__row--top,
-  .header__row--top.is-sticky {
-    background-size: 80px auto !important;
-  }
-}
-
-/* -----------------------------------------------------------------
-   4. OPTIONAL: Darken menu text slightly if needed
-   ----------------------------------------------------------------- */
-.header__row--top .menu-list__link,
-.header__row--top .header-logo,
-.header__row--top .header-actions__action {
-  color: #3a3a3a !important; /* darker than white for contrast */
-  fill: #3a3a3a !important;
+.header__column--center .menu-list {
+  background: url('{{ https://cdn.shopify.com/s/files/1/0674/3467/6307/files/wood-pattern.png?v=1761415503 }}') repeat center / 120px auto !important;
+  background-color: rgba(0,0,0,0.05) !important;
+  padding: 12px 0 !important;
+  border-radius: 10px !important;
 }
