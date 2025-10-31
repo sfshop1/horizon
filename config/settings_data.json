@@ -745,9 +745,9 @@
   },
   "platform_customizations": {
     "custom_css": [
-      "/* CUSTOM MENU GAP – LOADED LAST */.menu-list {--menu-horizontal-gap: var(--gap-3xl) !important;}",
-      " /* LOOSER FONT SPACING – MENU TEXT */.menu-list a,.menu-list span {letter-spacing: 0.2em !important;}",
-      "@media (max-width: 768px) {html, body {overflow-x: hidden !important; }}"
+      "/* Target all product badges */.product-badges__badge {font-weight: bold !important; border-radius: 4px !important; padding: 8px 12px !important;}",
+      "/* Customize Sold Out badge */.product-badges__badge--sold-out {background-color: #95a5a6 !important; color: white !important;}",
+      "/* Customize Sale badge - target by color scheme */.product-badges__badge.color-scheme-3 {background-color: #e74c3c !important; color: white !important;}"
     ]
   }
 }
