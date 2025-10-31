@@ -137,9 +137,9 @@
             "border_opacity": 100,
             "border_radius": 15,
             "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-block-end": 4,
+            "padding-inline-start": 2,
+            "padding-inline-end": 2
           },
           "blocks": {
             "custom_liquid_UJjihy": {
