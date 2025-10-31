@@ -4288,7 +4288,7 @@ text-component {
   Replace 'wood-pattern.png' with your uploaded file name
 {% endcomment %}
 
-{% assign header_tile = 'wood-pattern.png' | asset_url %}
+{% assign header_tile = 'https://cdn.shopify.com/s/files/1/0674/3467/6307/files/wood-pattern.png?v=1761415503' | asset_url %}
 
 {% comment %}=== 1. Normal top header row (always visible) ==={% endcomment %}
 .header__row--top {
