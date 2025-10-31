@@ -108,6 +108,14 @@
         "type": "shopify://apps/design-packs/blocks/design_packs/1efa8e58-6fa1-4c9a-9c0a-e71446c20785",
         "disabled": true,
         "settings": {}
+      },
+      "6570643953009571346": {
+        "type": "shopify://apps/easyslide/blocks/easyslider-embed-product-widget/ef09cb22-75b5-48cd-995b-9c0856fc69a2",
+        "disabled": false,
+        "settings": {
+          "placement_selector": "",
+          "multiple_widgets": false
+        }
       }
     },
     "color_schemes": {
