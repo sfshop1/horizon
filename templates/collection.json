@@ -141,14 +141,6 @@
             "padding-inline-end": 4
           },
           "blocks": {
-            "custom_liquid_eLz7Vk": {
-              "type": "custom-liquid",
-              "name": "t:names.custom_liquid",
-              "settings": {
-                "custom_liquid": "{% comment %} Debug - let's see what's available {% endcomment %}\n<div style=\"position: absolute; top: 10px; left: 10px; z-index: 10; background-color: #333; color: white; padding: 8px 12px; border-radius: 4px; font-size: 12px;\">\n  {% if card_product %}\n    Card Product: {{ card_product.title }}<br>\n    Variants: {{ card_product.variants.size }}<br>\n    First variant inventory: {{ card_product.variants.first.inventory_quantity }}\n  {% elsif product %}\n    Product: {{ product.title }}<br>\n    Variants: {{ product.variants.size }}<br>\n    First variant inventory: {{ product.variants.first.inventory_quantity }}\n  {% else %}\n    No product object found\n  {% endif %}\n</div>"
-              },
-              "blocks": {}
-            },
             "card-gallery": {
               "type": "_product-card-gallery",
               "settings": {
@@ -227,7 +219,6 @@
             }
           },
           "block_order": [
-            "custom_liquid_eLz7Vk",
             "card-gallery",
             "product_title_4nY4eT",
             "price_EzJzMm",
