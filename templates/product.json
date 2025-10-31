@@ -288,10 +288,11 @@
                     "width": 20
                   },
                   "blocks": {
-                    "text_GWX73E": {
-                      "type": "text",
+                    "product_description_9xaEMa": {
+                      "type": "product-description",
+                      "name": "t:names.product_description",
                       "settings": {
-                        "text": "<p>{{ product.description }}</p>",
+                        "text": "<p>{{ closest.product.description }}</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -315,7 +316,7 @@
                     }
                   },
                   "block_order": [
-                    "text_GWX73E"
+                    "product_description_9xaEMa"
                   ]
                 },
                 "accordion_row_t3QeGd": {
