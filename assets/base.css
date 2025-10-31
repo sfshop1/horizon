@@ -4284,54 +4284,51 @@ text-component {
   }
 }
 {% comment %}
-  Horizon – tiled wood-pattern background on the sticky header
-  Replace the URL with your own asset (or keep the external one)
+  Horizon – Tiled background on the top header row (desktop + sticky)
+  Replace 'wood-pattern.png' with your uploaded file name
 {% endcomment %}
 
-{% assign wood_tile = 'https://cdn.shopify.com/s/files/1/0710/2395/1929/files/wood-pattern.png?v=1741925095' %}
+{% assign header_tile = 'wood-pattern.png' | asset_url %}
 
-{% comment %}=== 1. Sticky header (the part that sticks on scroll) ==={% endcomment %}
-header.site-header[data-sticky="true"],
-header.site-header.sticky-header {
-  background-image: url('{{ wood_tile }}') !important;
+{% comment %}=== 1. Normal top header row (always visible) ==={% endcomment %}
+.header__row--top {
+  background-image: url('{{ header_tile }}') !important;
   background-repeat: repeat !important;
   background-size: auto !important;
   background-position: center !important;
   letter-spacing: 0.2em !important;
 }
 
-/* Normal (non-sticky) header – Horizon uses the same element */
-header.site-header {
-  background-image: url('{{ wood_tile }}') !important;
-  background-repeat: repeat !important;
-  background-size: auto !important;
-  background-position: center !important;
-  letter-spacing: 0.2em !important;
+/* Optional: slight overlay so white text stays readable */
+.header__row--top {
+  background-color: rgba(0,0,0,0.03) !important; /* tweak opacity as needed */
 }
 
 /* -----------------------------------------------------------------
-   OPTIONAL: Mobile scaling – Horizon’s breakpoint is 990px
+   2. Sticky header (when scrolling) – Horizon adds .is-sticky
+   ----------------------------------------------------------------- */
+.header__row--top.is-sticky {
+  background-image: url('{{ header_tile }}') !important;
+  background-repeat: repeat !important;
+  background-size: auto !important;
+  background-position: center !important;
+}
+
+/* -----------------------------------------------------------------
+   3. Mobile – smaller tile size (optional, matches your old code)
    ----------------------------------------------------------------- */
 @media screen and (max-width: 989px) {
-  header.site-header,
-  header.site-header[data-sticky="true"],
-  header.site-header.sticky-header {
-    background-size: 100px auto !important;   /* smaller tiles on phones */
+  .header__row--top,
+  .header__row--top.is-sticky {
+    background-size: 100px auto !important;
   }
 }
 
 /* -----------------------------------------------------------------
-   OPTIONAL: Darken the header a touch so white text stays readable
+   4. Footer – if you want the same texture there (remove if not)
    ----------------------------------------------------------------- */
-header.site-header {
-  background-color: rgba(0,0,0,0.03) !important;   /* very light overlay */
-}
-
-/* -----------------------------------------------------------------
-   Footer (if you still want the same texture there – remove if not)
-   ----------------------------------------------------------------- */
-footer.site-footer {
-  background-image: url('{{ wood_tile }}') !important;
+.site-footer {
+  background-image: url('{{ header_tile }}') !important;
   background-repeat: repeat !important;
   background-size: auto !important;
   background-position: center !important;
