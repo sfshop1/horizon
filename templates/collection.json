@@ -141,6 +141,14 @@
             "padding-inline-end": 4
           },
           "blocks": {
+            "custom_liquid_eLz7Vk": {
+              "type": "custom-liquid",
+              "name": "t:names.custom_liquid",
+              "settings": {
+                "custom_liquid": "{%- comment -%}\n  STOCK BADGE + DEBUG (Works for single-variant & no variants)\n{%- endcomment -%}\n\n{%- assign prod = product | default: card_product -%}\n\n<!-- DEBUG BOX (top-left) -->\n<div style=\"\n  position: absolute;\n  top: 8px;\n  left: 8px;\n  background: #fff3cd;\n  border: 1px solid #ffeaa7;\n  color: #d35400;\n  padding: 6px 8px;\n  font-size: 10px;\n  font-family: monospace;\n  z-index: 999;\n  max-width: 200px;\n  border-radius: 4px;\n  pointer-events: none;\n  line-height: 1.4;\n\">\n  <strong>DEBUG:</strong> {{ prod.title }}<br>\n  Variants: {{ prod.variants.size }}<br>\n  {% for v in prod.variants %}\n    → {{ v.title }}: {{ v.inventory_quantity }} \n    <small>({{ v.inventory_management | default: 'none' }})</small>\n    {% if v.inventory_management != 'shopify' %} <span style=\"color:red;\">NOT TRACKED</span>{% endif %}<br>\n  {% endfor %}\n</div>\n\n<!-- STOCK BADGE (top-right) -->\n{% assign total_stock = 0 %}\n{% for v in prod.variants %}\n  {% if v.inventory_management == 'shopify' %}\n    {% assign total_stock = total_stock | plus: v.inventory_quantity %}\n  {% endif %}\n{% endfor %}\n\n{% assign show_badge = false %}\n{% if total_stock > 0 %}\n  {% assign show_badge = true %}\n{% elsif prod.variants.size > 0 and prod.variants.first.inventory_management == 'shopify' %}\n  {% assign show_badge = true %}\n{% endif %}\n\n{% if show_badge %}\n  <div style=\"position: absolute; top: 8px; right: 8px; z-index: 10; pointer-events: none;\">\n    {% if total_stock > 0 %}\n      <span style=\"\n        background: #27ae60;\n        color: white;\n        padding: 4px 8px;\n        border-radius: 4px;\n        font-size: 11px;\n        font-weight: 600;\n        box-shadow: 0 1px 3px rgba(0,0,0,0.2);\n      \">\n        {{ total_stock }} left\n      </span>\n    {% else %}\n      <span style=\"\n        background: #e67e22;\n        color: white;\n        padding: 4px 8px;\n        border-radius: 4px;\n        font-size: 11px;\n        font-weight: 600;\n        box-shadow: 0 1px 3px rgba(0,0,0,0.2);\n      \">\n        Pre-Order\n      </span>\n    {% endif %}\n  </div>\n{% endif %}"
+              },
+              "blocks": {}
+            },
             "card-gallery": {
               "type": "_product-card-gallery",
               "settings": {
@@ -216,22 +224,14 @@
                 "product_swatches_padding_right": 0
               },
               "blocks": {}
-            },
-            "custom_liquid_eLz7Vk": {
-              "type": "custom-liquid",
-              "name": "t:names.custom_liquid",
-              "settings": {
-                "custom_liquid": "{% assign total_stock = 0 %}\n{% for v in product.variants %}\n  {% if v.inventory_management == 'shopify' %}\n    {% assign total_stock = total_stock | plus: v.inventory_quantity %}\n  {% endif %}\n{% endfor %}\n\n{% if total_stock > 0 or product.variants.first.inventory_management == 'shopify' %}\n  <div style=\"position:absolute;top:8px;right:8px;z-index:10;pointer-events:none;\">\n    <span style=\"\n      background: {% if total_stock > 0 %}var(--color-success){% else %}var(--color-warning){% endif %};\n      color: var(--color-on-accent);\n      font-size: 11px;\n      font-weight: 600;\n      padding: 4px 8px;\n      border-radius: 4px;\n      box-shadow: 0 1px 3px rgba(0,0,0,0.2);\n      display: inline-block;\n    \">\n      {% if total_stock > 0 %}{{ total_stock }} left{% else %}Pre-Order{% endif %}\n    </span>\n  </div>\n{% endif %}"
-              },
-              "blocks": {}
             }
           },
           "block_order": [
+            "custom_liquid_eLz7Vk",
             "card-gallery",
             "product_title_4nY4eT",
             "price_EzJzMm",
-            "swatches",
-            "custom_liquid_eLz7Vk"
+            "swatches"
           ]
         }
       },
