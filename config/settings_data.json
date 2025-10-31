@@ -745,9 +745,7 @@
   },
   "platform_customizations": {
     "custom_css": [
-      "/* Hide all built-in product badges */.product-badges {display: none !important;}",
-      "/* Set fixed height for all product cards */.product-card {height: 340px !important;}",
-      "/* Make sure the card content fills the height */.product-card__content {height: 100% !important;}"
+      "/* Hide all built-in product badges */.product-badges {display: none !important;}"
     ]
   }
 }
