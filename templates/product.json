@@ -341,6 +341,14 @@
                 "width": 12
               },
               "blocks": {
+                "custom_liquid_qbwdfH": {
+                  "type": "custom-liquid",
+                  "name": "t:names.custom_liquid",
+                  "settings": {
+                    "custom_liquid": ""
+                  },
+                  "blocks": {}
+                },
                 "text_bKbtq6": {
                   "type": "text",
                   "name": "t:names.text",
@@ -369,6 +377,7 @@
                 }
               },
               "block_order": [
+                "custom_liquid_qbwdfH",
                 "text_bKbtq6"
               ]
             }
