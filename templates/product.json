@@ -315,16 +315,16 @@
         "ai_gen_block_f8751cb_fG8dhA": {
           "type": "ai_gen_block_f8751cb",
           "settings": {
-            "display_condition": "always",
-            "assigned_collection": "",
+            "display_condition": "collection",
+            "assigned_collection": "beef-bundles",
             "assigned_product": "",
             "product_tag": "",
             "title": "Accordion title",
             "content": "<p>Add your accordion content here. This can include product details, shipping information, or any other relevant information.</p>",
             "open_by_default": true,
-            "title_size": 12,
+            "title_size": 17,
             "content_size": 12,
-            "padding": 8,
+            "padding": 26,
             "border_width": 0,
             "border_radius": 0,
             "background_color": "#ffffff",
@@ -336,7 +336,7 @@
           },
           "blocks": {}
         },
-        "ai_gen_block_f8751cb_ieThki": {
+        "ai_gen_block_f8751cb_PGBqi9": {
           "type": "ai_gen_block_f8751cb",
           "settings": {
             "display_condition": "always",
@@ -346,9 +346,9 @@
             "title": "Accordion title",
             "content": "<p>Add your accordion content here. This can include product details, shipping information, or any other relevant information.</p>",
             "open_by_default": true,
-            "title_size": 12,
+            "title_size": 17,
             "content_size": 12,
-            "padding": 8,
+            "padding": 26,
             "border_width": 0,
             "border_radius": 0,
             "background_color": "#ffffff",
@@ -363,19 +363,19 @@
       },
       "block_order": [
         "ai_gen_block_f8751cb_fG8dhA",
-        "ai_gen_block_f8751cb_ieThki"
+        "ai_gen_block_f8751cb_PGBqi9"
       ],
       "settings": {
-        "content_direction": "column",
+        "content_direction": "row",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
+        "horizontal_alignment": "center",
         "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-end",
         "vertical_alignment_flex_direction_column": "flex-start",
-        "gap": 0,
-        "section_width": "page-width",
-        "section_height": "",
+        "gap": 16,
+        "section_width": "full-width",
+        "section_height": "custom",
         "section_height_custom": 0,
         "color_scheme": "scheme-1",
         "background_media": "none",
