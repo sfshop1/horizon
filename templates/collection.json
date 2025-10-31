@@ -221,7 +221,7 @@
               "type": "custom-liquid",
               "name": "t:names.custom_liquid",
               "settings": {
-                "custom_liquid": ""
+                "custom_liquid": "{% liquid\n  assign total_quantity = 0\n  for variant in product.variants\n    if variant.inventory_management == 'shopify' and variant.inventory_policy == 'deny'\n      assign total_quantity = total_quantity | plus: variant.inventory_quantity\n    endif\n  endfor\n%}\n\n{% if total_quantity > 0 and total_quantity < 10 %}\n  <div class=\"stock-badge low-stock\" style=\"background: #ff6b6b; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; text-align: center;\">\n    Only {{ total_quantity }} left!\n  </div>\n{% elsif total_quantity > 0 %}\n  <div class=\"stock-badge in-stock\" style=\"background: #51cf66; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; text-align: center;\">\n    {{ total_quantity }} in stock\n  </div>\n{% else %}\n  <div class=\"stock-badge out-of-stock\" style=\"background: #9b9b9b; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; text-align: center;\">\n    Out of stock\n  </div>\n{% endif %}"
               },
               "blocks": {}
             }
