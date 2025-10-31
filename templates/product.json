@@ -318,10 +318,33 @@
                   "block_order": [
                     "product_description_9xaEMa"
                   ]
+                },
+                "accordion_row_qXDLzr": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Approximate Weight",
+                    "open_by_default": true,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "custom_liquid_gQHhi9": {
+                      "type": "custom-liquid",
+                      "name": "t:names.custom_liquid",
+                      "settings": {
+                        "custom_liquid": "{% for variant in product.variants %}\n    {% if variant.weight > 0 %}\n      {% assign weight_in_lb = variant.weight | divided_by: 453.592 %}\n\n      {% if weight_in_lb < 1 %}\n        {% assign weight_in_oz = variant.weight | times: 0.03527396 | ceil %}\n        <p>{{ weight_in_oz }} oz</p>\n      {% else %}\n        <p>{{ weight_in_lb | round: 2 }} lb</p>\n      {% endif %}\n    {% else %}\n      <p>Weight not available for variant: {{ variant.title }}</p>\n    {% endif %}\n  {% endfor %}"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "custom_liquid_gQHhi9"
+                  ]
                 }
               },
               "block_order": [
-                "accordion_row_z4iDF3"
+                "accordion_row_z4iDF3",
+                "accordion_row_qXDLzr"
               ]
             }
           },
