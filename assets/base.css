@@ -4283,35 +4283,3 @@ text-component {
     font-size: max(1rem, 100%);
   }
 }
-/* Target the sticky header wrapper and inner header */
-sticky-header.header-wrapper,
-.header-wrapper header {
-  background-image: url('https://cdn.shopify.com/s/files/1/0710/2395/1929/files/wood-pattern.png?v=1741925095') !important; /* Replace with your URL */
-  background-repeat: repeat !important; /* Tile the texture */
-  background-size: auto !important; /* Maintain original texture size */
-  background-position: center !important; /* Center the pattern */
-  letter-spacing: 0.2em; !important;
-}
-
-/* Optional: Adjust for mobile or specific layouts */
-@media screen and (max-width: 989px) {
-  sticky-header.header-wrapper,
-  .header-wrapper header {
-    background-size: 100px auto; /* Smaller tiles on mobile */
-  }
-}
-
-sticky-header.header-wrapper *,
-.header-wrapper header *,
-.footer * {
- /* background-color: #6b5436 !important;*/
-}
-
-/* Mobile adjustment */
-@media screen and (max-width: 989px) {
-  sticky-header.header-wrapper,
-  .header-wrapper header,
-  .footer {
-    background-size: 100px auto;
-  }
-}
