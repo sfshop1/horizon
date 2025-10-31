@@ -132,13 +132,13 @@
             "inherit_color_scheme": false,
             "color_scheme": "scheme-5",
             "border": "none",
-            "border_width": 1,
+            "border_width": 0,
             "border_opacity": 100,
             "border_radius": 32,
-            "padding-block-start": 10,
-            "padding-block-end": 10,
-            "padding-inline-start": 10,
-            "padding-inline-end": 10
+            "padding-block-start": 4,
+            "padding-block-end": 12,
+            "padding-inline-start": 4,
+            "padding-inline-end": 4
           },
           "blocks": {
             "card-gallery": {
@@ -234,8 +234,8 @@
         "products_per_page": 24,
         "product_grid_width": "centered",
         "full_width_on_mobile": true,
-        "columns_gap_horizontal": 16,
-        "columns_gap_vertical": 24,
+        "columns_gap_horizontal": 10,
+        "columns_gap_vertical": 18,
         "padding-inline-start": 0,
         "padding-inline-end": 0,
         "color_scheme": "scheme-1",
