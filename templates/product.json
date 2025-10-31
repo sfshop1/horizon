@@ -319,7 +319,7 @@
                     "product_description_9xaEMa"
                   ]
                 },
-                "accordion_row_qXDLzr": {
+                "accordion_row_QLiT4G": {
                   "type": "_accordion-row",
                   "settings": {
                     "heading": "Approximate Weight",
@@ -328,7 +328,7 @@
                     "width": 20
                   },
                   "blocks": {
-                    "custom_liquid_gQHhi9": {
+                    "custom_liquid_Utif7C": {
                       "type": "custom-liquid",
                       "name": "t:names.custom_liquid",
                       "settings": {
@@ -338,13 +338,13 @@
                     }
                   },
                   "block_order": [
-                    "custom_liquid_gQHhi9"
+                    "custom_liquid_Utif7C"
                   ]
                 }
               },
               "block_order": [
                 "accordion_row_z4iDF3",
-                "accordion_row_qXDLzr"
+                "accordion_row_QLiT4G"
               ]
             }
           },
