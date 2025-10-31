@@ -4283,9 +4283,48 @@ text-component {
     font-size: max(1rem, 100%);
   }
 }
-.header__column--center .menu-list {
-  background: url('{{ https://cdn.shopify.com/s/files/1/0674/3467/6307/files/wood-pattern.png?v=1761415503 }}') repeat center / 120px auto !important;
-  background-color: rgba(0,0,0,0.05) !important;
-  padding: 12px 0 !important;
-  border-radius: 10px !important;
-}
+
+{% comment %}
+  HORIZON: FORCE WOOD TEXTURE ON HEADER (OVERRIDES color-scheme-2)
+{% endcomment %}
+
+{% assign wood_texture = 'https://cdn.shopify.com/s/files/1/0674/3467/6307/files/wood-pattern.png?v=1761415503' | asset_url %}
+
+<style>
+  /* === 1. NUCLEAR OVERRIDE: Target the exact header row === */
+  .header__row--top.color-scheme-2 {
+    background: url('{{ wood_texture }}') repeat center center / 120px auto !important;
+    background-color: rgba(0,0,0,0.05) !important;
+    position: relative !important;
+    z-index: 9999 !important;
+  }
+
+  /* === 2. STICKY HEADER (when scrolling) === */
+  .header__row--top.is-sticky.color-scheme-2 {
+    background: url('{{ wood_texture }}') repeat center center / 120px auto !important;
+    background-color: rgba(0,0,0,0.05) !important;
+  }
+
+  /* === 3. REMOVE WHITE FROM INNER CONTAINERS === */
+  .header__row--top .header__columns,
+  .header__row--top .header__column,
+  .header__row--top .menu-list,
+  .header__row--top .header-menu__inner {
+    background: transparent !important;
+  }
+
+  /* === 4. MOBILE: Smaller tiles === */
+  @media (max-width: 989px) {
+    .header__row--top.color-scheme-2,
+    .header__row--top.is-sticky.color-scheme-2 {
+      background-size: 80px auto !important;
+    }
+  }
+
+  /* === 5. TEXT READABILITY (darken slightly) === */
+  .header__row--top .menu-list__link,
+  .header__row--top .header-logo img,
+  .header__row--top .header-actions__action svg {
+    filter: brightness(0.9) !important;
+  }
+</style>
