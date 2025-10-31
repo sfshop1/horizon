@@ -263,6 +263,7 @@
             "text_aEtTtq": {
               "type": "text",
               "name": "Product description",
+              "disabled": true,
               "settings": {
                 "text": "{{ closest.product.description }}",
                 "width": "100%",
@@ -310,18 +311,6 @@
     },
     "17618807523c0919b4": {
       "type": "_blocks",
-      "blocks": {
-        "easyslide_easyslider_block_product_widget_URD9cK": {
-          "type": "shopify://apps/easyslide/blocks/easyslider-block-product-widget/ef09cb22-75b5-48cd-995b-9c0856fc69a2",
-          "settings": {
-            "placement_selector": "",
-            "multiple_widgets": true
-          }
-        }
-      },
-      "block_order": [
-        "easyslide_easyslider_block_product_widget_URD9cK"
-      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
