@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "cart-section": {
       "type": "main-cart",
@@ -32,9 +32,9 @@
           "static": true,
           "settings": {
             "gap": 24,
-            "image_ratio": "portrait",
+            "image_ratio": "adapt",
             "dividers": true,
-            "vendor": false,
+            "vendor": true,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -46,8 +46,8 @@
           "type": "_cart-summary",
           "static": true,
           "settings": {
-            "extend_summary": true,
-            "inherit_color_scheme": false,
+            "extend_summary": false,
+            "inherit_color_scheme": true,
             "color_scheme": "scheme-2",
             "border": "none",
             "border_width": 1,
