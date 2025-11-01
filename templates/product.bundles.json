@@ -295,8 +295,8 @@
                   "settings": {
                     "heading": "DESCRIPTION",
                     "open_by_default": true,
-                    "icon": "none",
-                    "width": 20
+                    "icon": "arrow",
+                    "width": 40
                   },
                   "blocks": {
                     "product_description_9xaEMa": {
@@ -335,8 +335,8 @@
                   "settings": {
                     "heading": "BUNDLE INCLUDES",
                     "open_by_default": true,
-                    "icon": "none",
-                    "width": 20
+                    "icon": "arrow",
+                    "width": 40
                   },
                   "blocks": {
                     "custom_liquid_Utif7C": {
@@ -357,8 +357,8 @@
                   "settings": {
                     "heading": "PACKAGING & THAWING",
                     "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
+                    "icon": "washing",
+                    "width": 40
                   },
                   "blocks": {
                     "text_EKqpgD": {
