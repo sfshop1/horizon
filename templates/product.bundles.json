@@ -296,7 +296,7 @@
                     "heading": "DESCRIPTION",
                     "open_by_default": true,
                     "icon": "arrow",
-                    "width": 40
+                    "width": 20
                   },
                   "blocks": {
                     "product_description_9xaEMa": {
@@ -336,7 +336,7 @@
                     "heading": "BUNDLE INCLUDES",
                     "open_by_default": true,
                     "icon": "arrow",
-                    "width": 40
+                    "width": 20
                   },
                   "blocks": {
                     "custom_liquid_Utif7C": {
@@ -358,7 +358,7 @@
                     "heading": "PACKAGING & THAWING",
                     "open_by_default": false,
                     "icon": "washing",
-                    "width": 40
+                    "width": 20
                   },
                   "blocks": {
                     "text_EKqpgD": {
