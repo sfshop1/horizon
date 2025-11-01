@@ -179,13 +179,22 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "custom_liquid_EJeAk8": {
+                  "type": "custom-liquid",
+                  "name": "t:names.custom_liquid",
+                  "settings": {
+                    "custom_liquid": ""
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
                 "review_QdTtrT",
                 "text_xpVMaM",
                 "product_inventory_QNYafK",
-                "price_tVjtKg"
+                "price_tVjtKg",
+                "custom_liquid_EJeAk8"
               ]
             },
             "divider_VJhene": {
