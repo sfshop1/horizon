@@ -184,7 +184,7 @@
                   "type": "custom-liquid",
                   "name": "t:names.custom_liquid",
                   "settings": {
-                    "custom_liquid": ""
+                    "custom_liquid": "{% assign total_inventory = 0 %}\n{% for variant in product.variants %}\n  {% assign total_inventory = total_inventory | plus: variant.inventory_quantity %}\n{% endfor %}\n\n{% if total_inventory > 0 %}\n  <p class=\"inventory-remaining\">{{ total_inventory }} remaining</p>\n{% else %}\n  <p class=\"inventory-remaining\">Out of stock</p>\n{% endif %}"
                   },
                   "blocks": {}
                 }
