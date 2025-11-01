@@ -158,6 +158,14 @@
                   },
                   "blocks": {}
                 },
+                "custom_liquid_EJeAk8": {
+                  "type": "custom-liquid",
+                  "name": "t:names.custom_liquid",
+                  "settings": {
+                    "custom_liquid": "{% assign total_inventory = 0 %}\n{% for variant in product.variants %}\n  {% assign total_inventory = total_inventory | plus: variant.inventory_quantity %}\n{% endfor %}\n\n{% if total_inventory > 0 %}\n  <p class=\"inventory-remaining\">{{ total_inventory }} available</p>\n{% else %}\n  <p class=\"inventory-remaining\">Out of stock</p>\n{% endif %}"
+                  },
+                  "blocks": {}
+                },
                 "price_tVjtKg": {
                   "type": "price",
                   "settings": {
@@ -179,22 +187,14 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
-                },
-                "custom_liquid_EJeAk8": {
-                  "type": "custom-liquid",
-                  "name": "t:names.custom_liquid",
-                  "settings": {
-                    "custom_liquid": "{% assign total_inventory = 0 %}\n{% for variant in product.variants %}\n  {% assign total_inventory = total_inventory | plus: variant.inventory_quantity %}\n{% endfor %}\n\n{% if total_inventory > 0 %}\n  <p class=\"inventory-remaining\">{{ total_inventory }} remaining</p>\n{% else %}\n  <p class=\"inventory-remaining\">Out of stock</p>\n{% endif %}"
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "review_QdTtrT",
                 "text_xpVMaM",
                 "product_inventory_QNYafK",
-                "price_tVjtKg",
-                "custom_liquid_EJeAk8"
+                "custom_liquid_EJeAk8",
+                "price_tVjtKg"
               ]
             },
             "divider_VJhene": {
