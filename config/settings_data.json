@@ -277,7 +277,7 @@
       },
       "scheme-5": {
         "settings": {
-          "background": "rgba(0,0,0,0)",
+          "background": "#6b5436",
           "foreground_heading": "#f5e8d3",
           "foreground": "#f5e8d3",
           "primary": "#ffffff",
@@ -512,7 +512,7 @@
       "scheme-0ca5eea7-218a-4065-b434-f3365bcf890c": {
         "settings": {
           "background": "#ffffff",
-          "foreground_heading": "#6b5436",
+          "foreground_heading": "#4a3c31",
           "foreground": "#4a3c31",
           "primary": "#000000cf",
           "primary_hover": "#000000",
