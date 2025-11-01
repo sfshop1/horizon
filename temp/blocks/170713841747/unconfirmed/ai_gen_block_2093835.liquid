@@ -1,6 +1,420 @@
+{% doc %}
+  @prompt
+    Create a custom Liquid code block for the cart that checks each item's inventory quantity. When an item has 0 or less stock available, display a "Pre-order" tag or badge next to that item in the cart. The tag should be visually distinct and only appear for out-of-stock items.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-preorder-badge-container-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .ai-preorder-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: {{ block.settings.item_padding }}px;
+    background-color: {{ block.settings.item_background_color }};
+    border-radius: {{ block.settings.item_border_radius }}px;
+    border: {{ block.settings.item_border_width }}px solid {{ block.settings.item_border_color }};
+  }
+
+  .ai-preorder-item-info-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .ai-preorder-item-image-{{ ai_gen_id }} {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-preorder-item-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-preorder-item-details-{{ ai_gen_id }} {
+    flex: 1;
+  }
+
+  .ai-preorder-item-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_font_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 4px 0;
+  }
+
+  .ai-preorder-item-variant-{{ ai_gen_id }} {
+    font-size: {{ block.settings.variant_font_size }}px;
+    color: {{ block.settings.variant_text_color }};
+    margin: 0;
+  }
+
+  .ai-preorder-badge-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    padding: {{ block.settings.badge_padding_vertical }}px {{ block.settings.badge_padding_horizontal }}px;
+    background-color: {{ block.settings.badge_background_color }};
+    color: {{ block.settings.badge_text_color }};
+    font-size: {{ block.settings.badge_font_size }}px;
+    font-weight: {{ block.settings.badge_font_weight }};
+    border-radius: {{ block.settings.badge_border_radius }}px;
+    border: {{ block.settings.badge_border_width }}px solid {{ block.settings.badge_border_color }};
+    text-transform: {{ block.settings.badge_text_transform }};
+    white-space: nowrap;
+  }
+
+  .ai-preorder-badge-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.badge_icon_size }}px;
+    height: {{ block.settings.badge_icon_size }}px;
+    margin-right: 6px;
+  }
+
+  .ai-preorder-empty-state-{{ ai_gen_id }} {
+    padding: 20px;
+    text-align: center;
+    color: {{ block.settings.empty_state_color }};
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-preorder-item-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .ai-preorder-badge-{{ ai_gen_id }} {
+      align-self: flex-end;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-preorder-badge-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if cart.items.size > 0 %}
+    {% assign has_preorder_items = false %}
+    {% for item in cart.items %}
+      {% if item.variant.inventory_quantity <= 0 %}
+        {% assign has_preorder_items = true %}
+        <div class="ai-preorder-item-{{ ai_gen_id }}">
+          <div class="ai-preorder-item-info-{{ ai_gen_id }}">
+            {% if item.image %}
+              <div class="ai-preorder-item-image-{{ ai_gen_id }}">
+                <img
+                  src="{{ item.image | image_url: width: 120 }}"
+                  alt="{{ item.image.alt | escape }}"
+                  loading="lazy"
+                  width="120"
+                  height="120"
+                >
+              </div>
+            {% endif %}
+            <div class="ai-preorder-item-details-{{ ai_gen_id }}">
+              <h3 class="ai-preorder-item-title-{{ ai_gen_id }}">{{ item.product.title }}</h3>
+              {% if item.variant.title != 'Default Title' %}
+                <p class="ai-preorder-item-variant-{{ ai_gen_id }}">{{ item.variant.title }}</p>
+              {% endif %}
+            </div>
+          </div>
+          <div class="ai-preorder-badge-{{ ai_gen_id }}">
+            {% if block.settings.show_badge_icon %}
+              <svg
+                class="ai-preorder-badge-icon-{{ ai_gen_id }}"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            {% endif %}
+            {{ block.settings.badge_text }}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    {% if has_preorder_items == false %}
+      <div class="ai-preorder-empty-state-{{ ai_gen_id }}">
+        {{ block.settings.no_preorder_message }}
+      </div>
+    {% endif %}
+  {% else %}
+    <div class="ai-preorder-empty-state-{{ ai_gen_id }}">
+      {{ block.settings.empty_cart_message }}
+    </div>
+  {% endif %}
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Cart pre-order indicator",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Badge"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Pre-order"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge_icon",
+      "label": "Show icon",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "badge_icon_size",
+      "min": 12,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "badge_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "badge_text_transform",
+      "label": "Text case",
+      "options": [
+        {
+          "value": "none",
+          "label": "Default"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "badge_padding_vertical",
+      "min": 2,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "badge_padding_horizontal",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "badge_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "badge_background_color",
+      "label": "Background",
+      "default": "#c1272d"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "badge_border_color",
+      "label": "Border",
+      "default": "#c1272d"
+    },
+    {
+      "type": "header",
+      "content": "Item card"
+    },
+    {
+      "type": "range",
+      "id": "item_padding",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "item_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "item_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "variant_font_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Variant size",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "item_background_color",
+      "label": "Background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "item_border_color",
+      "label": "Border",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Title",
+      "default": "#4a3c31"
+    },
+    {
+      "type": "color",
+      "id": "variant_text_color",
+      "label": "Variant",
+      "default": "#6b5436"
+    },
+    {
+      "type": "header",
+      "content": "Messages"
+    },
+    {
+      "type": "text",
+      "id": "no_preorder_message",
+      "label": "No pre-order items",
+      "default": "All items are in stock"
+    },
+    {
+      "type": "text",
+      "id": "empty_cart_message",
+      "label": "Empty cart",
+      "default": "Your cart is empty"
+    },
+    {
+      "type": "color",
+      "id": "empty_state_color",
+      "label": "Message color",
+      "default": "#6b5436"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart pre-order indicator"
+    }
+  ]
+}
 {% endschema %}
