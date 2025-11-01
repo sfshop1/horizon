@@ -223,14 +223,6 @@
               },
               "blocks": {}
             },
-            "custom_liquid_iRfniy": {
-              "type": "custom-liquid",
-              "name": "t:names.custom_liquid",
-              "settings": {
-                "custom_liquid": "{% assign total_inventory = 0 %}\n{% assign has_deny_policy = false %}\n\n{% for variant in product.variants %}\n  {% if variant.inventory_management == 'shopify' %}\n    {% assign total_inventory = total_inventory | plus: variant.inventory_quantity %}\n    {% if variant.inventory_policy == 'deny' and variant.inventory_quantity <= 0 %}\n      {% assign has_deny_policy = true %}\n    {% endif %}\n  {% endif %}\n{% endfor %}\n\n<style>\n  {% if has_deny_policy == false and total_inventory <= 0 %}\n    .product-form__submit span {\n      display: none;\n    }\n    .product-form__submit::after {\n      content: \"Pre-order\";\n    }\n  {% endif %}\n</style>"
-              },
-              "blocks": {}
-            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -412,7 +404,6 @@
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
-            "custom_liquid_iRfniy",
             "buy_buttons_eYQEYi",
             "subscriptions_app_block_q6GyYj",
             "accordion_c7Lz9n"
