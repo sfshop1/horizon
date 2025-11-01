@@ -322,8 +322,8 @@
                 "accordion_row_QLiT4G": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "APPROXIMATE WEIGHT",
-                    "open_by_default": false,
+                    "heading": "BUNDLE INCLUDES",
+                    "open_by_default": true,
                     "icon": "none",
                     "width": 20
                   },
