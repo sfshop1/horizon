@@ -12,46 +12,6 @@
     "cart-section": {
       "type": "main-cart",
       "blocks": {
-        "ai_gen_block_2093835_jjRBEc": {
-          "type": "ai_gen_block_2093835",
-          "settings": {
-            "badge_text": "Pre-order",
-            "show_badge_icon": true,
-            "badge_icon_size": 16,
-            "badge_font_size": 12,
-            "badge_font_weight": "600",
-            "badge_text_transform": "uppercase",
-            "badge_padding_vertical": 6,
-            "badge_padding_horizontal": 12,
-            "badge_border_radius": 4,
-            "badge_border_width": 0,
-            "badge_background_color": "#c1272d",
-            "badge_text_color": "#ffffff",
-            "badge_border_color": "#c1272d",
-            "item_padding": 16,
-            "item_border_radius": 8,
-            "item_border_width": 1,
-            "image_border_radius": 4,
-            "title_font_size": 14,
-            "variant_font_size": 12,
-            "item_background_color": "#f5f5f5",
-            "item_border_color": "#e6e6e6",
-            "text_color": "#4a3c31",
-            "variant_text_color": "#6b5436",
-            "no_preorder_message": "All items are in stock",
-            "empty_cart_message": "Your cart is empty",
-            "empty_state_color": "#6b5436"
-          },
-          "blocks": {}
-        },
-        "custom_liquid_gYXfWd": {
-          "type": "custom-liquid",
-          "name": "t:names.custom_liquid",
-          "settings": {
-            "custom_liquid": ""
-          },
-          "blocks": {}
-        },
         "cart-page-title": {
           "type": "_cart-title",
           "static": true,
@@ -97,10 +57,6 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "ai_gen_block_2093835_jjRBEc",
-        "custom_liquid_gYXfWd"
-      ],
       "custom_css": [],
       "settings": {
         "section_width": "page-width",
