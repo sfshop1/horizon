@@ -266,7 +266,7 @@
               "settings": {
                 "icon": "caret",
                 "dividers": true,
-                "type_preset": "h4",
+                "type_preset": "",
                 "inherit_color_scheme": false,
                 "color_scheme": "scheme-7865b358-cd07-4948-b822-d8bb0ebe41e2",
                 "border": "none",
@@ -344,13 +344,53 @@
                 "accordion_row_HAp4GW": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Packaging & Thawing",
+                    "heading": "Thickness",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
                   },
                   "blocks": {
                     "text_898LmC": {
+                      "type": "text",
+                      "name": "t:names.text",
+                      "settings": {
+                        "text": "<p>1\"</p>",
+                        "width": "fit-content",
+                        "max_width": "none",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "loose",
+                        "letter_spacing": "tight",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_898LmC"
+                  ]
+                },
+                "accordion_row_GUMC78": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Packaging & Thawing",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_EKqpgD": {
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
@@ -378,14 +418,15 @@
                     }
                   },
                   "block_order": [
-                    "text_898LmC"
+                    "text_EKqpgD"
                   ]
                 }
               },
               "block_order": [
                 "accordion_row_z4iDF3",
                 "accordion_row_QLiT4G",
-                "accordion_row_HAp4GW"
+                "accordion_row_HAp4GW",
+                "accordion_row_GUMC78"
               ]
             }
           },
