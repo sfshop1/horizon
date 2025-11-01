@@ -355,13 +355,53 @@
                 "accordion_row_GyYXq4": {
                   "type": "_accordion-row",
                   "settings": {
+                    "heading": "THICKNESS",
+                    "open_by_default": true,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_izLREB": {
+                      "type": "text",
+                      "name": "t:names.text",
+                      "settings": {
+                        "text": "<p>1 \"</p>",
+                        "width": "fit-content",
+                        "max_width": "none",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_izLREB"
+                  ]
+                },
+                "accordion_row_zgeBBb": {
+                  "type": "_accordion-row",
+                  "settings": {
                     "heading": "PACKAGING & THAWING",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
                   },
                   "blocks": {
-                    "text_izLREB": {
+                    "text_bd9PwC": {
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
@@ -389,14 +429,15 @@
                     }
                   },
                   "block_order": [
-                    "text_izLREB"
+                    "text_bd9PwC"
                   ]
                 }
               },
               "block_order": [
                 "accordion_row_qF4UDG",
                 "accordion_row_jLdVCF",
-                "accordion_row_GyYXq4"
+                "accordion_row_GyYXq4",
+                "accordion_row_zgeBBb"
               ]
             }
           },
