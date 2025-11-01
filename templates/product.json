@@ -67,7 +67,7 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "group_icgrde": {
+            "group_GXWmzF": {
               "type": "group",
               "name": "Header",
               "settings": {
@@ -107,7 +107,7 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "review_QdTtrT": {
+                "review_7TBTcy": {
                   "type": "review",
                   "name": "t:names.product_review_stars",
                   "settings": {
@@ -119,7 +119,7 @@
                   },
                   "blocks": {}
                 },
-                "text_xpVMaM": {
+                "text_eU9d8t": {
                   "type": "text",
                   "name": "t:names.title",
                   "settings": {
@@ -145,11 +145,12 @@
                   },
                   "blocks": {}
                 },
-                "product_inventory_QNYafK": {
+                "product_inventory_a3rJFm": {
                   "type": "product-inventory",
                   "name": "t:names.product_inventory",
+                  "disabled": true,
                   "settings": {
-                    "inventory_threshold": 10,
+                    "inventory_threshold": 0,
                     "show_inventory_quantity": true,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
@@ -158,13 +159,13 @@
                   },
                   "blocks": {}
                 },
-                "price_tVjtKg": {
+                "price_HxxPyw": {
                   "type": "price",
                   "settings": {
                     "show_sale_price_first": true,
                     "show_installments": false,
                     "show_tax_info": false,
-                    "type_preset": "paragraph",
+                    "type_preset": "h4",
                     "width": "100%",
                     "alignment": "left",
                     "font": "var(--font-body--family)",
@@ -179,13 +180,22 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "custom_liquid_T9acK3": {
+                  "type": "custom-liquid",
+                  "name": "t:names.custom_liquid",
+                  "settings": {
+                    "custom_liquid": "{% assign total_inventory = 0 %}\n{% assign has_deny_policy = false %}\n\n{% for variant in product.variants %}\n  {% if variant.inventory_management == 'shopify' %}\n    {% assign total_inventory = total_inventory | plus: variant.inventory_quantity %}\n    {% if variant.inventory_policy == 'deny' and variant.inventory_quantity <= 0 %}\n      {% assign has_deny_policy = true %}\n    {% endif %}\n  {% endif %}\n{% endfor %}\n\n<div class=\"product-stock-badge\" style=\"background-color: {% if has_deny_policy %}#999{% elsif total_inventory <= 0 %}#C1272D{% else %}#4CAF50{% endif %}; color: white; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size: 14px; margin: 10px 0;\">\n  {% if has_deny_policy %}\n    Sold Out  \n  {% elsif total_inventory <= 0 %}\n    Pre-order\n  {% else %}\n    Remaining: {{ total_inventory }}\n  {% endif %}\n</div>"
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
-                "review_QdTtrT",
-                "text_xpVMaM",
-                "product_inventory_QNYafK",
-                "price_tVjtKg"
+                "review_7TBTcy",
+                "text_eU9d8t",
+                "product_inventory_a3rJFm",
+                "price_HxxPyw",
+                "custom_liquid_T9acK3"
               ]
             },
             "divider_VJhene": {
@@ -390,7 +400,7 @@
             }
           },
           "block_order": [
-            "group_icgrde",
+            "group_GXWmzF",
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
