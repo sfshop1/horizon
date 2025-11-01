@@ -271,13 +271,13 @@
                 "product": "{{closest.product}}"
               }
             },
-            "accordion_axXQc8": {
+            "accordion_idJAw9": {
               "type": "accordion",
               "name": "t:names.accordion",
               "settings": {
                 "icon": "caret",
                 "dividers": true,
-                "type_preset": "h4",
+                "type_preset": "h5",
                 "inherit_color_scheme": false,
                 "color_scheme": "scheme-7865b358-cd07-4948-b822-d8bb0ebe41e2",
                 "border": "none",
@@ -290,16 +290,16 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "accordion_row_z4iDF3": {
+                "accordion_row_8RinFN": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Description",
+                    "heading": "DESCRIPTION",
                     "open_by_default": true,
                     "icon": "none",
                     "width": 20
                   },
                   "blocks": {
-                    "product_description_9xaEMa": {
+                    "product_description_rYqBXY": {
                       "type": "product-description",
                       "name": "t:names.product_description",
                       "settings": {
@@ -310,8 +310,8 @@
                         "type_preset": "custom",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
-                        "line_height": "loose",
-                        "letter_spacing": "tight",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
                         "case": "none",
                         "wrap": "pretty",
                         "color": "var(--color-foreground)",
@@ -327,41 +327,41 @@
                     }
                   },
                   "block_order": [
-                    "product_description_9xaEMa"
+                    "product_description_rYqBXY"
                   ]
                 },
-                "accordion_row_QLiT4G": {
+                "accordion_row_kAB4tU": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Approximate Weight",
+                    "heading": "APPROXIMATE WEIGHT",
                     "open_by_default": true,
                     "icon": "none",
                     "width": 20
                   },
                   "blocks": {
-                    "custom_liquid_Utif7C": {
+                    "custom_liquid_R7yYfT": {
                       "type": "custom-liquid",
                       "name": "t:names.custom_liquid",
                       "settings": {
-                        "custom_liquid": "{% for variant in product.variants %}\n    {% if variant.weight > 0 %}\n      {% assign weight_in_lb = variant.weight | divided_by: 453.592 %}\n\n      {% if weight_in_lb < 1 %}\n        {% assign weight_in_oz = variant.weight | times: 0.03527396 | ceil %}\n        <p>{{ weight_in_oz }} oz</p>\n      {% else %}\n        <p>{{ weight_in_lb | round: 2 }} lb</p>\n      {% endif %}\n    {% else %}\n      <p>Weight not available for variant: {{ variant.title }}</p>\n    {% endif %}\n  {% endfor %}"
+                        "custom_liquid": "{%- comment -%}\n  Weight display – inherits colour scheme & typography\n{%- endcomment -%}\n\n{%- for variant in product.variants -%}\n  {%- if variant.weight > 0 -%}\n    {%- assign weight_in_lb = variant.weight | divided_by: 453.592 -%}\n\n    {%- if weight_in_lb < 1 -%}\n      {%- assign weight_in_oz = variant.weight | times: 0.03527396 | ceil -%}\n      <p class=\"variant-weight variant-weight--oz\">{{ weight_in_oz }} oz</p>\n    {%- else -%}\n      <p class=\"variant-weight variant-weight--lb\">{{ weight_in_lb | round: 2 }} lb</p>\n    {%- endif -%}\n  {%- else -%}\n    <p class=\"variant-weight variant-weight--na\">Weight not available for variant: {{ variant.title }}</p>\n  {%- endif -%}\n{%- endfor -%}"
                       },
                       "blocks": {}
                     }
                   },
                   "block_order": [
-                    "custom_liquid_Utif7C"
+                    "custom_liquid_R7yYfT"
                   ]
                 },
-                "accordion_row_HAp4GW": {
+                "accordion_row_Lzhpaf": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Packaging & Thawing",
-                    "open_by_default": true,
+                    "heading": "PACKAGING & THAWING",
+                    "open_by_default": false,
                     "icon": "none",
                     "width": 20
                   },
                   "blocks": {
-                    "text_898LmC": {
+                    "text_tiEWDP": {
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
@@ -372,8 +372,8 @@
                         "type_preset": "custom",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
-                        "line_height": "loose",
-                        "letter_spacing": "tight",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
                         "case": "none",
                         "wrap": "pretty",
                         "color": "var(--color-foreground)",
@@ -389,14 +389,14 @@
                     }
                   },
                   "block_order": [
-                    "text_898LmC"
+                    "text_tiEWDP"
                   ]
                 }
               },
               "block_order": [
-                "accordion_row_z4iDF3",
-                "accordion_row_QLiT4G",
-                "accordion_row_HAp4GW"
+                "accordion_row_8RinFN",
+                "accordion_row_kAB4tU",
+                "accordion_row_Lzhpaf"
               ]
             }
           },
@@ -406,7 +406,7 @@
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "subscriptions_app_block_q6GyYj",
-            "accordion_axXQc8"
+            "accordion_idJAw9"
           ]
         }
       },
