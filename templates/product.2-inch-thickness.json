@@ -365,7 +365,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>1.25 \"</p>",
+                        "text": "<p>2 \"</p>",
                         "width": "fit-content",
                         "max_width": "none",
                         "alignment": "left",
