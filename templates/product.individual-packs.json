@@ -159,14 +159,6 @@
                   },
                   "blocks": {}
                 },
-                "custom_liquid_EJeAk8": {
-                  "type": "custom-liquid",
-                  "name": "t:names.custom_liquid",
-                  "settings": {
-                    "custom_liquid": "{% assign total_inventory = 0 %}\n{% assign has_deny_policy = false %}\n\n{% for variant in product.variants %}\n  {% if variant.inventory_management == 'shopify' %}\n    {% assign total_inventory = total_inventory | plus: variant.inventory_quantity %}\n    {% if variant.inventory_policy == 'deny' and variant.inventory_quantity <= 0 %}\n      {% assign has_deny_policy = true %}\n    {% endif %}\n  {% endif %}\n{% endfor %}\n\n<div class=\"product-stock-badge\" style=\"background-color: {% if has_deny_policy %}#999{% elsif total_inventory <= 0 %}#C1272D{% else %}#4CAF50{% endif %}; color: white; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size: 14px; margin: 10px 0;\">\n  {% if has_deny_policy %}\n    Sold Out  \n  {% elsif total_inventory <= 0 %}\n    Pre-order\n  {% else %}\n    Remaining: {{ total_inventory }}\n  {% endif %}\n</div>"
-                  },
-                  "blocks": {}
-                },
                 "price_tVjtKg": {
                   "type": "price",
                   "settings": {
@@ -188,14 +180,22 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "custom_liquid_EJeAk8": {
+                  "type": "custom-liquid",
+                  "name": "t:names.custom_liquid",
+                  "settings": {
+                    "custom_liquid": "{% assign total_inventory = 0 %}\n{% assign has_deny_policy = false %}\n\n{% for variant in product.variants %}\n  {% if variant.inventory_management == 'shopify' %}\n    {% assign total_inventory = total_inventory | plus: variant.inventory_quantity %}\n    {% if variant.inventory_policy == 'deny' and variant.inventory_quantity <= 0 %}\n      {% assign has_deny_policy = true %}\n    {% endif %}\n  {% endif %}\n{% endfor %}\n\n<div class=\"product-stock-badge\" style=\"background-color: {% if has_deny_policy %}#999{% elsif total_inventory <= 0 %}#C1272D{% else %}#4CAF50{% endif %}; color: white; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size: 14px; margin: 10px 0;\">\n  {% if has_deny_policy %}\n    Sold Out  \n  {% elsif total_inventory <= 0 %}\n    Pre-order\n  {% else %}\n    Remaining: {{ total_inventory }}\n  {% endif %}\n</div>"
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
                 "review_QdTtrT",
                 "text_xpVMaM",
                 "product_inventory_QNYafK",
-                "custom_liquid_EJeAk8",
-                "price_tVjtKg"
+                "price_tVjtKg",
+                "custom_liquid_EJeAk8"
               ]
             },
             "divider_VJhene": {
