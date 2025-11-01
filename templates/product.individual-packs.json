@@ -323,7 +323,7 @@
                   "type": "_accordion-row",
                   "settings": {
                     "heading": "APPROXIMATE WEIGHT",
-                    "open_by_default": false,
+                    "open_by_default": true,
                     "icon": "none",
                     "width": 20
                   },
