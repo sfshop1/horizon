@@ -332,53 +332,13 @@
                       "type": "custom-liquid",
                       "name": "t:names.custom_liquid",
                       "settings": {
-                        "custom_liquid": "{%- comment -%}\n  Weight display – inherits colour scheme & typography\n{%- endcomment -%}\n\n{%- for variant in product.variants -%}\n  {%- if variant.weight > 0 -%}\n    {%- assign weight_in_lb = variant.weight | divided_by: 453.592 -%}\n\n    {%- if weight_in_lb < 1 -%}\n      {%- assign weight_in_oz = variant.weight | times: 0.03527396 | ceil -%}\n      <p class=\"variant-weight variant-weight--oz\">{{ weight_in_oz }} oz</p>\n    {%- else -%}\n      <p class=\"variant-weight variant-weight--lb\">{{ weight_in_lb | round: 2 }} lb</p>\n    {%- endif -%}\n  {%- else -%}\n    <p class=\"variant-weight variant-weight--na\">Weight not available for variant: {{ variant.title }}</p>\n  {%- endif -%}\n{%- endfor -%}"
+                        "custom_liquid": "{% for variant in product.variants %}\n    {% if variant.weight > 0 %}\n      {% assign weight_in_oz = variant.weight | times: 0.03527396 | ceil %}\n      <p>{{ weight_in_oz }} oz</p>\n    {% else %}\n      <p>Weight not available for variant: {{ variant.title }}</p>\n    {% endif %}\n  {% endfor %}"
                       },
                       "blocks": {}
                     }
                   },
                   "block_order": [
                     "custom_liquid_Utif7C"
-                  ]
-                },
-                "accordion_row_HAp4GW": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "THICKNESS",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "text_898LmC": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<p>1\"</p>",
-                        "width": "fit-content",
-                        "max_width": "none",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_898LmC"
                   ]
                 },
                 "accordion_row_GUMC78": {
@@ -425,7 +385,6 @@
               "block_order": [
                 "accordion_row_z4iDF3",
                 "accordion_row_QLiT4G",
-                "accordion_row_HAp4GW",
                 "accordion_row_GUMC78"
               ]
             }
