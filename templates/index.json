@@ -593,21 +593,6 @@
         "padding-block-end": 0
       }
     },
-    "divider_L6978E": {
-      "type": "divider",
-      "custom_css": [],
-      "name": "t:names.divider_section",
-      "settings": {
-        "color_scheme": "",
-        "section_width": "full-width",
-        "thickness": 0.5,
-        "corner_radius": "square",
-        "width_percent": 100,
-        "alignment_horizontal": "center",
-        "padding-block-start": 16,
-        "padding-block-end": 16
-      }
-    },
     "section_CJ8diN": {
       "type": "section",
       "blocks": {
@@ -1792,7 +1777,6 @@
   },
   "order": [
     "slideshow_6qnrTN",
-    "divider_L6978E",
     "section_CJ8diN",
     "section_tp6CMW",
     "section_DtDPiF",
