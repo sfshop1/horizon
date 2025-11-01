@@ -260,13 +260,13 @@
                 "product": "{{closest.product}}"
               }
             },
-            "accordion_axXQc8": {
+            "accordion_c7Lz9n": {
               "type": "accordion",
               "name": "t:names.accordion",
               "settings": {
                 "icon": "caret",
                 "dividers": true,
-                "type_preset": "h4",
+                "type_preset": "h5",
                 "inherit_color_scheme": false,
                 "color_scheme": "scheme-7865b358-cd07-4948-b822-d8bb0ebe41e2",
                 "border": "none",
@@ -279,16 +279,16 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "accordion_row_z4iDF3": {
+                "accordion_row_qF4UDG": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Description",
+                    "heading": "DESCRIPTION",
                     "open_by_default": true,
                     "icon": "none",
                     "width": 20
                   },
                   "blocks": {
-                    "product_description_9xaEMa": {
+                    "product_description_iCAgmt": {
                       "type": "product-description",
                       "name": "t:names.product_description",
                       "settings": {
@@ -299,8 +299,8 @@
                         "type_preset": "custom",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
-                        "line_height": "loose",
-                        "letter_spacing": "tight",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
                         "case": "none",
                         "wrap": "pretty",
                         "color": "var(--color-foreground)",
@@ -316,19 +316,19 @@
                     }
                   },
                   "block_order": [
-                    "product_description_9xaEMa"
+                    "product_description_iCAgmt"
                   ]
                 },
-                "accordion_row_QLiT4G": {
+                "accordion_row_jLdVCF": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Approximate Weight",
+                    "heading": "APPROXIMATE WEIGHT",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
                   },
                   "blocks": {
-                    "custom_liquid_Utif7C": {
+                    "custom_liquid_VKjfQk": {
                       "type": "custom-liquid",
                       "name": "t:names.custom_liquid",
                       "settings": {
@@ -338,19 +338,19 @@
                     }
                   },
                   "block_order": [
-                    "custom_liquid_Utif7C"
+                    "custom_liquid_VKjfQk"
                   ]
                 },
-                "accordion_row_HAp4GW": {
+                "accordion_row_GyYXq4": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Packaging & Thawing",
+                    "heading": "PACKAGING & THAWING",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
                   },
                   "blocks": {
-                    "text_898LmC": {
+                    "text_izLREB": {
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
@@ -361,8 +361,8 @@
                         "type_preset": "custom",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
-                        "line_height": "loose",
-                        "letter_spacing": "tight",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
                         "case": "none",
                         "wrap": "pretty",
                         "color": "var(--color-foreground)",
@@ -378,14 +378,14 @@
                     }
                   },
                   "block_order": [
-                    "text_898LmC"
+                    "text_izLREB"
                   ]
                 }
               },
               "block_order": [
-                "accordion_row_z4iDF3",
-                "accordion_row_QLiT4G",
-                "accordion_row_HAp4GW"
+                "accordion_row_qF4UDG",
+                "accordion_row_jLdVCF",
+                "accordion_row_GyYXq4"
               ]
             }
           },
@@ -395,7 +395,7 @@
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "subscriptions_app_block_q6GyYj",
-            "accordion_axXQc8"
+            "accordion_c7Lz9n"
           ]
         }
       },
