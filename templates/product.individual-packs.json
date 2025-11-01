@@ -323,7 +323,7 @@
                   "type": "_accordion-row",
                   "settings": {
                     "heading": "Approximate Weight",
-                    "open_by_default": true,
+                    "open_by_default": false,
                     "icon": "none",
                     "width": 20
                   },
@@ -332,7 +332,7 @@
                       "type": "custom-liquid",
                       "name": "t:names.custom_liquid",
                       "settings": {
-                        "custom_liquid": "{% for variant in product.variants %}\n    {% if variant.weight > 0 %}\n      {% assign weight_in_lb = variant.weight | divided_by: 453.592 %}\n\n      {% if weight_in_lb < 1 %}\n        {% assign weight_in_oz = variant.weight | times: 0.03527396 | ceil %}\n        <p>{{ weight_in_oz }} oz</p>\n      {% else %}\n        <p>{{ weight_in_lb | round: 2 }} lb</p>\n      {% endif %}\n    {% else %}\n      <p>Weight not available for variant: {{ variant.title }}</p>\n    {% endif %}\n  {% endfor %}"
+                        "custom_liquid": "{%- comment -%}\n  Weight display – inherits colour scheme & typography\n{%- endcomment -%}\n\n{%- for variant in product.variants -%}\n  {%- if variant.weight > 0 -%}\n    {%- assign weight_in_lb = variant.weight | divided_by: 453.592 -%}\n\n    {%- if weight_in_lb < 1 -%}\n      {%- assign weight_in_oz = variant.weight | times: 0.03527396 | ceil -%}\n      <p class=\"variant-weight variant-weight--oz\">{{ weight_in_oz }} oz</p>\n    {%- else -%}\n      <p class=\"variant-weight variant-weight--lb\">{{ weight_in_lb | round: 2 }} lb</p>\n    {%- endif -%}\n  {%- else -%}\n    <p class=\"variant-weight variant-weight--na\">Weight not available for variant: {{ variant.title }}</p>\n  {%- endif -%}\n{%- endfor -%}"
                       },
                       "blocks": {}
                     }
@@ -345,7 +345,7 @@
                   "type": "_accordion-row",
                   "settings": {
                     "heading": "Packaging & Thawing",
-                    "open_by_default": true,
+                    "open_by_default": false,
                     "icon": "none",
                     "width": 20
                   },
