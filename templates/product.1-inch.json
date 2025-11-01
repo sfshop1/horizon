@@ -266,7 +266,7 @@
               "settings": {
                 "icon": "caret",
                 "dividers": true,
-                "type_preset": "",
+                "type_preset": "h5",
                 "inherit_color_scheme": false,
                 "color_scheme": "scheme-7865b358-cd07-4948-b822-d8bb0ebe41e2",
                 "border": "none",
