@@ -595,6 +595,7 @@
     },
     "divider_L6978E": {
       "type": "divider",
+      "custom_css": [],
       "name": "t:names.divider_section",
       "settings": {
         "color_scheme": "",
