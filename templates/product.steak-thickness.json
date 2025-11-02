@@ -107,18 +107,6 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "review_QdTtrT": {
-                  "type": "review",
-                  "name": "t:names.product_review_stars",
-                  "settings": {
-                    "stars_style": "shaded",
-                    "show_number": true,
-                    "rating_color": "primary",
-                    "type_preset": "paragraph",
-                    "alignment": "left"
-                  },
-                  "blocks": {}
-                },
                 "text_xpVMaM": {
                   "type": "text",
                   "name": "t:names.title",
@@ -191,7 +179,6 @@
                 }
               },
               "block_order": [
-                "review_QdTtrT",
                 "text_xpVMaM",
                 "product_inventory_QNYafK",
                 "price_tVjtKg",
