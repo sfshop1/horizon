@@ -107,6 +107,12 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "yotpo_product_reviews_star_rating_wzydgD": {
+                  "type": "shopify://apps/yotpo-product-reviews/blocks/star-rating/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+                  "settings": {
+                    "product": "{{closest.product}}"
+                  }
+                },
                 "text_xpVMaM": {
                   "type": "text",
                   "name": "t:names.title",
@@ -179,6 +185,7 @@
                 }
               },
               "block_order": [
+                "yotpo_product_reviews_star_rating_wzydgD",
                 "text_xpVMaM",
                 "product_inventory_QNYafK",
                 "price_tVjtKg",
