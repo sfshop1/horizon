@@ -12,6 +12,12 @@
     "main": {
       "type": "product-information",
       "blocks": {
+        "yotpo_product_reviews_reviews_rBpePm": {
+          "type": "shopify://apps/yotpo-product-reviews/blocks/reviews/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
         "media-gallery": {
           "type": "_product-media-gallery",
           "static": true,
@@ -445,6 +451,9 @@
           ]
         }
       },
+      "block_order": [
+        "yotpo_product_reviews_reviews_rBpePm"
+      ],
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
