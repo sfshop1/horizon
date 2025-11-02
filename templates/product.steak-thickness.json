@@ -272,7 +272,7 @@
                 "icon": "caret",
                 "dividers": true,
                 "type_preset": "h5",
-                "inherit_color_scheme": false,
+                "inherit_color_scheme": true,
                 "color_scheme": "scheme-7865b358-cd07-4948-b822-d8bb0ebe41e2",
                 "border": "none",
                 "border_width": 1,
@@ -289,7 +289,7 @@
                   "settings": {
                     "heading": "DESCRIPTION",
                     "open_by_default": true,
-                    "icon": "none",
+                    "icon": "clipboard",
                     "width": 20
                   },
                   "blocks": {
