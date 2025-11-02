@@ -113,6 +113,32 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "text_TYhcB3": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>{{ closest.product.metafields.custom.online_inventory.value }}</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
                 "yotpo_product_reviews_star_rating_tdF6KB": {
                   "type": "shopify://apps/yotpo-product-reviews/blocks/star-rating/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
                   "settings": {
@@ -191,6 +217,7 @@
                 }
               },
               "block_order": [
+                "text_TYhcB3",
                 "yotpo_product_reviews_star_rating_tdF6KB",
                 "text_xpVMaM",
                 "product_inventory_QNYafK",
@@ -262,9 +289,9 @@
             "subscriptions_app_block_HWPQiK": {
               "type": "shopify://apps/subscriptions/blocks/app-block/a3bfe9ec-96f8-4508-a003-df608a36d2ad",
               "settings": {
-                "color_text_body": "#6D7175",
-                "dividers_color": "#8F8D8D",
-                "bacgkround_color": "#FFFFFF",
+                "color_text_body": "#6d7175",
+                "dividers_color": "#8f8d8d",
+                "bacgkround_color": "#ffffff",
                 "border_thickness": 1,
                 "border_radius": 7,
                 "subscription_policy_url": "",
