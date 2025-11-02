@@ -145,20 +145,6 @@
                   },
                   "blocks": {}
                 },
-                "product_inventory_a3rJFm": {
-                  "type": "product-inventory",
-                  "name": "t:names.product_inventory",
-                  "disabled": true,
-                  "settings": {
-                    "inventory_threshold": 0,
-                    "show_inventory_quantity": true,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
                 "price_HxxPyw": {
                   "type": "price",
                   "settings": {
@@ -193,7 +179,6 @@
               "block_order": [
                 "yotpo_product_reviews_star_rating_Vxbmdw",
                 "text_eU9d8t",
-                "product_inventory_a3rJFm",
                 "price_HxxPyw",
                 "custom_liquid_T9acK3"
               ]
