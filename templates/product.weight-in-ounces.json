@@ -278,7 +278,7 @@
                 "icon": "caret",
                 "dividers": true,
                 "type_preset": "h5",
-                "inherit_color_scheme": false,
+                "inherit_color_scheme": true,
                 "color_scheme": "scheme-7865b358-cd07-4948-b822-d8bb0ebe41e2",
                 "border": "none",
                 "border_width": 1,
@@ -295,7 +295,7 @@
                   "settings": {
                     "heading": "DESCRIPTION",
                     "open_by_default": true,
-                    "icon": "none",
+                    "icon": "clipboard",
                     "width": 20
                   },
                   "blocks": {
@@ -335,7 +335,7 @@
                   "settings": {
                     "heading": "JAR",
                     "open_by_default": true,
-                    "icon": "none",
+                    "icon": "bottle",
                     "width": 20
                   },
                   "blocks": {
@@ -351,52 +351,11 @@
                   "block_order": [
                     "custom_liquid_Utif7C"
                   ]
-                },
-                "accordion_row_GUMC78": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "PACKAGING & THAWING",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "text_EKqpgD": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<p>Every item we sell is vacuum packed to maintain freshness.  </p><p>Always thaw your meat before cooking.  If you need to quickly thaw, fill your kitchen sink with lukewarm water and place the meat—still in its vacuum packaging—into the water. In just 30-45 minutes, your meat will be thawed and ready to cook.</p>",
-                        "width": "fit-content",
-                        "max_width": "none",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_EKqpgD"
-                  ]
                 }
               },
               "block_order": [
                 "accordion_row_z4iDF3",
-                "accordion_row_QLiT4G",
-                "accordion_row_GUMC78"
+                "accordion_row_QLiT4G"
               ]
             }
           },
