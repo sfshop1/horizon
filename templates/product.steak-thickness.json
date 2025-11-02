@@ -359,7 +359,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>1 \"</p>",
+                        "text": "<p>{{ closest.product.metafields.custom.thickness.value }}</p>",
                         "width": "fit-content",
                         "max_width": "none",
                         "alignment": "left",
