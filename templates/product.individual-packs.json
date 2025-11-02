@@ -290,16 +290,16 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "accordion_row_qF4UDG": {
+                "accordion_row_MF3FpV": {
                   "type": "_accordion-row",
                   "settings": {
                     "heading": "DESCRIPTION",
                     "open_by_default": true,
-                    "icon": "none",
+                    "icon": "arrow",
                     "width": 20
                   },
                   "blocks": {
-                    "product_description_iCAgmt": {
+                    "product_description_7Ltceq": {
                       "type": "product-description",
                       "name": "t:names.product_description",
                       "settings": {
@@ -327,7 +327,7 @@
                     }
                   },
                   "block_order": [
-                    "product_description_iCAgmt"
+                    "product_description_7Ltceq"
                   ]
                 },
                 "accordion_row_jLdVCF": {
@@ -394,7 +394,7 @@
                 }
               },
               "block_order": [
-                "accordion_row_qF4UDG",
+                "accordion_row_MF3FpV",
                 "accordion_row_jLdVCF",
                 "accordion_row_GyYXq4"
               ]
