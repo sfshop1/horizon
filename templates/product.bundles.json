@@ -283,7 +283,7 @@
                   "settings": {
                     "heading": "DESCRIPTION",
                     "open_by_default": true,
-                    "icon": "arrow",
+                    "icon": "clipboard",
                     "width": 20
                   },
                   "blocks": {
@@ -323,7 +323,7 @@
                   "settings": {
                     "heading": "BUNDLE INCLUDES",
                     "open_by_default": true,
-                    "icon": "arrow",
+                    "icon": "check_box",
                     "width": 20
                   },
                   "blocks": {
@@ -345,7 +345,7 @@
                   "settings": {
                     "heading": "PACKAGING & THAWING",
                     "open_by_default": false,
-                    "icon": "washing",
+                    "icon": "snowflake",
                     "width": 20
                   },
                   "blocks": {
