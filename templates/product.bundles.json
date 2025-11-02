@@ -259,18 +259,6 @@
               },
               "block_order": []
             },
-            "subscriptions_app_block_q6GyYj": {
-              "type": "shopify://apps/subscriptions/blocks/app-block/a3bfe9ec-96f8-4508-a003-df608a36d2ad",
-              "settings": {
-                "color_text_body": "#6b5436",
-                "dividers_color": "#846741",
-                "bacgkround_color": "#ffffff",
-                "border_thickness": 1,
-                "border_radius": 10,
-                "subscription_policy_url": "",
-                "product": "{{closest.product}}"
-              }
-            },
             "accordion_axXQc8": {
               "type": "accordion",
               "name": "t:names.accordion",
@@ -405,7 +393,6 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
-            "subscriptions_app_block_q6GyYj",
             "accordion_axXQc8"
           ]
         }
