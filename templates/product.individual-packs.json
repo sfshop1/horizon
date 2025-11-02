@@ -192,8 +192,9 @@
                 "text_qpxWeT": {
                   "type": "text",
                   "name": "t:names.text",
+                  "disabled": true,
                   "settings": {
-                    "text": "<p>Conditional Pre-Order Message Here</p>",
+                    "text": "<p>Conditional Pre-Order Message Here<br/></p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
