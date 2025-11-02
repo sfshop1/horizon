@@ -335,7 +335,7 @@
                   "settings": {
                     "heading": "APPROXIMATE WEIGHT",
                     "open_by_default": true,
-                    "icon": "none",
+                    "icon": "arrow",
                     "width": 20
                   },
                   "blocks": {
@@ -357,7 +357,7 @@
                   "settings": {
                     "heading": "PACKAGING & THAWING",
                     "open_by_default": false,
-                    "icon": "none",
+                    "icon": "arrow",
                     "width": 20
                   },
                   "blocks": {
