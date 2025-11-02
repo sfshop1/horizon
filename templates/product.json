@@ -278,7 +278,7 @@
                 "icon": "caret",
                 "dividers": true,
                 "type_preset": "h5",
-                "inherit_color_scheme": false,
+                "inherit_color_scheme": true,
                 "color_scheme": "scheme-7865b358-cd07-4948-b822-d8bb0ebe41e2",
                 "border": "none",
                 "border_width": 1,
@@ -295,7 +295,7 @@
                   "settings": {
                     "heading": "DESCRIPTION",
                     "open_by_default": true,
-                    "icon": "none",
+                    "icon": "clipboard",
                     "width": 20
                   },
                   "blocks": {
@@ -329,74 +329,10 @@
                   "block_order": [
                     "product_description_rYqBXY"
                   ]
-                },
-                "accordion_row_kAB4tU": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "APPROXIMATE WEIGHT",
-                    "open_by_default": true,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "custom_liquid_R7yYfT": {
-                      "type": "custom-liquid",
-                      "name": "t:names.custom_liquid",
-                      "settings": {
-                        "custom_liquid": "{%- comment -%}\n  Weight display – inherits colour scheme & typography\n{%- endcomment -%}\n\n{%- for variant in product.variants -%}\n  {%- if variant.weight > 0 -%}\n    {%- assign weight_in_lb = variant.weight | divided_by: 453.592 -%}\n\n    {%- if weight_in_lb < 1 -%}\n      {%- assign weight_in_oz = variant.weight | times: 0.03527396 | ceil -%}\n      <p class=\"variant-weight variant-weight--oz\">{{ weight_in_oz }} oz</p>\n    {%- else -%}\n      <p class=\"variant-weight variant-weight--lb\">{{ weight_in_lb | round: 2 }} lb</p>\n    {%- endif -%}\n  {%- else -%}\n    <p class=\"variant-weight variant-weight--na\">Weight not available for variant: {{ variant.title }}</p>\n  {%- endif -%}\n{%- endfor -%}"
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "custom_liquid_R7yYfT"
-                  ]
-                },
-                "accordion_row_Lzhpaf": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "PACKAGING & THAWING",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "text_tiEWDP": {
-                      "type": "text",
-                      "name": "t:names.text",
-                      "settings": {
-                        "text": "<p>Every item we sell is vacuum packed to maintain freshness.  </p><p>Always thaw your meat before cooking.  If you need to quickly thaw, fill your kitchen sink with lukewarm water and place the meat—still in its vacuum packaging—into the water. In just 30-45 minutes, your meat will be thawed and ready to cook.</p>",
-                        "width": "fit-content",
-                        "max_width": "none",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "var(--color-foreground)",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_tiEWDP"
-                  ]
                 }
               },
               "block_order": [
-                "accordion_row_8RinFN",
-                "accordion_row_kAB4tU",
-                "accordion_row_Lzhpaf"
+                "accordion_row_8RinFN"
               ]
             }
           },
