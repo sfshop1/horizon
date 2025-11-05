@@ -1487,8 +1487,8 @@
                   "settings": {
                     "heading": "What makes Slabaugh Farms’ beef different from store-bought meat?",
                     "open_by_default": false,
-                    "icon": "arrow",
-                    "width": 30
+                    "icon": "none",
+                    "width": 12
                   },
                   "blocks": {
                     "text_LDtaJe": {
@@ -1550,7 +1550,7 @@
                   "settings": {
                     "heading": "How does farm-to-table delivery work?",
                     "open_by_default": false,
-                    "icon": "arrow",
+                    "icon": "none",
                     "width": 30
                   },
                   "blocks": {
@@ -1613,7 +1613,7 @@
                   "settings": {
                     "heading": "Why choose pasture-raised, grain-finished beef?",
                     "open_by_default": false,
-                    "icon": "arrow",
+                    "icon": "none",
                     "width": 30
                   },
                   "blocks": {
