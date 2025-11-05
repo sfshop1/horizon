@@ -151,11 +151,23 @@
         "enable_transparent_header_collection": false,
         "collection_color_scheme": "default"
       }
+    },
+    "custom_liquid_GfcLBf": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "{% render 'announcement-rotator',\n  use_scheme: true,\n  autoplay: true,\n  interval_ms: 4000,\n  show_arrows: false,\n  text1: 'Welcome to our store',  icon1: '.../sf_for_slider.png',\n  text2: 'Pickup available',      icon2: '.../pickup_icon.png',\n  text3: 'Shipping available',    icon3: '.../delivery_icon.png'\n%}",
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
     "header_announcements_tKcBLW",
     "custom_liquid_Ta8Fip",
-    "header_section"
+    "header_section",
+    "custom_liquid_GfcLBf"
   ]
 }
