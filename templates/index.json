@@ -1696,6 +1696,28 @@
     "section_zdbVNB": {
       "type": "section",
       "blocks": {
+        "image_eYEzVm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Indiana-Grown-Logo-White.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "custom",
+            "custom_width": 43,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 32,
+            "padding-block-start": 20,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "group_FEtzRB": {
           "type": "group",
           "settings": {
@@ -1706,9 +1728,9 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 1,
+            "gap": 0,
             "width": "custom",
-            "custom_width": 100,
+            "custom_width": 54,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
@@ -1742,8 +1764,8 @@
                 "link": "https://indianagrown.org/indiana-grown/find-local-businesses/member-profile/?id=1168",
                 "open_in_new_tab": true,
                 "style_class": "button",
-                "width": "custom",
-                "custom_width": 85,
+                "width": "fit-content",
+                "custom_width": 63,
                 "width_mobile": "fit-content",
                 "custom_width_mobile": 100
               },
@@ -1753,44 +1775,22 @@
           "block_order": [
             "button_3whMUc"
           ]
-        },
-        "image_eYEzVm": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Indiana-Grown-Logo-White.png",
-            "link": "",
-            "image_ratio": "adapt",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 32,
-            "padding-block-start": 20,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "group_FEtzRB",
-        "image_eYEzVm"
+        "image_eYEzVm",
+        "group_FEtzRB"
       ],
       "name": "t:names.image_with_text",
       "settings": {
-        "content_direction": "row",
+        "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
+        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 100,
+        "gap": 0,
         "section_width": "page-width",
         "section_height": "custom",
         "section_height_custom": 39,
@@ -1806,8 +1806,8 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 23,
+        "padding-block-end": 32
       }
     }
   },
