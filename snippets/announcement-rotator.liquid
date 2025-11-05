@@ -1,0 +1,263 @@
+{%- comment -%}
+  Snippet: announcement-rotator (Design-Pack-style slider, no external libs)
+
+  Goals:
+  • Looks like your example: single-row slide with circular icon + centered text.
+  • Container is 90% wide and centers; max width respects theme page width via var(--page-width, settings.page_width).
+  • Inherits surrounding section color scheme by default (use_scheme=true).
+  • Optional overrides for bg/fg, autoplay, interval, arrows.
+  • No external JS/CSS dependencies.
+
+  Example:
+  {% render 'announcement-rotator',
+     use_scheme: true,
+     autoplay: true,
+     interval_ms: 4000,
+     show_arrows: false,
+     arrow_color: '#121212',
+     text1: 'Local Pickup Now Available!',
+     icon1: '//slabaughfarms.com/cdn/shop/files/pickup_icon_...png',
+     text2: '<strong>Delivery</strong> on orders over $100',
+     icon2: '//slabaughfarms.com/cdn/shop/files/delivery_icon_...png',
+     text3: '<strong>WELCOME</strong> to Slabaugh Farms',
+     icon3: '//slabaughfarms.com/cdn/shop/files/sf_for_slider.png'
+  %}
+{%- endcomment -%}
+
+{%- assign _use_scheme   = use_scheme    | default: true -%}
+{%- assign _bg           = bg            | default: '#6b5436' -%}
+{%- assign _fg           = fg            | default: '#f5e8d3' -%}
+{%- assign _autoplay     = autoplay      | default: true -%}
+{%- assign _interval_ms  = interval_ms   | default: 3500 -%}
+{%- assign _show_arrows  = show_arrows   | default: false -%}
+{%- assign _arrow_color  = arrow_color   | default: '#121212' -%}
+{%- assign _tint_icons   = tint_icons    | default: false -%}
+
+{%- assign _text1        = text1 | default: 'Welcome to our store' -%}
+{%- assign _icon1        = icon1 | default: '' -%}
+{%- assign _text2        = text2 | default: 'Pickup available' -%}
+{%- assign _icon2        = icon2 | default: '' -%}
+{%- assign _text3        = text3 | default: 'Shipping available' -%}
+{%- assign _icon3        = icon3 | default: '' -%}
+
+{%- assign _epoch = 'now' | date: '%s' -%}
+{%- assign _ann_id = 'ann-' | append: _epoch -%}
+
+{%- if _tint_icons == true or _tint_icons == 'true' -%}
+  {%- assign _icon_filter = 'brightness(0) saturate(100%) invert(100%)' -%}
+{%- else -%}
+  {%- assign _icon_filter = 'none' -%}
+{%- endif -%}
+
+{%- assign _page_width_px = settings.page_width | default: 1200 -%}
+{%- if _page_width_px and _page_width_px contains 'px' -%}
+  {%- assign _page_width_css = _page_width_px -%}
+{%- else -%}
+  {%- assign _page_width_css = _page_width_px | append: 'px' -%}
+{%- endif -%}
+
+<div id="{{ _ann_id }}" class="dp-announcements-slider">
+  <div class="dp-sizer">
+    <div class="dp-slider" role="region" aria-label="Store announcements" aria-live="polite">
+      {%- assign _items = '' | split: ',' -%}
+      {%- assign _icons = '' | split: ',' -%}
+      {%- assign _items = _items | push: _text1 | push: _text2 | push: _text3 -%}
+      {%- assign _icons = _icons | push: _icon1 | push: _icon2 | push: _icon3 -%}
+
+      {%- for t in _items -%}
+        {%- assign src = _icons[forloop.index0] -%}
+        {%- if t != blank -%}
+          <div class="dp-slide">
+            <div class="dp-announcement">
+              <div class="dp-announcement-content">
+                <div class="dp-image dp-image--circle">
+                  {%- if src != blank -%}
+                    <img src="{{ src | escape }}" alt="" loading="lazy" decoding="async" width="42" height="42">
+                  {%- else -%}
+                    <span class="dp-image__placeholder" aria-hidden="true"></span>
+                  {%- endif -%}
+                </div>
+                <div class="dp-text dp-rte">
+                  {{ t }}
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if _show_arrows -%}
+      <button class="dp-nav dp-prev" aria-label="Previous announcement" type="button">
+        <svg class="dp-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M15.4 19.4L8 12l7.4-7.4 1.4 1.4L10.8 12l6 6-1.4 1.4z"/></svg>
+      </button>
+      <button class="dp-nav dp-next" aria-label="Next announcement" type="button">
+        <svg class="dp-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M8.6 4.6L16 12l-7.4 7.4-1.4-1.4 6-6-6-6 1.4-1.4z"/></svg>
+      </button>
+    {%- endif -%}
+  </div>
+
+  <style>
+    /* Wrapper colors: inherit scheme or use provided bg/fg */
+    #{{ _ann_id }}{
+      {% if _use_scheme %}
+        background: transparent;
+        color: inherit;
+      {% else %}
+        background: {{ _bg }};
+        color: {{ _fg }};
+      {% endif %}
+      --arrow-color: {{ _arrow_color }};
+    }
+
+    /* Sizer = 90% width centered; max width honors theme page width */
+    #{{ _ann_id }} .dp-sizer{
+      width: 90%;
+      max-width: var(--page-width, {{ _page_width_css }});
+      margin: 0 auto;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      position: relative;
+    }
+
+    /* Slider track */
+    #{{ _ann_id }} .dp-slider{
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Each slide takes full width; we animate the track via JS */
+    #{{ _ann_id }} .dp-slide{
+      width: 100%;
+      flex: 0 0 100%;
+      display: block;
+    }
+
+    #{{ _ann_id }} .dp-announcement{
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+
+    #{{ _ann_id }} .dp-announcement-content{
+      max-width: 95%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      color: {% if _use_scheme %}currentColor{% else %}{{ _fg }}{% endif %};
+      min-height: 42px;
+    }
+
+    #{{ _ann_id }} .dp-image{
+      overflow: hidden;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+    }
+    #{{ _ann_id }} .dp-image--circle{ border-radius: 50%; }
+    #{{ _ann_id }} .dp-image img{
+      width: 42px; height: 42px; object-fit: cover; display: block; filter: {{ _icon_filter }};
+    }
+    #{{ _ann_id }} .dp-image__placeholder{
+      width: 42px; height: 42px; display: block; border-radius: 50%; background: rgba(0,0,0,0.15);
+    }
+
+    #{{ _ann_id }} .dp-text{
+      text-align: left;
+      line-height: 1.4;
+      font-size: clamp(12px, 2.5vw, 14px);
+      /* Example’s color was #f5e8d3 — we inherit or use fg */
+      color: {% if _use_scheme %}currentColor{% else %}{{ _fg }}{% endif %};
+    }
+
+    /* Simple arrow buttons (optional) */
+    #{{ _ann_id }} .dp-nav{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24px; height: 24px;
+      border: 0; background: transparent; padding: 0;
+      cursor: pointer;
+    }
+    #{{ _ann_id }} .dp-prev{ left: -28px; }
+    #{{ _ann_id }} .dp-next{ right: -28px; }
+    #{{ _ann_id }} .dp-icon path{ fill: var(--arrow-color); }
+
+    /* Mobile tweaks to match the example ratios a bit tighter */
+    @media (max-width: 480px){
+      #{{ _ann_id }} .dp-sizer{
+        width: 90%; max-width: 90%;
+        padding-top: 2px; padding-bottom: 2px;
+      }
+      #{{ _ann_id }} .dp-announcement-content{ gap: 1em; }
+      #{{ _ann_id }} .dp-prev{ left: -1.8em; }
+      #{{ _ann_id }} .dp-next{ right: -1.8em; }
+    }
+  </style>
+
+  <script>
+    (function(){
+      var root = document.getElementById('{{ _ann_id }}');
+      if(!root) return;
+
+      var track = root.querySelector('.dp-slider');
+      var slides = Array.prototype.slice.call(root.querySelectorAll('.dp-slide'));
+      if(!slides.length) return;
+
+      // Build a simple horizontal track
+      var inner = document.createElement('div');
+      inner.className = 'dp-track';
+      inner.style.display = 'flex';
+      inner.style.willChange = 'transform';
+      inner.style.transition = 'transform 400ms ease';
+      while(track.firstChild){ inner.appendChild(track.firstChild); }
+      track.appendChild(inner);
+
+      var index = 0;
+      var count = slides.length;
+      var autoplay = {{ _autoplay | json }};
+      var interval = {{ _interval_ms | plus: 0 }};
+      var timer = null;
+
+      function go(i){
+        index = (i + count) % count;
+        var x = -index * 100;
+        inner.style.transform = 'translateX(' + x + '%)';
+      }
+
+      function start(){
+        if(!autoplay) return;
+        stop();
+        timer = setInterval(function(){ go(index + 1); }, Math.max(1500, interval));
+      }
+      function stop(){
+        if(timer){ clearInterval(timer); timer = null; }
+      }
+
+      // Buttons (optional)
+      var prev = root.querySelector('.dp-prev');
+      var next = root.querySelector('.dp-next');
+      if(prev){ prev.addEventListener('click', function(){ stop(); go(index - 1); start(); }); }
+      if(next){ next.addEventListener('click', function(){ stop(); go(index + 1); start(); }); }
+
+      // Pause on hover for desktop
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', start);
+
+      // React on resize (keep current index)
+      window.addEventListener('resize', function(){ go(index); });
+
+      // Reduced motion: disable autoplay
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduced) autoplay = false;
+
+      // init
+      go(0);
+      start();
+    })();
+  </script>
+</div>
