@@ -1690,7 +1690,7 @@
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "padding-block-start": 20,
-        "padding-block-end": 8
+        "padding-block-end": 20
       }
     },
     "section_zdbVNB": {
@@ -1711,7 +1711,7 @@
             "border_width": 1,
             "border_opacity": 100,
             "border_radius": 32,
-            "padding-block-start": 0,
+            "padding-block-start": 20,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
