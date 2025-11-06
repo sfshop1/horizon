@@ -550,7 +550,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Recipes",
-                    "link": "shopify://collections/beef-bundles",
+                    "link": "shopify://pages/recipes",
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "fit-content",
