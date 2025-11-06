@@ -1470,7 +1470,7 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-1",
-            "padding-block-start": 36,
+            "padding-block-start": 20,
             "padding-block-end": 27,
             "padding-inline-start": 20,
             "padding-inline-end": 20
@@ -1689,7 +1689,7 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 22,
+        "gap": 55,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 0,
