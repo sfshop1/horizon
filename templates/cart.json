@@ -352,7 +352,7 @@
             "text_H7zeAy": {
               "type": "text",
               "settings": {
-                "text": "<p>We offer <strong>Pickup</strong>, <strong>Local Delivery</strong>, and <strong>Shipping</strong>.   Select the option that works best for you at checkout!</p>",
+                "text": "<p>We offer <strong>Pickup</strong>, <strong>Local Delivery</strong>, and <strong>Shipping</strong>.   </p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
