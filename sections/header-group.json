@@ -61,6 +61,7 @@
         "announcement_JiMrDy",
         "announcement_mQhjPx"
       ],
+      "disabled": true,
       "name": "t:names.announcement_bar",
       "settings": {
         "speed": 5,
