@@ -1486,7 +1486,7 @@
                   "type": "_accordion-row",
                   "settings": {
                     "heading": "What makes Slabaugh Farms’ beef different from store-bought meat?",
-                    "open_by_default": false,
+                    "open_by_default": true,
                     "icon": "none",
                     "width": 30
                   },
@@ -1495,7 +1495,7 @@
                       "type": "text",
                       "settings": {
                         "text": "<p>Our pasture-raised, grain-finished beef is raised without added hormones or antibiotics, ensuring a rich, natural flavor and superior tenderness. Plus, buying directly from our farm means you’re getting the freshest, highest-quality cuts—straight from our farm to your plate!</p>",
-                        "width": "100%",
+                        "width": "fit-content",
                         "max_width": "none",
                         "alignment": "left",
                         "type_preset": "custom",
@@ -1549,7 +1549,7 @@
                   "type": "_accordion-row",
                   "settings": {
                     "heading": "How does farm-to-table delivery work?",
-                    "open_by_default": false,
+                    "open_by_default": true,
                     "icon": "none",
                     "width": 30
                   },
@@ -1612,7 +1612,7 @@
                   "type": "_accordion-row",
                   "settings": {
                     "heading": "Why choose pasture-raised, grain-finished beef?",
-                    "open_by_default": false,
+                    "open_by_default": true,
                     "icon": "none",
                     "width": 30
                   },
@@ -1668,12 +1668,12 @@
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "flex-start",
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 0,
+        "gap": 22,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 0,
@@ -1689,8 +1689,8 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 20,
-        "padding-block-end": 20
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "section_zdbVNB": {
