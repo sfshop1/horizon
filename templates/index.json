@@ -1286,7 +1286,7 @@
             "background_color": "#00000026",
             "corner_radius": 0,
             "padding-block-start": 0,
-            "padding-block-end": 0,
+            "padding-block-end": 19,
             "padding-inline-start": 14,
             "padding-inline-end": 0
           },
@@ -1367,6 +1367,18 @@
             "padding-inline-end": 40
           },
           "blocks": {
+            "icon_37W8BV": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "none",
+                "image_upload": "shopify://shop_images/website_favicon.png",
+                "width": 76,
+                "link": "",
+                "open_in_new_tab": false
+              },
+              "blocks": {}
+            },
             "text_Xtteic": {
               "type": "text",
               "settings": {
@@ -1420,6 +1432,7 @@
             }
           },
           "block_order": [
+            "icon_37W8BV",
             "text_Xtteic",
             "text_Gjtmjj"
           ]
@@ -1488,6 +1501,7 @@
                     "heading": "What makes Slabaugh Farms’ beef different from store-bought meat?",
                     "open_by_default": true,
                     "icon": "none",
+                    "image_upload": "shopify://shop_images/favico.png",
                     "width": 30
                   },
                   "blocks": {
@@ -1551,6 +1565,7 @@
                     "heading": "How does farm-to-table delivery work?",
                     "open_by_default": true,
                     "icon": "none",
+                    "image_upload": "shopify://shop_images/favico.png",
                     "width": 30
                   },
                   "blocks": {
@@ -1614,6 +1629,7 @@
                     "heading": "Why choose pasture-raised, grain-finished beef?",
                     "open_by_default": true,
                     "icon": "none",
+                    "image_upload": "shopify://shop_images/favico.png",
                     "width": 30
                   },
                   "blocks": {
