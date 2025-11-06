@@ -16,7 +16,7 @@
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
-            "image_1": "shopify://shop_images/black_on_tri_tip_application.jpg",
+            "image_1": "shopify://shop_images/HCC176P12_Red_shaker_Canon-0959-Edit_1.jpg",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -83,7 +83,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
-                    "type_preset": "rte",
+                    "type_preset": "h1",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
