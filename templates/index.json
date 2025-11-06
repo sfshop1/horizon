@@ -499,11 +499,11 @@
                 "text_Vf3Xgh": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Premium Pasture Raised Beef</p>",
+                    "text": "<p>Explore Delicious Grilling Recipes</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
-                    "type_preset": "h1",
+                    "type_preset": "h2",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
@@ -524,7 +524,7 @@
                 "text_jRzzqD": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Raised with care on our fourth-generation family farm!</p>",
+                    "text": "<p>Get Inspired</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -549,7 +549,7 @@
                 "button_WLUBXC": {
                   "type": "button",
                   "settings": {
-                    "label": "Indiana Grown",
+                    "label": "Recipes",
                     "link": "shopify://collections/beef-bundles",
                     "open_in_new_tab": true,
                     "style_class": "button",
