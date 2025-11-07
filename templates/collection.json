@@ -239,7 +239,7 @@
       "custom_css": [],
       "settings": {
         "layout_type": "grid",
-        "product_card_size": "medium",
+        "product_card_size": "small",
         "mobile_product_card_size": "small",
         "enable_infinite_scroll": true,
         "products_per_page": 24,
