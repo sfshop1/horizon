@@ -123,7 +123,7 @@
       "custom_css": [],
       "settings": {
         "logo_position": "left",
-        "menu_position": "left",
+        "menu_position": "center",
         "menu_row": "top",
         "show_search": true,
         "search_position": "right",
