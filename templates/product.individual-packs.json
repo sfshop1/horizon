@@ -148,7 +148,6 @@
                 "product_inventory_QNYafK": {
                   "type": "product-inventory",
                   "name": "t:names.product_inventory",
-                  "disabled": true,
                   "settings": {
                     "inventory_threshold": 0,
                     "show_inventory_quantity": true,
