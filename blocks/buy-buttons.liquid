@@ -63,6 +63,18 @@
           ref="variantId"
           value="{{ product.selected_or_first_available_variant.id }}"
         >
+                  {%- comment %}AUTO-ADD BACKORDER + LOCATIONS AS LINE PROPERTIES{% endcomment -%}
+        {%- if product.metafields.custom.pre_order != blank -%}
+          <input type="hidden"
+                 name="properties[Backorder Note]"
+                 value="{{ product.metafields.custom.backorder_message | escape }}">
+        {%- endif -%}
+
+        {%- if product.metafields.custom.locations != blank -%}
+          <input type="hidden"
+                 name="properties[Pickup Locations]"
+                 value="{{ product.metafields.custom.pre_order_message | escape }}">
+        {%- endif -%}
         {%- if block_settings.gift_card_form and product.gift_card? -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section, block: block -%}
         {%- endif -%}
