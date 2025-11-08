@@ -53,7 +53,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p></p><p>{{ closest.page.content }}</p>",
+            "text": "<p></p>{{ closest.page.content }}",
             "width": "fit-content",
             "max_width": "none",
             "alignment": "left",
