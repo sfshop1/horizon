@@ -74,6 +74,14 @@
     "cart-section": {
       "type": "main-cart",
       "blocks": {
+        "custom_liquid_MBQptE": {
+          "type": "custom-liquid",
+          "name": "t:names.custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"cart-notices\">\n  {% for item in cart.items %}\n    {% assign item_id = item.key | append: '-notice' %}\n    <div id=\"{{ item_id }}\" class=\"item-notice\" style=\"display: none;\"> <!-- Hidden by default; show via JS or CSS if needed -->\n      \n      {% if item.variant.inventory_quantity <= 0 and item.variant.inventory_policy == 'continue' %}\n        \n        {% comment %} Backorder message as red badge {% endcomment %}\n        {% if item.variant.metafields.custom.backorder_message != blank %}\n          <p class=\"backorder-notice\">{{ item.variant.metafields.custom.pre-order}}</p>\n        {% endif %}\n        \n        {% comment %} Locations message {% endcomment %}\n        {% if item.variant.metafields.custom.locations != blank %}\n          <p class=\"locations-notice\">Stock Status: {{ item.variant.metafields.custom.locations }}</p>\n        {% endif %}\n        \n      {% endif %}\n      \n    </div>\n  {% endfor %}\n</div>\n\n{% comment %} Optional: Simple JS to show notices (add to a script tag or asset file) {% endcomment %}\n<script>\n  document.addEventListener('DOMContentLoaded', function() {\n    // This assumes your cart items have matching IDs; adjust as needed\n    const items = document.querySelectorAll('.cart-item'); // Target your cart item elements\n    items.forEach((item, index) => {\n      const notice = document.getElementById('cart-item-' + (index + 1) + '-notice'); // Customize ID matching\n      if (notice && notice.innerHTML.trim() !== '') {\n        notice.style.display = 'block';\n        item.appendChild(notice); // Or insertAfter for positioning\n      }\n    });\n  });\n</script>"
+          },
+          "blocks": {}
+        },
         "cart-page-title": {
           "type": "_cart-title",
           "static": true,
@@ -119,6 +127,9 @@
           "blocks": {}
         }
       },
+      "block_order": [
+        "custom_liquid_MBQptE"
+      ],
       "custom_css": [],
       "settings": {
         "section_width": "page-width",
