@@ -63,15 +63,16 @@
           ref="variantId"
           value="{{ product.selected_or_first_available_variant.id }}"
         >
-{%- comment %}PRE-ORDER + LOCATION MESSAGE – ULTRA SIMPLE{% endcomment -%}
+{%- comment %}PRE-ORDER + LOCATION MESSAGE BY ID – FINAL VERSION{% endcomment -%}
 
 {%- if product.metafields.custom.pre_order != blank -%}
   <input type="hidden" name="properties[Note]" 
          value="{{ product.metafields.custom.pre_order | escape }}">
 
-  {%- comment %}YOUR LOCATION'S pre_order_message – CHANGE "Downtown" TO YOUR LOCATION NAME{% endcomment -%}
-  {%- assign your_location = shop.locations | where: "name", "Farm" | first -%}
-  {%- assign location_msg = your_location.metafields.custom.pre_order_message.value -%}
+  {%- assign target_location_id = 75949539411 -%}
+
+  {%- assign target_location = shop.locations | where: "id", target_location_id | first -%}
+  {%- assign location_msg = target_location.metafields.custom.pre_order_message.value -%}
   {%- if location_msg != blank -%}
     <input type="hidden" name="properties[Pickup Locations]" 
            value="{{ location_msg | escape }}">
