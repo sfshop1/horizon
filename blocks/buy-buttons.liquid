@@ -63,18 +63,31 @@
           ref="variantId"
           value="{{ product.selected_or_first_available_variant.id }}"
         >
-                  {%- comment %}AUTO-ADD BACKORDER + LOCATIONS AS LINE PROPERTIES{% endcomment -%}
-        {%- if product.metafields.custom.pre_order != blank -%}
-          <input type="hidden"
-                 name="properties[Note]"
-                 value="{{ product.metafields.custom.pre_order | escape }}">
-        {%- endif -%}
+{%- comment %}PRE-ORDER + LOCATION MESSAGE – ONLY WHEN PRE-ORDER EXISTS{% endcomment -%}
 
-        {%- if product.metafields.custom.pre_order_message != blank -%}
-          <input type="hidden"
-                 name="properties[Pickup Locations]"
-                 value="{{ product.metafields.custom.pre_order_message | escape }}">
-        {%- endif -%}
+{%- assign show_location_message = false -%}
+
+{%- if product.metafields.custom.pre_order != blank -%}
+  <input type="hidden" name="properties[Note]" value="{{ product.metafields.custom.pre_order | escape }}">
+  {%- assign show_location_message = true -%}
+{%- endif -%}
+
+{%- assign target_location_name = "Farm" -%}   {# CHANGE THIS TO YOUR EXACT LOCATION NAME #}
+
+{%- if show_location_message -%}
+  {%- assign variant = product.selected_or_first_available_variant -%}
+  {%- for availability in variant.store_availabilities -%}
+    {%- if availability.location.name == target_location_name -%}
+      {%- assign msg = availability.location.metafields.custom.pre_order_message.value -%}
+      {%- if msg != blank -%}
+        <input type="hidden" name="properties[Pickup Locations]" value="{{ msg | escape }}">
+      {%- endif -%}
+      {%- break -%}   {# stop after first match #}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- assign _ = target_location_name -%}  {# removes unused-assign warning #}
         {%- if block_settings.gift_card_form and product.gift_card? -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section, block: block -%}
         {%- endif -%}
