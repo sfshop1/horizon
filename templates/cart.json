@@ -9,18 +9,18 @@
  */
 {
   "sections": {
-    "section_ULCVhq": {
-      "type": "section",
+    "cart-section": {
+      "type": "main-cart",
       "blocks": {
-        "text_VdN9jc": {
+        "text_77GimG": {
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>We offer <strong>Farm Pickup</strong>, <strong>Local Delivery</strong>, and <strong>Shipping</strong>. Select the option that works best for you at checkout!</p>",
+            "text": "<p>We offer <strong>Farm Pickup</strong>, <strong>Local Delivery</strong>, and <strong>Shipping</strong>.  Select the option that works best for you at checkout!</p>",
             "width": "fit-content",
             "max_width": "none",
             "alignment": "right",
-            "type_preset": "h5",
+            "type_preset": "custom",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
             "line_height": "normal",
@@ -28,52 +28,16 @@
             "case": "none",
             "wrap": "pretty",
             "color": "var(--color-foreground)",
-            "background": true,
+            "background": false,
             "background_color": "#c1272d",
             "corner_radius": 34,
-            "padding-block-start": 0,
+            "padding-block-start": 12,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_VdN9jc"
-      ],
-      "name": "t:names.rich_text_section",
-      "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-start",
-        "gap": 25,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-beaf3cc4-3a03-449e-81eb-5ec7308c67e8",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 20,
-        "padding-block-end": 19
-      }
-    },
-    "cart-section": {
-      "type": "main-cart",
-      "blocks": {
+        },
         "cart-page-title": {
           "type": "_cart-title",
           "static": true,
@@ -119,6 +83,9 @@
           "blocks": {}
         }
       },
+      "block_order": [
+        "text_77GimG"
+      ],
       "custom_css": [],
       "settings": {
         "section_width": "page-width",
@@ -320,11 +287,42 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "section_ULCVhq": {
+      "type": "section",
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "flex-start",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-beaf3cc4-3a03-449e-81eb-5ec7308c67e8",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 20,
+        "padding-block-end": 19
+      }
     }
   },
   "order": [
-    "section_ULCVhq",
     "cart-section",
-    "product_list_NNFgcy"
+    "product_list_NNFgcy",
+    "section_ULCVhq"
   ]
 }
