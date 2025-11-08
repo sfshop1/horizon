@@ -811,7 +811,7 @@
             "text_c8jrbM": {
               "type": "text",
               "settings": {
-                "text": "<p>Slabaugh Farms is a fourth-generation farm.  Specializing in corn, soybeans, and hay and a strong focus on beef cattle production. Their purebred Angus herd produces high-quality breeding stock and freezer beef, providing customers with premium farm-to-table meat.</p>",
+                "text": "<p>Slabaugh Farms is a fourth-generation farm.  Specializing in corn, soybeans, and hay and a strong focus on beef cattle production. Our purebred Angus herd produces high-quality breeding stock and freezer beef, providing customers with premium farm-to-table meat.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -828,7 +828,7 @@
                 "corner_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
-                "padding-inline-start": 10,
+                "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
               "blocks": {}
