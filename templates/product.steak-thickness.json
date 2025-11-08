@@ -185,7 +185,7 @@
                   "type": "custom-liquid",
                   "name": "t:names.custom_liquid",
                   "settings": {
-                    "custom_liquid": "{% assign total_inventory = 0 %}\n{% assign has_deny_policy = false %}\n\n{%- comment -%}\n  Sum up the built-in inventory_quantity for all variants.\n  Also mark \"deny policy\" if any variant can't oversell and has 0 stock.\n{%- endcomment -%}\n{% for variant in product.variants %}\n  {% assign variant_qty = variant.inventory_quantity | default: 0 %}\n  {% assign total_inventory = total_inventory | plus: variant_qty %}\n\n  {% if variant.inventory_policy == 'deny' and variant_qty <= 0 %}\n    {% assign has_deny_policy = true %}\n  {% endif %}\n{% endfor %}\n\n<style>\n  .product-stock-badge {\n    display: inline-block;\n    border-radius: 9999px; /* pill shape */\n    font-size: 12px;\n    font-weight: 600;\n    padding: 4px 10px;\n    color: #fff;\n    letter-spacing: 0.02em;\n    vertical-align: middle;\n  }\n  .product-stock-badge.soldout {\n    background-color: #9e9e9e;\n  }\n  .product-stock-badge.preorder {\n    background-color: #6b5436;\n  }\n  .product-stock-badge.available {\n    background-color: #4caf50;\n  }\n</style>\n\n{%- comment -%}\n  Display badges based on inventory status:\n  - Sold Out: deny policy + no stock\n  - Pre-Order: allow policy + no stock\n  - Available: has stock remaining\n{%- endcomment -%}\n{% if has_deny_policy %}\n  <span class=\"product-stock-badge soldout\">Sold Out</span>\n{% elsif total_inventory <= 0 %}\n  <span class=\"product-stock-badge preorder\">Pre-Order</span>\n{% else %}\n  <span class=\"product-stock-badge available\">Remaining: {{ total_inventory }}</span>\n{% endif %}"
+                    "custom_liquid": "{% assign total_inventory = 0 %}\n{% assign has_deny_policy = false %}\n\n{% for variant in product.variants %}\n  {% assign variant_qty = variant.inventory_quantity | default: 0 %}\n  {% assign total_inventory = total_inventory | plus: variant_qty %}\n  {% if variant.inventory_policy == 'deny' and variant_qty <= 0 %}\n    {% assign has_deny_policy = true %}\n  {% endif %}\n{% endfor %}\n\n<style>\n  .product-stock-badge {\n    display: inline-block;\n    border-radius: 9999px;\n    font-size: 12px;\n    font-weight: 600;\n    padding: 4px 10px;\n    color: #fff;\n    letter-spacing: 0.02em;\n    margin: 4px 0;\n  }\n  .product-stock-badge.soldout   { background-color: #9e9e9e; }\n  .product-stock-badge.preorder  { background-color: #6b5436; }\n  .product-stock-badge.available { background-color: #4caf50; }\n  .product-stock-badge.shop-msg  { background-color: #dc3545; }\n</style>\n\n<div style=\"margin:16px 0; line-height:1.8;\">\n\n  {% if has_deny_policy %}\n    <div><span class=\"product-stock-badge soldout\">Sold Out</span></div>\n\n  {% elsif total_inventory <= 0 %}\n    <div><span class=\"product-stock-badge preorder\">Pre-Order</span></div>\n    \n    {%- assign shop_message = shop.metafields.custom.pre_order_message.value -%}\n    {%- if shop_message != blank -%}\n      <div><span class=\"product-stock-badge shop-msg\">{{ shop_message }}</span></div>\n    {%- endif -%}\n    \n  {% else %}\n    <div><span class=\"product-stock-badge available\">Remaining: {{ total_inventory }}</span></div>\n  {% endif %}\n\n</div>"
                   },
                   "blocks": {}
                 }
@@ -197,18 +197,6 @@
                 "price_tVjtKg",
                 "custom_liquid_EJeAk8"
               ]
-            },
-            "divider_VJhene": {
-              "type": "_divider",
-              "name": "t:names.divider",
-              "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "width_percent": 100,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
             },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
@@ -443,7 +431,6 @@
           },
           "block_order": [
             "group_icgrde",
-            "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
             "subscriptions_app_block_q6GyYj",
