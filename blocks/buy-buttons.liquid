@@ -66,7 +66,7 @@
 {%- comment %}PRE-ORDER + SHOP MESSAGE – WORKS 100%{% endcomment -%}
 
 {%- if product.metafields.custom.pre_order != blank -%}
-  <input type="hidden" name="properties[_]" 
+  <input type="hidden" name="properties[NOTE]" 
          value="{{ product.metafields.custom.pre_order | escape }}">
 
   {%- comment %}Your store-wide pickup message – stored on the SHOP{% endcomment -%}
