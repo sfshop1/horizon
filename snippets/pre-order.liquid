@@ -1,8 +1,0 @@
-{%- comment %}snippets/preorder-badge.liquid{% endcomment -%}
-{%- if cart.attributes.pre-order or shop.metafields.custom.pre_order_message.value -%}
-  <div style="margin:20px 0; text-align:center;">
-    <span style="background:#dc3545; color:white; padding:10px 20px; border-radius:8px; font-size:15px; font-weight:600; display:inline-block; box-shadow:0 3px 6px rgba(0,0,0,0.2);">
-      {{ cart.attributes.pre-order | default: shop.metafields.custom.pre_order_message.value }}
-    </span>
-  </div>
-{%- endif -%}
