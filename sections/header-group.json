@@ -105,7 +105,7 @@
             "color_scheme": "scheme-5",
             "type_font_primary_size": "1.125rem",
             "menu_font_style": "inverse",
-            "type_font_primary_link": "accent",
+            "type_font_primary_link": "heading",
             "type_case_primary_link": "uppercase",
             "menu_style": "featured_products",
             "featured_products_aspect_ratio": "1 / 1",
