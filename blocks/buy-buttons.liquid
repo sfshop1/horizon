@@ -63,7 +63,7 @@
           ref="variantId"
           value="{{ product.selected_or_first_available_variant.id }}"
         >
-{%- comment %}PRE-ORDER + LOCATION MESSAGE – ONLY WHEN PRE-ORDER EXISTS{% endcomment -%}
+{%- comment %}PRE-ORDER + LOCATION MESSAGE – CLEAN & FINAL{% endcomment -%}
 
 {%- assign show_location_message = false -%}
 
@@ -72,20 +72,20 @@
   {%- assign show_location_message = true -%}
 {%- endif -%}
 
-{%- assign target_location_name = "Farm" -%}   {# CHANGE THIS TO YOUR EXACT LOCATION NAME #}
-
 {%- if show_location_message -%}
+  {%- assign target_location = "Farm" -%}   {# CHANGE THIS TO YOUR EXACT LOCATION NAME #}
   {%- assign variant = product.selected_or_first_available_variant -%}
   {%- for availability in variant.store_availabilities -%}
-    {%- if availability.location.name == target_location_name -%}
+    {%- if availability.location.name == target_location -%}
       {%- assign msg = availability.location.metafields.custom.pre_order_message.value -%}
       {%- if msg != blank -%}
         <input type="hidden" name="properties[]" value="{{ msg | escape }}">
       {%- endif -%}
-      {%- break -%}   {# stop after first match #}
+      {%- break -%}
     {%- endif -%}
   {%- endfor -%}
 {%- endif -%}
+
         {%- if block_settings.gift_card_form and product.gift_card? -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section, block: block -%}
         {%- endif -%}
