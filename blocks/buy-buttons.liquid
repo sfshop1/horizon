@@ -72,7 +72,7 @@
   {%- comment %}Your store-wide pickup message – stored on the SHOP{% endcomment -%}
   {%- assign shop_message = shop.metafields.custom.pre_order_message.value -%}
   {%- if shop_message != blank -%}
-    <input type="hidden" name="properties[Fullfilment]" 
+    <input type="hidden" name="properties[Fulfillment]" 
            value="{{ shop_message | escape }}">
   {%- endif -%}
 {%- endif -%}
