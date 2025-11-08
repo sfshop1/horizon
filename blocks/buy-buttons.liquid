@@ -70,7 +70,7 @@
   
   {%- assign shop_message = shop.metafields.custom.pre_order_message.value -%}
   {%- if shop_message != blank -%}
-    <input type="hidden" name="properties[Pickup Locations]" 
+    <input type="hidden" name="properties[Pre-Order Now]" 
            value="{{ shop_message | escape }}">
   {%- endif -%}
 {%- endif -%}
