@@ -73,7 +73,7 @@
 {%- endif -%}
 
 {%- if show_location_message -%}
-  {%- assign target_location = "Farm" -%}   {# CHANGE THIS TO YOUR EXACT LOCATION NAME #}
+  {%- assign target_location = "Farm" -%} 
   {%- assign variant = product.selected_or_first_available_variant -%}
   {%- for availability in variant.store_availabilities -%}
     {%- if availability.location.name == target_location -%}
