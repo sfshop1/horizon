@@ -86,8 +86,6 @@
     {%- endif -%}
   {%- endfor -%}
 {%- endif -%}
-
-{%- assign _ = target_location_name -%}  {# removes unused-assign warning #}
         {%- if block_settings.gift_card_form and product.gift_card? -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section, block: block -%}
         {%- endif -%}
