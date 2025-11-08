@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>We offer <strong>Farm Pickup</strong>, <strong>Local Delivery</strong>, and <strong>Shipping</strong>.  Select the option that works best for you at checkout!</p>",
+            "text": "<p>We offer <strong>Farm Pickup</strong>, <strong>Local Delivery</strong>, and <strong>Shipping</strong>.   Select the option that works best for you at checkout!</p>",
             "width": "fit-content",
             "max_width": "none",
             "alignment": "right",
