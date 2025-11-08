@@ -70,7 +70,7 @@
          value="{{ product.metafields.custom.pre_order | escape }}">
 
   {%- comment %}YOUR LOCATION'S pre_order_message – CHANGE "Downtown" TO YOUR LOCATION NAME{% endcomment -%}
-  {%- assign your_location = shop.locations | where: "name", "Downtown" | first -%}
+  {%- assign your_location = shop.locations | where: "name", "Farm" | first -%}
   {%- assign location_msg = your_location.metafields.custom.pre_order_message.value -%}
   {%- if location_msg != blank -%}
     <input type="hidden" name="properties[Pickup Locations]" 
