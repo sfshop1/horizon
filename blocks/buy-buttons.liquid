@@ -67,10 +67,10 @@
         {%- if product.metafields.custom.pre_order != blank -%}
           <input type="hidden"
                  name="properties[Backorder Note]"
-                 value="{{ product.metafields.custom.backorder_message | escape }}">
+                 value="{{ product.metafields.custom.pre_order | escape }}">
         {%- endif -%}
 
-        {%- if product.metafields.custom.locations != blank -%}
+        {%- if product.metafields.custom.pre_order_message != blank -%}
           <input type="hidden"
                  name="properties[Pickup Locations]"
                  value="{{ product.metafields.custom.pre_order_message | escape }}">
