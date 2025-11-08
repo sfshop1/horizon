@@ -63,16 +63,14 @@
           ref="variantId"
           value="{{ product.selected_or_first_available_variant.id }}"
         >
-{%- comment %}PRE-ORDER + SHOP MESSAGE – WORKS 100%{% endcomment -%}
+{%- comment %}TRIGGER SHOP MESSAGE – NO PRE-ORDER TEXT IN CART{% endcomment -%}
 
 {%- if product.metafields.custom.pre_order != blank -%}
-  <input type="hidden" name="properties[NOTE]" 
-         value="{{ product.metafields.custom.pre_order | escape }}">
-
-  {%- comment %}Your store-wide pickup message – stored on the SHOP{% endcomment -%}
+  {%- comment %}We only use this to KNOW it's a pre-order product{% endcomment -%}
+  
   {%- assign shop_message = shop.metafields.custom.pre_order_message.value -%}
   {%- if shop_message != blank -%}
-    <input type="hidden" name="properties[Fulfillment]" 
+    <input type="hidden" name="properties[Pickup Locations]" 
            value="{{ shop_message | escape }}">
   {%- endif -%}
 {%- endif -%}
