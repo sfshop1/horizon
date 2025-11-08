@@ -16,7 +16,6 @@
 
       <div class="cart-page__items">
         {%- content_for 'block', id: 'cart-page-items', type: '_cart-products' %}
-        {%- render 'pre-order' -%}
       </div>
 
       {%- unless cart.empty? -%}
