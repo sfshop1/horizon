@@ -39,7 +39,7 @@
             "zoom": true,
             "video_loop": false,
             "hide_variants": true,
-            "padding-block-start": 10,
+            "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
@@ -339,7 +339,7 @@
         "limit_details_width": false,
         "gap": 24,
         "color_scheme": "",
-        "padding-block-start": 0,
+        "padding-block-start": 10,
         "padding-block-end": 0
       }
     },
