@@ -151,26 +151,11 @@
         "enable_transparent_header_collection": false,
         "collection_color_scheme": "default"
       }
-    },
-    "divider_3p8JFn": {
-      "type": "divider",
-      "name": "t:names.divider_section",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "section_width": "full-width",
-        "thickness": 5,
-        "corner_radius": "square",
-        "width_percent": 100,
-        "alignment_horizontal": "center",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
     }
   },
   "order": [
     "header_announcements_tKcBLW",
     "custom_liquid_Ta8Fip",
-    "header_section",
-    "divider_3p8JFn"
+    "header_section"
   ]
 }
