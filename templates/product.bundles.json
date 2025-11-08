@@ -259,6 +259,14 @@
               },
               "block_order": []
             },
+            "custom_liquid_c6eEmx": {
+              "type": "custom-liquid",
+              "name": "t:names.custom_liquid",
+              "settings": {
+                "custom_liquid": "{%- assign message = shop.metafields.custom.pre_order_message.value -%}\n\n{%- if message != blank -%}\n  <div style=\"margin:20px 0; text-align:center;\">\n    <span style=\"background:#dc3545; color:white; padding:12px 24px; border-radius:12px; font-size:16px; font-weight:600; display:inline-block; box-shadow:0 4px 12px rgba(220,53,69,0.3);\">\n      {{ message }}\n    </span>\n  </div>\n{%- endif -%}"
+              },
+              "blocks": {}
+            },
             "accordion_axXQc8": {
               "type": "accordion",
               "name": "t:names.accordion",
@@ -393,6 +401,7 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
+            "custom_liquid_c6eEmx",
             "accordion_axXQc8"
           ]
         }
