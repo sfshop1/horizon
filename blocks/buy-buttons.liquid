@@ -57,12 +57,19 @@
         ref="liveRegion"
       ></div>
       {%- form 'product', product, id: product_form_id, data-type: 'add-to-cart-form' -%}
-        <input
+                  <input
           type="hidden"
           name="id"
           ref="variantId"
           value="{{ product.selected_or_first_available_variant.id }}"
         >
+
+        {%- comment %}TRIGGER CART-WIDE RED BADGE{% endcomment -%}
+        {%- if product.metafields.custom.pre_order != blank -%}
+          <input type="hidden" 
+                 name="attributes[Pre-Order]" 
+                 value="{{ shop.metafields.custom.pre_order_message.value | escape }}">
+        {%- endif -%}
 {%- comment %}TRIGGER SHOP MESSAGE – NO PRE-ORDER TEXT IN CART{% endcomment -%}
 
 {%- if product.metafields.custom.pre_order != blank -%}
