@@ -63,19 +63,17 @@
           ref="variantId"
           value="{{ product.selected_or_first_available_variant.id }}"
         >
-{%- comment %}PRE-ORDER + LOCATION MESSAGE BY ID – FINAL VERSION{% endcomment -%}
+{%- comment %}PRE-ORDER + SHOP MESSAGE – WORKS 100%{% endcomment -%}
 
 {%- if product.metafields.custom.pre_order != blank -%}
   <input type="hidden" name="properties[Note]" 
          value="{{ product.metafields.custom.pre_order | escape }}">
 
-  {%- assign target_location_id = 75949539411 -%}
-
-  {%- assign target_location = shop.locations | where: "id", target_location_id | first -%}
-  {%- assign location_msg = target_location.metafields.custom.pre_order_message.value -%}
-  {%- if location_msg != blank -%}
+  {%- comment %}Your store-wide pickup message – stored on the SHOP{% endcomment -%}
+  {%- assign shop_message = shop.metafields.custom.pre_order_message.value -%}
+  {%- if shop_message != blank -%}
     <input type="hidden" name="properties[Pickup Locations]" 
-           value="{{ location_msg | escape }}">
+           value="{{ shop_message | escape }}">
   {%- endif -%}
 {%- endif -%}
         {%- if block_settings.gift_card_form and product.gift_card? -%}
