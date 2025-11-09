@@ -168,7 +168,7 @@
           "primary": "#000000cf",
           "primary_hover": "#ffffff",
           "border": "#f5e8d3",
-          "shadow": "#000000",
+          "shadow": "#00000000",
           "primary_button_background": "#c1272d",
           "primary_button_text": "#ffffff",
           "primary_button_border": "#4a3c31",
