@@ -18,7 +18,7 @@
           "settings": {
             "media_presentation": "grid",
             "media_columns": "two",
-            "image_gap": 100,
+            "image_gap": 0,
             "large_first_image": false,
             "icons_style": "none",
             "slideshow_controls_style": "counter",
@@ -50,8 +50,8 @@
             "custom_width_mobile": 100,
             "height": "fit",
             "details_position": "flex-start",
-            "gap": 28,
-            "sticky_details_desktop": true,
+            "gap": 0,
+            "sticky_details_desktop": false,
             "inherit_color_scheme": true,
             "color_scheme": "scheme-1",
             "background_media": "none",
@@ -413,7 +413,7 @@
         "desktop_media_position": "left",
         "equal_columns": false,
         "limit_details_width": false,
-        "gap": 0,
+        "gap": 48,
         "color_scheme": "",
         "padding-block-start": 10,
         "padding-block-end": 0
