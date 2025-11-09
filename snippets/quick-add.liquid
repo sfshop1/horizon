@@ -90,14 +90,6 @@
           disabled
         {% endif %}
       >
-              {%- comment %}QUICK ADD – PRE-ORDER SHOP MESSAGE (WORKS 100%){% endcomment -%}
-        {%- if product.metafields.custom.pre_order != blank -%}
-          {%- assign shop_message = shop.metafields.custom.pre_order_message.value -%}
-          {%- if shop_message != blank -%}
-            <input type="hidden" name="properties[Pre-Order]" 
-                   value="{{ shop_message | escape }}">
-          {%- endif -%}
-        {%- endif -%}
       <input
         type="hidden"
         name="quantity"
