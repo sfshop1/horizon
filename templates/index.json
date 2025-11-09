@@ -48,11 +48,11 @@
                 "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 12,
-                "width": "fill",
+                "width": "fit-content",
                 "custom_width": 50,
-                "width_mobile": "fill",
+                "width_mobile": "fit-content",
                 "custom_width_mobile": 85,
-                "height": "fill",
+                "height": "fit",
                 "custom_height": 100,
                 "inherit_color_scheme": false,
                 "color_scheme": "scheme-6",
@@ -104,10 +104,10 @@
                 "text_qEbpyf": {
                   "type": "text",
                   "settings": {
-                    "text": "<ul><li>Fresh, modern design that feels like walking into the farm store</li><li>Streamlined checkout cuts steps in half — pick, click, done</li></ul>",
+                    "text": "<p>Fresh, modern design that feels like walking into the farm store<br/>Streamlined checkout cuts steps in half — pick, click, done</p>",
                     "width": "fit-content",
                     "max_width": "normal",
-                    "alignment": "left",
+                    "alignment": "center",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
                     "font_size": "1.125rem",
@@ -119,10 +119,10 @@
                     "background": true,
                     "background_color": "#886e59",
                     "corner_radius": 33,
-                    "padding-block-start": 29,
-                    "padding-block-end": 20,
-                    "padding-inline-start": 50,
-                    "padding-inline-end": 100
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
                   },
                   "blocks": {}
                 }
