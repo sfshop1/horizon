@@ -159,28 +159,6 @@
                   },
                   "blocks": {}
                 },
-                "price_cimntk": {
-                  "type": "price",
-                  "settings": {
-                    "show_sale_price_first": true,
-                    "show_installments": false,
-                    "show_tax_info": false,
-                    "type_preset": "h4",
-                    "width": "100%",
-                    "alignment": "left",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "color": "var(--color-foreground)",
-                    "padding-block-start": 4,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
                 "custom_liquid_CyUWVn": {
                   "type": "custom-liquid",
                   "name": "t:names.custom_liquid",
@@ -202,7 +180,6 @@
                 "review_bTymkR",
                 "text_fibjBM",
                 "product_inventory_qBryzP",
-                "price_cimntk",
                 "custom_liquid_CyUWVn",
                 "custom_liquid_gewiJD"
               ]
@@ -227,6 +204,28 @@
                 "show_swatches": false,
                 "alignment": "left",
                 "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_UBXdaF": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h4",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 4,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
@@ -402,6 +401,7 @@
             "group_U8D83A",
             "divider_VJhene",
             "variant_picker_R3rGDr",
+            "price_UBXdaF",
             "buy_buttons_eYQEYi",
             "accordion_axXQc8"
           ]
