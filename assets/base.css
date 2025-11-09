@@ -4283,38 +4283,3 @@ text-component {
     font-size: max(1rem, 100%);
   }
 }
-/* FIX iOS SAFARI STATUS BAR TAP FLASH – WORKS ON EVERY PAGE */
-@supports (-webkit-touch-callout: none) {
-  /* Force solid background on header during scroll-to-top */
-  .site-header,
-  .header__wrapper {
-    background-color: #ffffff !important; /* CHANGE TO YOUR HEADER COLOR */
-    transition: none !important;
-    -webkit-transition: none !important;
-  }
-
-  /* Restore normal scrolled state AFTER scroll ends */
-  .site-header.is-scrolled .header__wrapper {
-    background-color: rgba(255,255,255,0.95) !important; /* YOUR SCROLLED HEADER COLOR */
-    transition: background 0.3s ease !important;
-  }
-
-  /* Kill the flash on ANY long page */
-  .page-width,
-  .section,
-  .collection-hero,
-  .product__info-container {
-    background: #ffffff !important; /* MATCH YOUR PAGE BACKGROUND */
-  }
-}
-
-/* STOP SAFARI FROM FLASHING WHITE/BLACK ON SCROLL-TO-TOP */
-html {
-  scroll-behavior: auto !;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Prevent layout shift flash */
-body {
-  background: #ffffff !important; /* YOUR PAGE BACKGROUND */
-}
