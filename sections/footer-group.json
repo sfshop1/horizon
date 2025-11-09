@@ -14,6 +14,19 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "payment_icons_4e77UF": {
+          "type": "payment-icons",
+          "name": "t:names.payment_icons",
+          "settings": {
+            "horizontal_alignment": "flex-start",
+            "gap": 10,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "group_wErUQf": {
           "type": "group",
           "name": "Join our email list",
@@ -140,6 +153,7 @@
         }
       },
       "block_order": [
+        "payment_icons_4e77UF",
         "group_wErUQf",
         "email-signup_HafH7P"
       ],
