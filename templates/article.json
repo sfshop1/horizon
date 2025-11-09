@@ -42,7 +42,7 @@
           "type": "custom-liquid",
           "name": "t:names.custom_liquid",
           "settings": {
-            "custom_liquid": "{%- comment %}BLOG PUBLISHED DATE – WORKS 100% IN CUSTOM LIQUID{% endcomment -%}\n{%- if article -%}\n  <div style=\"text-align:center; margin:5px 0; font-size:15px; color:#666;\">\n    Published on \n    <strong>{{ article.published_at | date: \"%B %d, %Y\" }}</strong>\n    {% if article.published_at %}\n      at {{ article.published_at | date: \"%I:%M %p\" }}\n    {% endif %}\n  </div>\n{%- endif -%}"
+            "custom_liquid": "{%- comment %}BLOG PUBLISHED DATE – WORKS 100% IN CUSTOM LIQUID{% endcomment -%}\n{%- if article -%}\n  <div style=\"text-align:center; margin:5px 0; font-size:15px; color:#666;\">\n    Published on \n    <strong>{{ article.published_at | date: \"%B %d, %Y\" }}</strong>\n    {% if article.published_at %}\n    {% endif %}\n  </div>\n{%- endif -%}"
           },
           "blocks": {}
         },
