@@ -107,17 +107,11 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "review_bTymkR": {
-                  "type": "review",
-                  "name": "t:names.product_review_stars",
+                "yotpo_product_reviews_star_rating_xbEED6": {
+                  "type": "shopify://apps/yotpo-product-reviews/blocks/star-rating/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
                   "settings": {
-                    "stars_style": "shaded",
-                    "show_number": true,
-                    "rating_color": "primary",
-                    "type_preset": "paragraph",
-                    "alignment": "left"
-                  },
-                  "blocks": {}
+                    "product": "{{closest.product}}"
+                  }
                 },
                 "text_fibjBM": {
                   "type": "text",
@@ -161,7 +155,7 @@
                 }
               },
               "block_order": [
-                "review_bTymkR",
+                "yotpo_product_reviews_star_rating_xbEED6",
                 "text_fibjBM",
                 "product_inventory_qBryzP"
               ]
@@ -187,20 +181,7 @@
               },
               "blocks": {}
             },
-            "variant_picker_R3rGDr": {
-              "type": "variant-picker",
-              "settings": {
-                "variant_style": "buttons",
-                "show_swatches": false,
-                "alignment": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_UBXdaF": {
+            "price_7MQA3h": {
               "type": "price",
               "settings": {
                 "show_sale_price_first": true,
@@ -219,6 +200,19 @@
                 "padding-block-end": 4,
                 "padding-inline-start": 4,
                 "padding-inline-end": 4
+              },
+              "blocks": {}
+            },
+            "variant_picker_R3rGDr": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": false,
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {}
             },
@@ -399,8 +393,8 @@
             "group_U8D83A",
             "divider_VJhene",
             "custom_liquid_DFLjnH",
+            "price_7MQA3h",
             "variant_picker_R3rGDr",
-            "price_UBXdaF",
             "buy_buttons_eYQEYi",
             "custom_liquid_L9VYrB",
             "accordion_axXQc8"
