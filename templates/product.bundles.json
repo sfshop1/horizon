@@ -34,7 +34,7 @@
             "video_loop": false,
             "hide_variants": true,
             "padding-block-start": 64,
-            "padding-block-end": 67,
+            "padding-block-end": 0,
             "padding-inline-start": 64,
             "padding-inline-end": 64
           },
