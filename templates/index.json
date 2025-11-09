@@ -101,26 +101,26 @@
                   },
                   "blocks": {}
                 },
-                "text_qEbpyf": {
+                "text_Kgqdtc": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Fresh, modern design that feels like walking into the farm store<br/>Streamlined checkout cuts steps in half — pick, click, done</p>",
                     "width": "fit-content",
                     "max_width": "normal",
-                    "alignment": "center",
+                    "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
                     "font_size": "1.125rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
+                    "line_height": "loose",
+                    "letter_spacing": "loose",
                     "case": "none",
-                    "wrap": "nowrap",
+                    "wrap": "balance",
                     "color": "var(--color-foreground)",
-                    "background": true,
-                    "background_color": "#886e59",
-                    "corner_radius": 33,
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
-                    "padding-block-end": 0,
+                    "padding-block-end": 20,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
                   },
@@ -129,7 +129,7 @@
               },
               "block_order": [
                 "text_XxBttb",
-                "text_qEbpyf"
+                "text_Kgqdtc"
               ]
             }
           },
