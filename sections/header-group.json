@@ -71,6 +71,17 @@
         "padding-block-end": 10
       }
     },
+    "custom_liquid_RJVaUh": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "{% comment %}\n  HORIZON: WOOD TEXTURE HEADER – FINAL NO-FLASH VERSION\n{% endcomment %}\n{% assign wood_texture_url = \"wood-pattern.png\" | file_url %}\n<style>\n  /* 1. FORCE WOOD TEXTURE ONLY WHEN SCROLLED – NO FLASH ON iOS */\n  .site-header.is-scrolled .header__row--top.color-scheme-2,\n  .header__row--top.is-sticky.color-scheme-2 {\n    background-image: url('{{ wood_texture_url }}') !important;\n    background-repeat: repeat !important;\n    background-size: 120px auto !important;\n    background-position: center !important;\n    background-color: transparent !important;\n    transition: background 0.35s ease !important;\n  }\n\n  /* 2. KEEP ORIGINAL COLOR SCHEME AT TOP (prevents black/white flash) */\n  .site-header:not(.is-scrolled) .header__row--top.color-scheme-2 {\n    background: var(--color-scheme-2-background) !important;\n    background-image: none !important;\n  }\n\n  /* 3. MOBILE – smaller texture */\n  @media (max-width: 989px) {\n    .site-header.is-scrolled .header__row--top.color-scheme-2 {\n      background-size: 80px auto !important;\n    }\n  }\n\n  /* 4. TEXT READABILITY – only on wood background */\n  .site-header.is-scrolled .header__row--top.color-scheme-2 .menu-list__link,\n  .site-header.is-scrolled .header__row--top.color-scheme-2 .header-logo img {\n    filter: brightness(0.92) !important;\n    text-shadow: 0 1px 2px rgba(0,0,0,0.3) !important;\n  }\n\n  /* 5. SUBMENU – clean white */\n  .header__row--top .menu-list__submenu {\n    background: white !important;\n    border: 1px solid #e0e0e0 !important;\n    box-shadow: 0 10px 30px rgba(0,0,0,0.12) !important;\n  }\n\n  /* 6. KILL iOS STATUS-BAR-TAP FLASH FOREVER */\n  @supports (-webkit-touch-callout: none) {\n    .site-header {\n      -webkit-transform: translateZ(0);\n      transform: translateZ(0);\n    }\n    html { scroll-behavior: auto !important; }\n  }\n</style>",
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "header_section": {
       "type": "header",
       "blocks": {
@@ -144,6 +155,7 @@
   },
   "order": [
     "header_announcements_tKcBLW",
+    "custom_liquid_RJVaUh",
     "header_section"
   ]
 }
