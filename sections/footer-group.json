@@ -166,6 +166,7 @@
         },
         "policy_list": {
           "type": "footer-policy-list",
+          "disabled": true,
           "settings": {
             "font_size": "0.75rem",
             "case": "none"
