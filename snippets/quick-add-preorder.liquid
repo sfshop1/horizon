@@ -1,0 +1,19 @@
+{%- if product.metafields.custom.pre_order != blank -%}
+  {%- assign msg = shop.metafields.custom.pre_order_message.value -%}
+  {%- if msg != blank -%}
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('#quick-add-modal-content product-form-component');
+        if (!form) return;
+
+        form.addEventListener('submit', (e) => {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = 'properties[Pre-Order]';
+          input.value = {{ msg | json }};
+          form.querySelector('form').appendChild(input);
+        });
+      });
+    </script>
+  {%- endif -%}
+{%- endif -%}
