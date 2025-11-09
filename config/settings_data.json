@@ -832,6 +832,8 @@
     }
   },
   "platform_customizations": {
-    "custom_css": []
+    "custom_css": [
+      "/* Hide all built-in product badges */.product-badges {display: none !important;}"
+    ]
   }
 }
