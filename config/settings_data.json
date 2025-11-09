@@ -832,9 +832,6 @@
     }
   },
   "platform_customizations": {
-    "custom_css": [
-      "/* KILL THE BLACK FLASH FOREVER */.header__wrapper {background: transparent !important;}",
-      ".header__wrapper:is(.is-transparent, .is-scrolled) {background: rgba(255,255,255,0.95) !important;}"
-    ]
+    "custom_css": []
   }
 }
