@@ -833,7 +833,8 @@
   },
   "platform_customizations": {
     "custom_css": [
-      "/* Hide all built-in product badges */.product-badges {display: none !important;}"
+      "/* KILL THE BLACK FLASH FOREVER */.header__wrapper {background: transparent !important;}",
+      ".header__wrapper:is(.is-transparent, .is-scrolled) {background: rgba(255,255,255,0.95) !important;}"
     ]
   }
 }
