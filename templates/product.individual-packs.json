@@ -412,9 +412,9 @@
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
-        "equal_columns": false,
+        "equal_columns": true,
         "limit_details_width": false,
-        "gap": 24,
+        "gap": 0,
         "color_scheme": "",
         "padding-block-start": 10,
         "padding-block-end": 0
