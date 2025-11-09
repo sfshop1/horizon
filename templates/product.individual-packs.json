@@ -22,8 +22,8 @@
           "type": "_product-media-gallery",
           "static": true,
           "settings": {
-            "media_presentation": "carousel",
-            "media_columns": "two",
+            "media_presentation": "grid",
+            "media_columns": "one",
             "image_gap": 4,
             "large_first_image": false,
             "icons_style": "none",
@@ -39,10 +39,10 @@
             "zoom": true,
             "video_loop": false,
             "hide_variants": true,
-            "padding-block-start": 0,
+            "padding-block-start": 30,
             "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-start": 64,
+            "padding-inline-end": 64
           },
           "blocks": {}
         },
