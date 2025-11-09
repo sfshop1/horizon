@@ -48,11 +48,11 @@
                 "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 12,
-                "width": "custom",
+                "width": "fill",
                 "custom_width": 50,
-                "width_mobile": "custom",
+                "width_mobile": "fill",
                 "custom_width_mobile": 85,
-                "height": "fit",
+                "height": "fill",
                 "custom_height": 100,
                 "inherit_color_scheme": false,
                 "color_scheme": "scheme-6",
@@ -63,8 +63,8 @@
                 "border_width": 1,
                 "border_opacity": 100,
                 "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
+                "toggle_overlay": true,
+                "overlay_color": "#00000021",
                 "overlay_style": "solid",
                 "gradient_direction": "to top",
                 "link": "",
@@ -79,7 +79,7 @@
                 "text_XxBttb": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Website Uplift!  Easier Browsing, Faster Ordering</p><p></p>",
+                    "text": "<p><strong>Website Update: Easier Browsing, Faster Ordering</strong></p><p></p>",
                     "width": "fit-content",
                     "max_width": "none",
                     "alignment": "center",
@@ -92,8 +92,8 @@
                     "wrap": "pretty",
                     "color": "var(--color-foreground)",
                     "background": false,
-                    "background_color": "#4a3c31",
-                    "corner_radius": 0,
+                    "background_color": "#886e59",
+                    "corner_radius": 50,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
@@ -116,35 +116,20 @@
                     "case": "none",
                     "wrap": "nowrap",
                     "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
+                    "background": true,
+                    "background_color": "#886e59",
+                    "corner_radius": 33,
                     "padding-block-start": 29,
                     "padding-block-end": 20,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "button_YEdCag": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Explore",
-                    "link": "shopify://collections/seasonings",
-                    "open_in_new_tab": false,
-                    "style_class": "button-secondary",
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100
+                    "padding-inline-start": 50,
+                    "padding-inline-end": 100
                   },
                   "blocks": {}
                 }
               },
               "block_order": [
                 "text_XxBttb",
-                "text_qEbpyf",
-                "button_YEdCag"
+                "text_qEbpyf"
               ]
             }
           },
