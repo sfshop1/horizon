@@ -660,7 +660,7 @@
                   "type": "button",
                   "settings": {
                     "label": "Recipes",
-                    "link": "shopify://pages/recipes",
+                    "link": "shopify://blogs/recipes",
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "fit-content",
