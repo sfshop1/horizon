@@ -530,26 +530,11 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
-                },
-                "button_LMq4GT": {
-                  "type": "button",
-                  "settings": {
-                    "label": "Indiana Grown",
-                    "link": "shopify://collections/beef-bundles",
-                    "open_in_new_tab": true,
-                    "style_class": "button",
-                    "width": "fit-content",
-                    "custom_width": 100,
-                    "width_mobile": "fit-content",
-                    "custom_width_mobile": 100
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "text_a6GeH4",
-                "text_Xre478",
-                "button_LMq4GT"
+                "text_Xre478"
               ]
             }
           },
