@@ -137,7 +137,7 @@
         "localization_row": "top",
         "section_width": "page-width",
         "section_height": "compact",
-        "enable_sticky_header": "always",
+        "enable_sticky_header": "scroll-up",
         "divider_width": 0,
         "divider_size": "page-width",
         "border_width": 0,
