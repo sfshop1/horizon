@@ -1,3 +1,6 @@
+const storefrontAccessToken = '967cf6ccc67894215053bb3f8a0181b4';
+const shopDomain = '{{ shop.permanent_domain | default: shop.url }}';
+
 document.addEventListener("DOMContentLoaded", function () {
   const maxWeight = 15;
   let totalWeight = 0;
