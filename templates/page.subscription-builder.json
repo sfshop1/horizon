@@ -160,6 +160,9 @@
       "type": "subscription-box-builder",
       "name": "Subscription Box Builder",
       "settings": {
+        "padding": 40,
+        "max_width": 880,
+        "column_gap": 0,
         "storefront_token": "967cf6ccc67894215053bb3f8a0181b4",
         "shop_domain": "https://slabaughfarmsdevbuiltin.myshopify.com/"
       }
