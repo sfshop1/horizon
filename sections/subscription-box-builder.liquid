@@ -1,6 +1,10 @@
 <section id="subscription-box-builder"
          class="subscription-builder"
-         style="padding: {{ section.settings.padding }}px 0;">
+         style="
+           padding: {{ section.settings.padding }}px 0;
+           max-width: {{ section.settings.max_width }}px;
+           margin: auto;
+         ">
 
   <!-- Summary Bar -->
   <div class="builder-summary">
@@ -41,11 +45,10 @@
 
 <style>
 .subscription-builder {
-  max-width: 900px;
-  margin: auto;
   font-family: sans-serif;
 }
 
+/* Summary Bar */
 .builder-summary {
   background: #f7f7f7;
   padding: 16px;
@@ -59,6 +62,7 @@
   font-size: 18px;
 }
 
+/* Table */
 .builder-table {
   width: 100%;
   border-collapse: collapse;
@@ -66,10 +70,11 @@
 
 .builder-table th,
 .builder-table td {
-  padding: 10px;
+  padding: {{ section.settings.column_gap }}px;
   border-bottom: 1px solid #ddd;
 }
 
+/* Qty Buttons */
 .qty-minus,
 .qty-plus {
   padding: 6px 10px;
@@ -78,6 +83,7 @@
   cursor: pointer;
 }
 
+/* Complete Button */
 .complete-btn {
   margin-top: 20px;
   padding: 14px 20px;
@@ -97,11 +103,29 @@
     {
       "type": "range",
       "id": "padding",
-      "label": "Section Padding (top & bottom)",
+      "label": "Section Padding (Top & Bottom)",
       "min": 0,
-      "max": 100,
+      "max": 120,
       "step": 4,
       "default": 40
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Builder Max Width (px)",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "default": 900
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column Spacing (px)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 12
     },
     {
       "type": "text",
