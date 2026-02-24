@@ -119,11 +119,20 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "subscription_box_builder_tJnRYH": {
+      "type": "subscription-box-builder",
+      "name": "Subscription Box Builder",
+      "settings": {
+        "storefront_token": "967cf6ccc67894215053bb3f8a0181b4",
+        "shop_domain": ""
+      }
     }
   },
   "order": [
     "main",
     "section_zjjide",
-    "custom_liquid_W4BnxB"
+    "custom_liquid_W4BnxB",
+    "subscription_box_builder_tJnRYH"
   ]
 }
