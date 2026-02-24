@@ -1,10 +1,9 @@
-<section id="subscription-box-builder" class="subscription-builder">
+<section id="subscription-box-builder"
+         class="subscription-builder"
+         style="padding: {{ section.settings.padding }}px 0;">
 
   <!-- Summary Bar -->
   <div class="builder-summary">
-    <h2>Subscription Box Builder</h2>
-    <p>Our subscription shipper holds up to <strong>15 lbs</strong> of premium beef.</p>
-
     <div class="summary-stats">
       <div>Total Items: <span id="total-items">0</span></div>
       <div>Total Weight: <span id="total-weight">0</span> lbs</div>
@@ -49,7 +48,7 @@
 
 .builder-summary {
   background: #f7f7f7;
-  padding: 20px;
+  padding: 16px;
   margin-bottom: 20px;
   border-radius: 6px;
 }
@@ -57,7 +56,6 @@
 .summary-stats {
   display: flex;
   gap: 40px;
-  margin-top: 10px;
   font-size: 18px;
 }
 
@@ -96,6 +94,15 @@
 {
   "name": "Subscription Box Builder",
   "settings": [
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Section Padding (top & bottom)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40
+    },
     {
       "type": "text",
       "id": "storefront_token",
