@@ -51,42 +51,13 @@
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {
-            "text_gqyQg8": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h2>{{ closest.page.title }}</h2>",
-                "width": "fit-content",
-                "max_width": "none",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_gqyQg8"
-          ]
+          "blocks": {}
         }
       },
       "block_order": [
         "group_8LyXmT"
       ],
+      "disabled": true,
       "settings": {
         "content_direction": "column",
         "gap": 0,
@@ -98,6 +69,32 @@
     "section_zjjide": {
       "type": "section",
       "blocks": {
+        "text_RM7tQN": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>{{ closest.page.title }}</h2>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "text_zkdWtK": {
           "type": "text",
           "name": "t:names.heading",
@@ -126,8 +123,10 @@
         }
       },
       "block_order": [
+        "text_RM7tQN",
         "text_zkdWtK"
       ],
+      "disabled": true,
       "name": "t:names.rich_text_section",
       "settings": {
         "content_direction": "column",
@@ -157,6 +156,37 @@
         "padding-block-end": 21
       }
     },
+    "section_JNwqah": {
+      "type": "section",
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "small",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
     "subscription_box_builder_tJnRYH": {
       "type": "subscription-box-builder",
       "name": "Subscription Box Builder",
@@ -169,6 +199,7 @@
   "order": [
     "main",
     "section_zjjide",
+    "section_JNwqah",
     "subscription_box_builder_tJnRYH"
   ]
 }
