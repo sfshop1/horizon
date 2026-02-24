@@ -23,6 +23,47 @@
     "section_zjjide": {
       "type": "section",
       "blocks": {
+        "group_HbAMgJ": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "text_MwwYie": {
           "type": "text",
           "name": "t:names.heading",
@@ -77,6 +118,7 @@
         }
       },
       "block_order": [
+        "group_HbAMgJ",
         "text_MwwYie",
         "text_zkdWtK"
       ],
@@ -109,17 +151,6 @@
         "padding-block-end": 21
       }
     },
-    "custom_liquid_W4BnxB": {
-      "type": "custom-liquid",
-      "name": "t:names.custom_liquid",
-      "settings": {
-        "custom_liquid": "<section id=\"subscription-box-builder\" class=\"subscription-builder\">\n\n  <!-- Summary Bar -->\n  <div class=\"builder-summary\">\n\n    <div class=\"summary-stats\">\n      <div>Total Items: <span id=\"total-items\">0</span></div>\n      <div>Total Weight: <span id=\"total-weight\">0</span> lbs</div>\n    </div>\n  </div>\n\n  <!-- Items Table -->\n  <table class=\"builder-table\">\n    <thead>\n      <tr>\n        <th>Item</th>\n        <th>Description</th>\n        <th>Thickness</th>\n        <th>Approx. Weight</th>\n        <th colspan=\"2\">Qty</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      {% for block in section.blocks %}\n      <tr class=\"builder-row\"\n          data-title=\"{{ block.settings.title }}\"\n          data-weight=\"{{ block.settings.weight }}\"\n          data-sku=\"{{ block.settings.sku }}\">\n        \n        <td>{{ block.settings.title }}</td>\n        <td>{{ block.settings.description }}</td>\n        <td>{{ block.settings.thickness }}</td>\n        <td>{{ block.settings.weight }} lb</td>\n\n        <td>\n          <button class=\"qty-minus\" data-index=\"{{ forloop.index0 }}\">-</button>\n        </td>\n        <td>\n          <span class=\"qty-display\" id=\"qty-{{ forloop.index0 }}\">0</span>\n          <button class=\"qty-plus\" data-index=\"{{ forloop.index0 }}\">+</button>\n        </td>\n      </tr>\n      {% endfor %}\n    </tbody>\n  </table>\n\n  <!-- Hidden JSON Output -->\n  <textarea id=\"bundle-json\" style=\"display:none;\"></textarea>\n\n  <!-- Complete Subscription Button -->\n  <button id=\"complete-subscription\" class=\"complete-btn\">\n    Complete Subscription\n  </button>\n\n</section>\n\n{{ 'subscription-builder.js' | asset_url | script_tag }}\n\n<style>\n.subscription-builder {\n  max-width: 900px;\n  margin: auto;\n  font-family: sans-serif;\n}\n\n.builder-summary {\n  background: #f7f7f7;\n  padding: 20px;\n  margin-bottom: 20px;\n  border-radius: 6px;\n}\n\n.summary-stats {\n  display: flex;\n  gap: 40px;\n  margin-top: 10px;\n  font-size: 18px;\n}\n\n.builder-table {\n  width: 100%;\n  border-collapse: collapse;\n}\n\n.builder-table th,\n.builder-table td {\n  padding: 10px;\n  border-bottom: 1px solid #ddd;\n}\n\n.qty-minus,\n.qty-plus {\n  padding: 6px 10px;\n  background: #eee;\n  border: 1px solid #ccc;\n  cursor: pointer;\n}\n\n.complete-btn {\n  margin-top: 20px;\n  padding: 14px 20px;\n  background: #6B5436;\n  color: white;\n  border: none;\n  cursor: pointer;\n  font-size: 18px;\n  border-radius: 6px;\n}\n</style>\n\n{{ 'subscription-builder.js' | asset_url | script_tag }}",
-        "color_scheme": "",
-        "section_width": "page-width",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
     "subscription_box_builder_tJnRYH": {
       "type": "subscription-box-builder",
       "name": "Subscription Box Builder",
@@ -132,7 +163,6 @@
   "order": [
     "main",
     "section_zjjide",
-    "custom_liquid_W4BnxB",
     "subscription_box_builder_tJnRYH"
   ]
 }
