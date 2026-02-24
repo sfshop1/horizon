@@ -125,7 +125,7 @@
       "name": "Subscription Box Builder",
       "settings": {
         "storefront_token": "967cf6ccc67894215053bb3f8a0181b4",
-        "shop_domain": ""
+        "shop_domain": "https://slabaughfarmsdevbuiltin.myshopify.com/"
       }
     }
   },
