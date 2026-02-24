@@ -1,0 +1,116 @@
+<section id="subscription-box-builder" class="subscription-builder">
+
+  <!-- Summary Bar -->
+  <div class="builder-summary">
+    <h2>Subscription Box Builder</h2>
+    <p>Our subscription shipper holds up to <strong>15 lbs</strong> of premium beef.</p>
+
+    <div class="summary-stats">
+      <div>Total Items: <span id="total-items">0</span></div>
+      <div>Total Weight: <span id="total-weight">0</span> lbs</div>
+    </div>
+  </div>
+
+  <!-- Items Table -->
+  <table class="builder-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Description</th>
+        <th>Thickness</th>
+        <th>Approx. Weight</th>
+        <th colspan="2">Qty</th>
+      </tr>
+    </thead>
+
+    <tbody id="subscription-items">
+      <!-- JS will inject subscription‑eligible items here -->
+    </tbody>
+  </table>
+
+  <!-- Hidden JSON Output -->
+  <textarea id="bundle-json" style="display:none;"></textarea>
+
+  <!-- Complete Subscription Button -->
+  <button id="complete-subscription" class="complete-btn">
+    Complete Subscription
+  </button>
+
+</section>
+
+{{ 'subscription-builder.js' | asset_url | script_tag }}
+
+<style>
+.subscription-builder {
+  max-width: 900px;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+.builder-summary {
+  background: #f7f7f7;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+.summary-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.builder-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.builder-table th,
+.builder-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.qty-minus,
+.qty-plus {
+  padding: 6px 10px;
+  background: #eee;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.complete-btn {
+  margin-top: 20px;
+  padding: 14px 20px;
+  background: #6B5436;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 6px;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Subscription Box Builder",
+  "settings": [
+    {
+      "type": "text",
+      "id": "storefront_token",
+      "label": "Storefront API Token"
+    },
+    {
+      "type": "text",
+      "id": "shop_domain",
+      "label": "Shop Domain (yourshop.myshopify.com)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subscription Box Builder"
+    }
+  ]
+}
+{% endschema %}
